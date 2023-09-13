@@ -1,0 +1,9 @@
+CIF_id,Compound,Central atom,CN method,Coordination number,A atom count in CN,B atom count in CN,Volume_of_polyhedron,Distance from central atom to center of mass,Number of edges,Number of faces,Shortest distance to center of any face,Shortest distance to center of any edge,Volume of the inscribed sphere,Packing efficiency of inscribed sphere in polyhedron
+2030011,HoPt,Pt1,dist_by_shortest_dist,9,7,2,48.42108,0.07844,21,14,1.84651,1.97043,26.37219,0.54464
+2030011,HoPt,Pt1,dist_by_CIF_rad_sum,9,7,2,48.42108,0.07844,21,14,1.84651,1.97043,26.37219,0.54464
+2030011,HoPt,Pt1,dist_by_CIF_rad_refined_sum,9,7,2,48.42108,0.07844,21,14,1.84651,1.97043,26.37219,0.54464
+2030011,HoPt,Pt1,dist_by_Pauling_rad_sum,9,7,2,48.42108,0.07844,21,14,1.84651,1.97043,26.37219,0.54464
+2030011,HoPt,Ho1,dist_by_shortest_dist,13,6,7,84.28918,0.54003,33,22,1.96326,1.90459,31.69745,0.37606
+2030011,HoPt,Ho1,dist_by_CIF_rad_sum,13,6,7,84.28918,0.54003,33,22,1.96326,1.90459,31.69745,0.37606
+2030011,HoPt,Ho1,dist_by_CIF_rad_refined_sum,13,6,7,84.28918,0.54003,33,22,1.96326,1.90459,31.69745,0.37606
+2030011,HoPt,Ho1,dist_by_Pauling_rad_sum,13,6,7,84.28918,0.54003,33,22,1.96326,1.90459,31.69745,0.37606

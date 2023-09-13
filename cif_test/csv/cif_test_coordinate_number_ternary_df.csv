@@ -1,0 +1,17 @@
+CIF_id,Compound,Central atom,CN method,Coordination number,R atom count in CN,M atom count in CN,X atom count in CN,Volume_of_polyhedron,Distance from central atom to center of mass,Number of edges,Number of faces,Shortest distance to center of any face,Shortest distance to center of any edge,Volume of the inscribed sphere,Packing efficiency of inscribed sphere in polyhedron
+380981,URhIn,In1,dist_by_shortest_dist,14,6,4,4,86.72944,0.13697,36,24,2.43496,2.55679,60.47349,0.69727
+380981,URhIn,In1,dist_by_CIF_rad_sum,14,6,4,4,86.72944,0.13697,36,24,2.43496,2.55679,60.47349,0.69727
+380981,URhIn,In1,dist_by_CIF_rad_refined_sum,12,6,4,2,71.61102,0.1598,30,20,2.03691,1.97172,35.40026,0.49434
+380981,URhIn,In1,dist_by_Pauling_rad_sum,14,6,4,4,86.72944,0.13697,36,24,2.43496,2.55679,60.47349,0.69727
+380981,URhIn,U1,dist_by_shortest_dist,11,0,5,6,60.6529,0.32792,27,18,1.98531,1.94995,32.77741,0.54041
+380981,URhIn,U1,dist_by_CIF_rad_sum,11,0,5,6,60.6529,0.32792,27,18,1.98531,1.94995,32.77741,0.54041
+380981,URhIn,U1,dist_by_CIF_rad_refined_sum,17,6,5,6,115.67168,0.03188,45,30,2.65258,2.66136,78.17957,0.67587
+380981,URhIn,U1,dist_by_Pauling_rad_sum,17,6,5,6,115.67168,0.03188,45,30,2.65258,2.66136,78.17957,0.67587
+380981,URhIn,Rh1,dist_by_shortest_dist,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh1,dist_by_CIF_rad_sum,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh1,dist_by_CIF_rad_refined_sum,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh1,dist_by_Pauling_rad_sum,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh2,dist_by_shortest_dist,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
+380981,URhIn,Rh2,dist_by_CIF_rad_sum,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
+380981,URhIn,Rh2,dist_by_CIF_rad_refined_sum,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
+380981,URhIn,Rh2,dist_by_Pauling_rad_sum,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178

@@ -1,0 +1,17 @@
+CIF_id,Compound,Central atom,CN method,Coordination number,R atom count in CN,M atom count in CN,X atom count in CN,Volume_of_polyhedron,Distance from central atom to center of mass,Number of edges,Number of faces,Shortest distance to center of any face,Shortest distance to center of any edge,Volume of the inscribed sphere,Packing efficiency of inscribed sphere in polyhedron
+380981,URhIn,In1,dist_by_shortest_dist,14,6,4,4,86.72993,0.13697,36,24,2.43497,2.55678,60.47396,0.69727
+380981,URhIn,In1,dist_by_CIF_rad_sum,14,6,4,4,86.72993,0.13697,36,24,2.43497,2.55678,60.47396,0.69727
+380981,URhIn,In1,dist_by_CIF_rad_refined_sum,12,6,4,2,71.61151,0.1598,30,20,2.03691,1.97172,35.4001,0.49434
+380981,URhIn,In1,dist_by_Pauling_rad_sum,14,6,4,4,86.72993,0.13697,36,24,2.43497,2.55678,60.47396,0.69727
+380981,URhIn,U1,dist_by_shortest_dist,11,0,5,6,60.65173,0.32792,27,18,1.98531,1.94993,32.77718,0.54042
+380981,URhIn,U1,dist_by_CIF_rad_sum,11,0,5,6,60.65173,0.32792,27,18,1.98531,1.94993,32.77718,0.54042
+380981,URhIn,U1,dist_by_CIF_rad_refined_sum,17,6,5,6,115.67077,0.03188,45,30,2.65258,2.66136,78.1798,0.67588
+380981,URhIn,U1,dist_by_Pauling_rad_sum,17,6,5,6,115.67077,0.03188,45,30,2.65258,2.66136,78.1798,0.67588
+380981,URhIn,Rh1,dist_by_shortest_dist,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh1,dist_by_CIF_rad_sum,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh1,dist_by_CIF_rad_refined_sum,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh1,dist_by_Pauling_rad_sum,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
+380981,URhIn,Rh2,dist_by_shortest_dist,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
+380981,URhIn,Rh2,dist_by_CIF_rad_sum,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
+380981,URhIn,Rh2,dist_by_CIF_rad_refined_sum,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
+380981,URhIn,Rh2,dist_by_Pauling_rad_sum,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
