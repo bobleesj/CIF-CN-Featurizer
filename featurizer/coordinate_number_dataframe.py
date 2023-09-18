@@ -114,7 +114,7 @@ def get_coordniate_number_df(metrics, atom_counts, atom_labels, formula_string, 
 
     # Append the remaining columns
     data.update({
-        "Volume_of_polyhedron": [metrics["Volume_of_polyhedron"]],
+        "Volume of polyhedron": [metrics["Volume_of_polyhedron"]],
         "Distance from central atom to center of mass": [metrics["distance_to_center"]],
         "Number of edges": [metrics["number_of_edges"]],
         "Number of faces": [metrics["number_of_faces"]],

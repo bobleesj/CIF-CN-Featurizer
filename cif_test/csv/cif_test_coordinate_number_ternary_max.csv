@@ -1,5 +1,0 @@
-CIF_id,Central atom,Compound,CN method,Coordination number,R atom count in CN,M atom count in CN,X atom count in CN,Volume_of_polyhedron,Distance from central atom to center of mass,Number of edges,Number of faces,Shortest distance to center of any face,Shortest distance to center of any edge,Volume of the inscribed sphere,Packing efficiency of inscribed sphere in polyhedron
-380981,In1,URhIn,dist_by_shortest_dist,14,6,4,4,86.72993,0.1598,36,24,2.43497,2.55678,60.47396,0.69727
-380981,Rh1,URhIn,dist_by_shortest_dist,9,6,0,3,52.07195,4e-05,21,14,1.9405,2.24708,30.60762,0.58779
-380981,Rh2,URhIn,dist_by_shortest_dist,9,3,0,6,44.24485,0.0,21,14,1.9405,1.87273,30.60762,0.69178
-380981,U1,URhIn,dist_by_shortest_dist,17,6,5,6,115.67077,0.32792,45,30,2.65258,2.66136,78.1798,0.67588
