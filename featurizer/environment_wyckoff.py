@@ -221,7 +221,10 @@ def get_env_wychoff_binary_df(filename,
     df = pd.DataFrame(merged_data)     
     atomic_environment_wyckoff_universal_df = pd.concat([atomic_environment_wyckoff_universal_df, df], ignore_index=True)
     atomic_environment_wyckoff_universal_df = atomic_environment_wyckoff_universal_df.round(5)
-    # log.print_json_pretty("merged_data", merged_data)
+
+    # Loop through all columns and remove square brackets from lists
+    for column in atomic_environment_wyckoff_binary_df.columns:
+        atomic_environment_wyckoff_binary_df[column] = atomic_environment_wyckoff_binary_df[column].apply(lambda x: ', '.join(map(str, x)) if isinstance(x, list) else x)
 
     return atomic_environment_wyckoff_binary_df, atomic_environment_wyckoff_universal_df
 
@@ -379,13 +382,16 @@ def get_env_wychoff_ternary_df(filename,
         if 'lowest_wyckoff' not in key:
             ordered_data[key] = value
 
-
     # Merge first_data and ordered_data
     merged_data = {**first_data, **ordered_data}
 
     df = pd.DataFrame(merged_data)     
     atomic_environment_wyckoff_universal_df = pd.concat([atomic_environment_wyckoff_universal_df, df], ignore_index=True)
     atomic_environment_wyckoff_universal_df = atomic_environment_wyckoff_universal_df.round(5)
-    # log.print_json_pretty("merged_data", merged_data)
+
+    # Loop through all columns and remove square brackets from lists
+    for column in atomic_environment_wyckoff_ternary_df.columns:
+        atomic_environment_wyckoff_ternary_df[column] = atomic_environment_wyckoff_ternary_df[column].apply(lambda x: ', '.join(map(str, x)) if isinstance(x, list) else x)
+
 
     return atomic_environment_wyckoff_ternary_df, atomic_environment_wyckoff_universal_df

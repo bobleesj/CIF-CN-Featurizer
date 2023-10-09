@@ -1,3 +1,3 @@
 CIF_id,Compound,A,B,A_lowest_wyckoff_label,B_lowest_wyckoff_label,lowest_wyckoff_elements,identical_lowest_wyckoff_count,A_sites_total,B_sites_total,A_multiplicity_total,B_multiplicity_total
-2030011,HoPt,Ho,Pt,c,c,"['Ho', 'Pt']",2,1,1,4,4
-531015,ThSb,Th,Sb,a,b,['Th'],1,1,1,1,1
+2030011,HoPt,Ho,Pt,3,3,"Ho, Pt",2,1,1,4,4
+531015,ThSb,Th,Sb,1,2,Th,1,1,1,1,1

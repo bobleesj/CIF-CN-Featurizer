@@ -14,14 +14,16 @@ Before running the script, make sure you have the following dependencies install
 - Python 3.x
 - Click (Python package)
 - Pandas (Python package)
+- Gemmi (Python package)
 
 You can install these dependencies using pip:
 
 ```bash
-pip install click pandas
+pip install click pandas gemmi
 ```
 
 To run
+
 ```python
 python main.py
 ```

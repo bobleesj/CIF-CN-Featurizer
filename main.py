@@ -4,6 +4,7 @@ import time
 from click import style
 import pandas as pd
 import util.data as db
+import util.dataframe as df
 import preprocess.cif_parser as cif_parser
 import util.folder as folder
 import util.log as log
@@ -205,6 +206,9 @@ def main():
 
     featurizer_log_df = pd.DataFrame(featurizer_log_entries)
     featurizer_log_df = featurizer_log_df.round(3)
+    
+    # Extend the wyckoff_mapping dictionary with values up to 10
+
 
 
     if num_files_processed != 0:
@@ -225,8 +229,12 @@ def main():
             folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_max_df), "coordination_number_binary_max")
             folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_binary_df), "interatomic_features_binary")
             folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_binary_df), "atomic_environment_features_binary")
+
+
+            atomic_env_wyckoff_binary_df = df.wyckoff_mapping_to_number_binary(atomic_env_wyckoff_binary_df)
             folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_binary_df), "atomic_environment_wyckoff_features_binary")
-        
+
+
         if not coordinate_number_ternary_df.empty:
             folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_df), "coordination_number_ternary_all")
             ternary_non_numeric_cols_to_remove = coordinate_number_ternary_df.select_dtypes(include=['object']).columns.difference(cols_to_keep)
@@ -241,9 +249,11 @@ def main():
             folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_max_df), "coordination_number_ternary_max")
             folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_ternary_df), "interatomic_features_ternary")
             folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_ternary_df), "atomic_environment_features_ternary")
+            atomic_env_wyckoff_ternary_df = df.wyckoff_mapping_to_number_ternary(atomic_env_wyckoff_ternary_df)            
             folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_ternary_df), "atomic_environment_wyckoff_features_tenary")
  
         folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_universal_df), "interatomic_features_universal")
+        atomic_env_wyckoff_universal_df = df.join_columns_with_comma(atomic_env_wyckoff_universal_df)
         folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_universal_df), "atomic_environment_wyckoff_features_universal")
         folder.save_to_csv_directory(cif_folder_directory, round_df(featurizer_log_df), "featurizer_log")
     
