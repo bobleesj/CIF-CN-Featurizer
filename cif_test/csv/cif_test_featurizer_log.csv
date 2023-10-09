@@ -1,4 +1,5 @@
 Filename,CIF,Compound,Number of atoms,Execution time (s),Total_time (s)
-URhIn.cif,380981,URhIn,206,2.456,2.456
-HoPt.cif,2030011,HoPt,152,1.132,3.588
-ThSb.cif,531015,ThSb,62,0.275,3.863
+URhIn.cif,380981,URhIn,206,2.363,2.363
+Er23Co7In20.cif,er1,Co7Er23In20,1844,226.918,229.282
+HoPt.cif,2030011,HoPt,152,1.494,230.776
+ThSb.cif,531015,ThSb,62,0.217,230.993

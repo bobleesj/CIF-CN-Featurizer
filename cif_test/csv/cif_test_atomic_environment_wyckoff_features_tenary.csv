@@ -1,2 +1,3 @@
 CIF_id,Compound,R,M,X,R_lowest_wyckoff_label,M_lowest_wyckoff_label,X_lowest_wyckoff_label,lowest_wyckoff_elements,identical_lowest_wyckoff_count,R_sites_total,M_sites_total,X_sites_total,R_multiplicity_total,M_multiplicity_total,X_multiplicity_total
 380981,URhIn,U,Rh,In,6,1,7,Rh,1,1,2,1,3,3,3
+er1,Co7Er23In20,Er,Co,In,4,1,7,Co,1,12,4,10,46,14,40
