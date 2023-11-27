@@ -206,10 +206,6 @@ def main():
 
     featurizer_log_df = pd.DataFrame(featurizer_log_entries)
     featurizer_log_df = featurizer_log_df.round(3)
-    
-    # Extend the wyckoff_mapping dictionary with values up to 10
-
-
 
     if num_files_processed != 0:
         cols_to_keep = ['CIF_id', 'Compound', 'Central atom']
