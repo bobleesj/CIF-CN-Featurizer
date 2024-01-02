@@ -22,7 +22,7 @@ def extract_formula_and_atoms(block):
     """
 
     A_labels = ["Sc", "Y", "La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Th", "U"]
-    B_labels = ["Si", "Ga", "Ge", "In", "Sn", "Sb"]
+    B_labels = ["Si", "Ga", "Ge", "In", "Sn", "Sb", "Al"]
     M_labels = ["Fe", "Co", "Ni", "Ru", "Rh", "Pd", "Os", "Ir", "Pt"]
     
     formula = None
