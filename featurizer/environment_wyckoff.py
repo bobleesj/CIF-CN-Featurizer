@@ -144,7 +144,7 @@ def get_env_wychoff_binary_df(filename,
         "B_multiplicity_total": [B_multiplicity_total],
     }
     
-    log.print_json_pretty("atomic_environment_binary_Wyckoff_data", atomic_environment_binary_Wyckoff_data)
+    # log.print_json_pretty("atomic_environment_binary_Wyckoff_data", atomic_environment_binary_Wyckoff_data)
 
             
     df = pd.DataFrame(atomic_environment_binary_Wyckoff_data)
