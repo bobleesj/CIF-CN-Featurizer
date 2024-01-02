@@ -1,5 +1,9 @@
 CIF_id,Compound,A,B,lowest_wyckoff_elements,A_lowest_wyckoff_label,B_lowest_wyckoff_label,identical_lowest_wyckoff_count,A_sites_total,B_sites_total,A_multiplicity_total,B_multiplicity_total
 457859,RhSb2,Rh,Sb,"Rh, Sb",4,4,2,1,2,4,8
+250139,Th7Rh3,Th,Rh,Th,2,6,1,3,1,14,6
+2030011,HoPt,Ho,Pt,"Ho, Pt",4,4,2,1,1,4,4
 250170,ThOs2,Th,Os,Th,8,16,1,1,1,8,16
 531015,ThSb,Th,Sb,"Th, Sb",1,1,2,1,1,1,1
 1720931,Nd5Si3,Nd,Si,"Nd, Si",4,4,2,2,2,20,12
+250140,ThRu2,Th,Ru,Th,8,16,1,1,1,8,16
+250141,ThRu,Th,Ru,"Th, Ru",4,4,2,1,1,4,4
