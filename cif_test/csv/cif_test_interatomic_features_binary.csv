@@ -1,3 +1,0 @@
-CIF_id,Compound,A,B,AA Dist.,BB Dist.,AB Dist.,Asize,Bsize,Asize_by_Bsize,distA_A_by_byAsize,distB_B_by_byBsize,distA_B_by_byAsizebyBsize,A_CIF_rad_refined.,percent_diff_A by 100,percent_diff_B by 100,interatomic_A_A_minus_ref_diff,interatomic_B_B_minus_ref_diff,interatomic_A_B_minus_ref_diff,Packing efficiency,least_sq_percent_diff
-2030011,HoPt,Ho,Pt,3.6224,2.5908,2.7888,1.745,1.387,1.2581,1.0379,0.934,0.8904,1.2954,-0.1442,-0.066,0.1754,0.0,0.0,0.53905,0.0252
-531015,ThSb,Th,Sb,3.847,3.847,3.3316,1.798,1.434,1.2538,1.0698,1.3414,1.0308,1.4081,0.0698,-0.0181,0.0,0.268,0.0,0.72900,0.0052

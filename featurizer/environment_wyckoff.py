@@ -1,15 +1,10 @@
-import click
-import os
 import pandas as pd
-import time
-import math
-from click import style
 import util.data as data
 import preprocess.optimize as optimize
 import featurizer.distance as distance
-import util.log as log
 import featurizer.environment_wyckoff as env_wychoff_featurizer
 import numpy as np
+import util.log as log
 
 def get_atom_values(atom, xl):
     row = xl[xl.iloc[:, 0] == atom]
@@ -37,14 +32,14 @@ def get_atomic_environment(CIF_loop_values):
         label = CIF_loop_values[0][i]
         type_symbol = CIF_loop_values[1][i]
         multiplicity = int(CIF_loop_values[2][i])
-        wyckoff_symbol = CIF_loop_values[3][i]
+        # wyckoff_symbol = CIF_loop_values[3][i]
 
         # If the atom is not in the dictionary, initialize it with default values
         if type_symbol not in atomic_env:
             atomic_env[type_symbol] = {
                 "sites": 0,
                 "multiplicity": 0,
-                "lowest_wyckoff_label": wyckoff_symbol,
+                "lowest_wyckoff_multiplicity": multiplicity,
                 "lowest_wyckoff_element": label
             }
 
@@ -52,9 +47,9 @@ def get_atomic_environment(CIF_loop_values):
         atomic_env[type_symbol]["sites"] += 1
         atomic_env[type_symbol]["multiplicity"] += multiplicity
 
-        # Update the element with the lowest Wyckoff label
-        if wyckoff_symbol < atomic_env[type_symbol]["lowest_wyckoff_label"]:
-            atomic_env[type_symbol]["lowest_wyckoff_label"] = wyckoff_symbol
+        # Update the element with the lowest Wyckoff multiplicity
+        if multiplicity < atomic_env[type_symbol]["multiplicity"]:
+            atomic_env[type_symbol]["lowest_wyckoff_multiplicity"] = multiplicity
             atomic_env[type_symbol]["lowest_wyckoff_element"] = label
 
     # Return the atomic environment dictionary
@@ -114,41 +109,43 @@ def get_env_wychoff_binary_df(filename,
 
     A_sites_total = A_info['sites']
     A_multiplicity_total = A_info['multiplicity']
-    A_lowest_wyckoff_label = A_info['lowest_wyckoff_label']
+    A_lowest_wyckoff_multiplicity = A_info['lowest_wyckoff_multiplicity']
 
     B_sites_total = B_info['sites']
     B_multiplicity_total = B_info['multiplicity']
-    B_lowest_wyckoff_label = B_info['lowest_wyckoff_label']
+    B_lowest_wyckoff_multiplicity = B_info['lowest_wyckoff_multiplicity']
 
     # Create a list to store the elements with the lowest Wyckoff label
     lowest_wyckoff_elements = []
 
     # Determine the lowest Wyckoff label between A and B
-    min_wyckoff_label = min(A_lowest_wyckoff_label, B_lowest_wyckoff_label)
+    min_wyckoff_multiplicity = min(A_lowest_wyckoff_multiplicity, B_lowest_wyckoff_multiplicity)
 
     # If A or B have the lowest Wyckoff label, add them to the list
-    if A_lowest_wyckoff_label == min_wyckoff_label:
+    if A_lowest_wyckoff_multiplicity == min_wyckoff_multiplicity:
         lowest_wyckoff_elements.append(A)
         
-    if B_lowest_wyckoff_label == min_wyckoff_label:
+    if B_lowest_wyckoff_multiplicity == min_wyckoff_multiplicity:
         lowest_wyckoff_elements.append(B)
 
-    identical_lowest_wyckoff_count = len(lowest_wyckoff_elements)
+    identical_lowest_wyckoff_multiplicity_count = len(lowest_wyckoff_elements)
     
     atomic_environment_binary_Wyckoff_data = {
         "CIF_id": [CIF_id],
         "Compound": [formula_string],
         "A": [A],
         "B": [B],
-        "A_lowest_wyckoff_label": [A_lowest_wyckoff_label],
-        "B_lowest_wyckoff_label": [B_lowest_wyckoff_label],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
-        "identical_lowest_wyckoff_count": [identical_lowest_wyckoff_count],
+        "A_lowest_wyckoff_label": [A_lowest_wyckoff_multiplicity],
+        "B_lowest_wyckoff_label": [B_lowest_wyckoff_multiplicity],
+        "identical_lowest_wyckoff_count": [identical_lowest_wyckoff_multiplicity_count],
         "A_sites_total": [A_sites_total],
         "B_sites_total": [B_sites_total],
         "A_multiplicity_total": [A_multiplicity_total],
         "B_multiplicity_total": [B_multiplicity_total],
     }
+    
+    log.print_json_pretty("atomic_environment_binary_Wyckoff_data", atomic_environment_binary_Wyckoff_data)
 
             
     df = pd.DataFrame(atomic_environment_binary_Wyckoff_data)
@@ -302,10 +299,10 @@ def get_env_wychoff_ternary_df(filename,
         "R": [R],
         "M": [M],
         "X": [X],
+        "lowest_wyckoff_elements": [lowest_wyckoff_elements],
         "R_lowest_wyckoff_label": [R_lowest_wyckoff_label],
         "M_lowest_wyckoff_label": [M_lowest_wyckoff_label],
         "X_lowest_wyckoff_label": [X_lowest_wyckoff_label],
-        "lowest_wyckoff_elements": [lowest_wyckoff_elements],
         "identical_lowest_wyckoff_count": [identical_lowest_wyckoff_count],
         "R_sites_total": [R_sites_total],
         "M_sites_total": [M_sites_total],
