@@ -118,6 +118,7 @@ def shift_and_append_points(points, atom_site_label):
 def get_atomic_pair_list(flattened_points, cell_lengths, angles):
     """
     Calculate atomic distances and properties between pairs of points.
+    The distance must be greater than 0.1 Å
     """
         
     atomic_info_list = []
@@ -131,7 +132,7 @@ def get_atomic_pair_list(flattened_points, cell_lengths, angles):
                 pair = tuple(sorted([i, j]))  # Sort the pair so (i, j) is treated as equivalent to (j, i)
                 if pair not in seen_pairs:  # Check if we've already processed this pair
                     distance, label1, label2 = calculate_distance(point1, point2, cell_lengths, angles)
-                    if abs(distance) > 1e-8:  # Update the condition with the tolerance value
+                    if abs(distance) > 0.1:  # Add the pair if the distance is greater than 0.1 Å
                         distances_from_point_i.append({
                             'point_pair': (i + 1, j + 1),
                             'labels': (label1, label2),
@@ -185,6 +186,8 @@ def get_unique_distances(filtered_atomic_pair_list, label):
     for pair in filtered_atomic_pair_list:
         if label in pair['labels']:
             unique_distances.add(round(pair['distance'], 2))
+    
+    # print("Unique distances", unique_distances)
             
     return unique_distances
 
@@ -219,7 +222,7 @@ def find_most_common_distances_and_points(filtered_atomic_pair_list, label, uniq
                                     points_with_most_min_distances[idx].append((point, point_label))
 
                 counted_pairs.add(sorted_pair)
-
+    
     return max_distance_counts, points_with_most_min_distances
 
 
@@ -230,7 +233,6 @@ def find_common_points(points_with_most_min_distances):
     set_of_min_distances = [set(points) for points in points_with_most_min_distances]
     # print("set_of_min_distances", set_of_min_distances)
     common_points = set.intersection(*set_of_min_distances)
-
     return common_points
 
 
@@ -251,6 +253,7 @@ def get_atom_pair_info_dict(unique_atom_labels, atomic_pairs):
         unique_distances = get_unique_distances(atom_pairs_filtered, atom_label)
 
         top_six_distances = sorted(unique_distances)[:6]
+        # print(atom_label, top_six_distances)
 
         most_common_distance_counts, points_with_common_distances = find_most_common_distances_and_points(
             atom_pairs_filtered, atom_label, top_six_distances
@@ -282,6 +285,7 @@ def get_atom_pair_info_dict(unique_atom_labels, atomic_pairs):
             "shortest_distances": top_six_distances[:2],
             "shortest_distances_count": count_top_two_common_distances
         })
+
 
 
     return atom_pairs_info_dict
