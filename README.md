@@ -28,7 +28,15 @@ To run
 python main.py
 ```
 
-## How to Cite
+## Contributors
+- Anton Oliynyk
+- Nikhil Kumar Barua
+- Sangjoon Bob Lee
+
+
+## Publications 
+Here is a list of publications that have used this code for analysis
+
 [1] Y. Tyvanchuk, V. Babizhetskyy, S. Baran, A. Szytula, V. Smetana, S. Lee, A. O. Oliynyk, A.
 Mudring, The crystal and electronic structure of RE23Co6.7In20.3 (RE = Gd–Tm, Lu): A new structure type based on intergrowth of AlB2- and CsCl-type related slabs. *Journal of Alloys and Compounds*. **976**, 173241 (2024). [doi.org/10.1016/j.jallcom.2023.173241](https://doi.org/10.1016/j.jallcom.2023.173241)
 
