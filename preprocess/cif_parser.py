@@ -2,6 +2,7 @@ import gemmi
 import re
 from util.string_parser import remove_string_braket
 import numpy as np
+from fractions import Fraction
 
 
 def get_atom_type(label):
@@ -112,7 +113,7 @@ def get_loop_tags():
     loop_tags = ["_atom_site_label", "_atom_site_type_symbol",
             "_atom_site_symmetry_multiplicity", "_atom_site_Wyckoff_symbol",
             "_atom_site_fract_x", "_atom_site_fract_y","_atom_site_fract_z", "_atom_site_occupancy"]
-    
+
     return loop_tags
 
 
@@ -144,7 +145,7 @@ def get_CIF_block(filename):
     """
     doc = gemmi.cif.read_file(filename)
     block = doc.sole_block()
-
+    
     return block
 
 
@@ -157,7 +158,8 @@ def get_loop_values(block, loop_tags):
     # Check for zero or missing coordinates
     if len(loop_values[4]) == 0 or len(loop_values[5]) == 0 or len(loop_values[6]) == 0:  # missing coordinates
         raise RuntimeError("Missing atomic coordinates")
-
+        
+    # print("loop_values:", loop_values)
     return loop_values
 
 
@@ -184,3 +186,31 @@ def print_loop_values(loop_values, i):
             value = int(value)
         print(f"{desc} {value}")
     print()
+
+#==============================================
+def convert_decimal_to_fraction(decimal_str):
+    """
+    Convert a decimal string to a fraction string with a certain level of precision.
+    """
+    fraction = Fraction(float(decimal_str)).limit_denominator(1000)
+    return str(fraction)
+
+def preprocess_cif_file(cif_file_path):
+    """
+    Preprocesses a CIF file, converting decimal numbers in the symmetry operations to fractions.
+    """
+    with open(cif_file_path, 'r') as file:
+        lines = file.readlines()
+
+    decimal_regex = re.compile(r'\d+\.\d+')
+
+    for i, line in enumerate(lines):
+        if '_space_group_symop_operation_xyz' in line:
+            while True:
+                i += 1
+                if 'loop_' in lines[i] or i >= len(lines):
+                    break
+                lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
+
+    with open(cif_file_path, 'w') as file:
+        file.writelines(lines)
