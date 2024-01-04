@@ -1,0 +1,181 @@
+##############################################################################
+#                                                                            #
+# Al-Ge            # Al6Ge5 m                                      # 1301569 #
+#                                                                            #
+##############################################################################
+#                                                                            #
+#                           Pearson's Crystal Data                           #
+#      Crystal Structure Database for Inorganic Compounds (on DVD)           #
+#                              Release 2022/23                               #
+#                  Editors: Pierre Villars and Karin Cenzual                 #
+#                                                                            #
+#   Copyright (c) ASM International & Material Phases Data System (MPDS),    #
+# Switzerland & National Institute for Materials Science (NIMS), Japan, 2022 #
+#                   All rights reserved. Version 2022.07                     #
+#                                                                            #
+#   This copy of Pearson's Crystal Data is licensed to:                      #
+#   Indian Institute of Technology Kharagpur, Periodical Section, Central Library, Academic Site License         #
+#                                                                            #
+##############################################################################
+
+data_1301569
+_audit_creation_date                     2024-01-03
+_audit_creation_method
+;
+Pearson's Crystal Data browser
+;
+#_database_code_PCD                      1301569
+_database_code_PDF                       04-007-4090
+
+# Entry summary
+
+_chemical_formula_structural             'Al~6~ Ge~5~'
+_chemical_formula_sum                    'Al6 Ge5'
+_chemical_name_mineral                   ?
+_chemical_compound_source                ?
+_chemical_name_structure_type            Zn~5.38~Sb~5~,hR66,167
+_chemical_formula_weight                 524.8
+
+# Bibliographic data
+
+_publ_section_title
+;
+Structure Determination of a Rhombohedral Al-Ge Phase by CBED and X-ray Powder Diffraction
+;
+_journal_coden_ASTM                      ACACEQ
+_journal_name_full                       'Acta Crystallogr. A'
+_journal_year                            1995
+_journal_volume                          51
+_journal_page_first                      801
+_journal_page_last                       809
+_journal_language                        English
+loop_
+ _publ_author_name
+ _publ_author_address
+'Vincent R.'
+;
+Bristol University
+H.H. Wills Physics Laboratory
+Bristol
+United Kingdom
+;
+'Exelby D.R.'
+;
+Bristol University
+H.H. Wills Physics Laboratory
+Bristol
+United Kingdom
+;
+
+# Standardized crystallographic data
+
+_cell_length_a                           11.45
+_cell_length_b                           11.45
+_cell_length_c                           11.67
+_cell_angle_alpha                        90
+_cell_angle_beta                         90
+_cell_angle_gamma                        120
+_cell_volume                             1325
+_cell_formula_units_Z                    6
+_space_group_IT_number                   167
+_space_group_name_H-M_alt                'R -3 c h'
+loop_
+ _space_group_symop_id
+ _space_group_symop_operation_xyz
+ 1 'x, y, z'
+ 2 '-x+y, -x, z'
+ 3 '-x+y, y, 1/2+z'
+ 4 '-x, -x+y, 1/2-z'
+ 5 '-x, -y, -z'
+ 6 '-y, -x, 1/2+z'
+ 7 '-y, x-y, z'
+ 8 'x, x-y, 1/2+z'
+ 9 'x-y, -y, 1/2-z'
+ 10 'x-y, x, -z'
+ 11 'y, -x+y, -z'
+ 12 'y, x, 1/2-z'
+ 13 '2/3+x, 1/3+y, 1/3+z'
+ 14 '2/3-x+y, 1/3-x, 1/3+z'
+ 15 '2/3-x+y, 1/3+y, 5/6+z'
+ 16 '2/3-x, 1/3-x+y, 5/6-z'
+ 17 '2/3-x, 1/3-y, 1/3-z'
+ 18 '2/3-y, 1/3-x, 5/6+z'
+ 19 '2/3-y, 1/3+x-y, 1/3+z'
+ 20 '2/3+x, 1/3+x-y, 5/6+z'
+ 21 '2/3+x-y, 1/3-y, 5/6-z'
+ 22 '2/3+x-y, 1/3+x, 1/3-z'
+ 23 '2/3+y, 1/3-x+y, 1/3-z'
+ 24 '2/3+y, 1/3+x, 5/6-z'
+ 25 '1/3+x, 2/3+y, 2/3+z'
+ 26 '1/3-x+y, 2/3-x, 2/3+z'
+ 27 '1/3-x+y, 2/3+y, 7/6+z'
+ 28 '1/3-x, 2/3-x+y, 7/6-z'
+ 29 '1/3-x, 2/3-y, 2/3-z'
+ 30 '1/3-y, 2/3-x, 7/6+z'
+ 31 '1/3-y, 2/3+x-y, 2/3+z'
+ 32 '1/3+x, 2/3+x-y, 7/6+z'
+ 33 '1/3+x-y, 2/3-y, 7/6-z'
+ 34 '1/3+x-y, 2/3+x, 2/3-z'
+ 35 '1/3+y, 2/3-x+y, 2/3-z'
+ 36 '1/3+y, 2/3+x, 7/6-z'
+loop_
+ _atom_type_symbol
+ Al
+ Ge
+loop_
+ _atom_site_label
+ _atom_site_type_symbol
+ _atom_site_symmetry_multiplicity
+ _atom_site_Wyckoff_symbol
+ _atom_site_fract_x
+ _atom_site_fract_y
+ _atom_site_fract_z
+ _atom_site_occupancy
+ Al Al 36 f 0.244 0.079 0.096 1
+ Ge2 Ge 18 e 0.352 0 0.25 1
+ Ge1 Ge 12 c 0 0 0.137 1
+
+
+_exptl_crystal_colour                    ?
+_exptl_crystal_density_meas              ?
+_exptl_crystal_density_diffrn            3.95
+_cell_measurement_temperature            100
+_cell_measurement_radiation              electrons
+_cell_measurement_reflns_used            ?
+_diffrn_ambient_temperature              100
+_diffrn_measurement_device               'electron diffraction'
+_diffrn_measurement_device_type          'FEI-Philips EM430'
+_diffrn_radiation_type                   electrons
+_diffrn_reflns_number                    ?
+_exptl_absorpt_coefficient_mu            ?
+_exptl_absorpt_correction_type           ?
+_computing_structure_solution            'Patterson synthesis'
+_refine_ls_number_parameters             ?
+_refine_ls_number_reflns                 ?
+_refine_ls_R_factor_gt                   ?
+_refine_ls_wR_factor_gt                  ?
+
+# Published diffraction lines
+
+loop_
+ _refln_index_h
+ _refln_index_k
+ _refln_index_l
+ _refln_d_spacing
+ _refln_intensity_meas
+ 1 1 0 5.717 1
+ 3 0 0 3.3 100
+ 1 1 3 3.213 53
+ 1 2 2 3.151 20
+ 1 0 4 2.796 34
+ 1 3 1 2.672 17
+ 0 2 4 2.512 12
+ 3 1 2 2.485 2
+ 2 2 3 2.304 38
+ 1 4 0 2.162 3
+ 1 3 4 1.999 30
+ 3 3 0 1.906 24
+ 1 4 3 1.889 29
+
+# End of data set 1301569
+

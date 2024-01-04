@@ -1,6 +1,6 @@
 ##############################################################################
 #                                                                            #
-# Al-Gd            # GdAl3                                         # 1005811 #
+# Al-Ni            # NiAl3                                         # 1601445 #
 #                                                                            #
 ##############################################################################
 #                                                                            #
@@ -18,118 +18,100 @@
 #                                                                            #
 ##############################################################################
 
-data_1005811
-_audit_creation_date                     2023-09-12
+data_1601445
+_audit_creation_date                     2024-01-03
 _audit_creation_method
 ;
 Pearson's Crystal Data browser
 ;
-#_database_code_PCD                      1005811
+#_database_code_PCD                      1601445
 _database_code_PDF                       ?
 
 # Entry summary
 
-_chemical_formula_structural             'Gd Al~3~'
-_chemical_formula_sum                    'Al3 Gd'
+_chemical_formula_structural             'Ni Al~3~'
+_chemical_formula_sum                    'Al3 Ni'
 _chemical_name_mineral                   ?
 _chemical_compound_source                ?
-_chemical_name_structure_type            Mg~3~Cd,hP8,194
-_chemical_formula_weight                 238.2
+_chemical_name_structure_type            Fe~3~C-b,oP16,62
+_chemical_formula_weight                 139.6
 
 # Bibliographic data
 
 _publ_section_title
 ;
-Ternary systems Gd-(Y,Tb,Dy,Ho,Er,Sc)-Al in the region to 25 at.% rare-earth metals
+The Influence of Annealing on the Structure Transformations of the Amorphous Aluminium-Based Alloy
 ;
-_journal_coden_ASTM                      DUKABM
-_journal_name_full                       'Dopov. Akad. Nauk Ukr. RSR, Ser. A'
-_journal_year                            1970
-_journal_volume                          ?
-_journal_page_first                      751
-_journal_page_last                       753
+_journal_coden_ASTM                      VLDUAB
+_journal_name_full
+'Visn. Lviv. Derzh. Univ., Ser. Khim.'                                        
+_journal_year                            2005
+_journal_volume                          46
+_journal_page_first                      105
+_journal_page_last                       108
 _journal_language                        Ukrainian
 loop_
  _publ_author_name
  _publ_author_address
-'Zalutskaya O.I.'
+'Verbovytsky Y.V.'
 ;
-Lviv Ivan Franko State University
-Lviv
-Ukraine
-;
-'Kontsevoy V.G.'
-;
-Lviv Ivan Franko State University
-Lviv
-Ukraine
-;
-'Karamyshev N.I.'
-;
-Lviv Ivan Franko State University
-Lviv
-Ukraine
-;
-'Ryabov V.R.'
-;
-Lviv Ivan Franko State University
+Lviv Ivan Franko National University
 Department of Inorganic Chemistry
 Lviv
 Ukraine
 ;
-'Zalutskii I.I.'
+'Mika T.'
 ;
-Lviv Ivan Franko State University
+Lviv Ivan Franko National University
+Department of Inorganic Chemistry
+Lviv
+Ukraine
+;
+'Bednars'ka L.'
+;
+Lviv Ivan Franko National University
+Department of Inorganic Chemistry
+Lviv
+Ukraine
+;
+'Kotur B.Y.'
+;
+Lviv Ivan Franko National University
+Department of Inorganic Chemistry
 Lviv
 Ukraine
 ;
 
 # Standardized crystallographic data
 
-_cell_length_a                           6.323
-_cell_length_b                           6.323
-_cell_length_c                           4.598
+_cell_length_a                           6.622
+_cell_length_b                           7.473
+_cell_length_c                           4.682
 _cell_angle_alpha                        90
 _cell_angle_beta                         90
-_cell_angle_gamma                        120
-_cell_volume                             159.2
-_cell_formula_units_Z                    2
-_space_group_IT_number                   194
-_space_group_name_H-M_alt                'P 63/m m c'
+_cell_angle_gamma                        90
+_cell_volume                             231.7
+_cell_formula_units_Z                    4
+_space_group_IT_number                   62
+_space_group_name_H-M_alt                'P n m a'
 loop_
  _space_group_symop_id
  _space_group_symop_operation_xyz
  1 'x, y, z'
- 2 '-x+y, -x, 1/2-z'
- 3 '-x+y, -x, z'
- 4 '-x+y, y, 1/2-z'
- 5 '-x+y, y, z'
- 6 '-x, -x+y, -z'
- 7 '-x, -x+y, 1/2+z'
- 8 '-x, -y, -z'
- 9 '-x, -y, 1/2+z'
- 10 '-y, -x, 1/2-z'
- 11 '-y, -x, z'
- 12 '-y, x-y, 1/2-z'
- 13 '-y, x-y, z'
- 14 'x, x-y, 1/2-z'
- 15 'x, x-y, z'
- 16 'x, y, 1/2-z'
- 17 'x-y, -y, -z'
- 18 'x-y, -y, 1/2+z'
- 19 'x-y, x, -z'
- 20 'x-y, x, 1/2+z'
- 21 'y, -x+y, -z'
- 22 'y, -x+y, 1/2+z'
- 23 'y, x, -z'
- 24 'y, x, 1/2+z'
+ 2 '1/2-x, -y, 1/2+z'
+ 3 '1/2-x, 1/2+y, 1/2+z'
+ 4 '-x, -y, -z'
+ 5 '-x, 1/2+y, -z'
+ 6 '1/2+x, 1/2-y, 1/2-z'
+ 7 '1/2+x, y, 1/2-z'
+ 8 'x, 1/2-y, z'
 
 # Atomic positions taken from type-defining entry
 
 loop_
  _atom_type_symbol
- Gd
  Al
+ Ni
 loop_
  _atom_site_label
  _atom_site_type_symbol
@@ -139,18 +121,19 @@ loop_
  _atom_site_fract_y
  _atom_site_fract_z
  _atom_site_occupancy
- Gd1 Gd 6 h 0.16667 0.33333 0.25 1
- Al1 Al 2 d 0.333333 0.666667 0.75 1
+ Al1 Al 8 d 0.1834 0.0689 0.1656 1
+ Al2 Al 4 c 0.0388 0.25 0.6578 1
+ Ni1 Ni 4 c 0.3764 0.25 0.4426 1
 
 
 _exptl_crystal_colour                    ?
 _exptl_crystal_density_meas              ?
-_exptl_crystal_density_diffrn            4.97
+_exptl_crystal_density_diffrn            4.00
 _cell_measurement_temperature            ?
-_cell_measurement_radiation              'X-rays, Cr K'
+_cell_measurement_radiation              'X-rays, Cu Ka'
 _cell_measurement_reflns_used            ?
 _diffrn_ambient_temperature              ?
-_diffrn_measurement_device               'Debye-Scherrer film'
+_diffrn_measurement_device               'automatic diffractometer'
 _diffrn_measurement_device_type          ?
 _diffrn_radiation_type                   ?
 _diffrn_reflns_number                    ?
@@ -162,5 +145,5 @@ _refine_ls_number_reflns                 ?
 _refine_ls_R_factor_gt                   ?
 _refine_ls_wR_factor_gt                  ?
 
-# End of data set 1005811
+# End of data set 1601445
 

@@ -5,7 +5,8 @@ from click import style
 import pandas as pd
 import util.data as db
 import util.dataframe as df
-import preprocess.cif_parser as cif_parser
+from fractions import Fraction
+import preprocess.cif_parser as cif_parser 
 import util.folder as folder
 import util.log as log
 import preprocess.supercell as supercell
@@ -41,11 +42,19 @@ def main():
     else:
         MAX_ATOMS_COUNT = float('inf')  # A large number to essentially disable skipping
 
+    # Directory fetch
     script_directory = os.path.dirname(os.path.abspath(__file__))    
     cif_folder_directory = folder.choose_CIF_directory(script_directory)
 
-    # Get a list of all .cif files in the chosen directory
-    files_lst = [os.path.join(cif_folder_directory, file) for file in os.listdir(cif_folder_directory) if file.endswith('.cif')]
+    # Preprocess all .cif files in the chosen directory and construct files_lst
+    files_lst = []
+    for file in os.listdir(cif_folder_directory):
+        if file.endswith('.cif'):
+            cif_file_path = os.path.join(cif_folder_directory, file)
+            cif_parser.preprocess_cif_file(cif_file_path)
+            files_lst.append(cif_file_path)
+    
+    # Number of files
     total_files = len(files_lst)
 
     running_total_time = 0  # initialize running total execution time
@@ -246,7 +255,7 @@ def main():
         
         # folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_universal_df), "interatomic_features_universal")
         # folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_universal_df), "atomic_environment_wyckoff_multiplicity_features_universal")
-        # folder.save_to_csv_directory(cif_folder_directory, round_df(featurizer_log_df), "featurizer_log")
+        folder.save_to_csv_directory(cif_folder_directory, round_df(featurizer_log_df), "featurizer_log")
     
 if __name__ == "__main__":
     main()
