@@ -1,0 +1,2 @@
+CIF_id,Compound,Shortest homoatomic distance,Shortest heteroatomic distance,Shortest homoatomic distance by 2 by atom size,Shortest heteroatomic distance by sum of atom sizes,Shortest homoatomic distance by 2 by refined atom size,Shortest heteroatomic distance by sum of refined sizes,Highest refined percent difference by 100 (abs value),Lowest refined percent difference by 100 (abs value),Packing efficiency
+458053,Al0.5Sb0.5,2.783,2.783,1.0622,1.0142,1.0,1.0,0.0622,0.0296,1.08068

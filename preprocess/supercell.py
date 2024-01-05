@@ -95,6 +95,10 @@ def get_points_and_labels(all_coords_list, loop_values):
 
         if get_atom_type(atom_site_label) != atom_site_type:
             raise RuntimeError("Different elements found in atom site and label")
+    
+    # print("all_points:", all_points)
+    # print("unique_labels:", unique_labels)
+    # print("unique_atoms_tuple:", unique_atoms_tuple)
 
     return list(set(all_points)), unique_labels, unique_atoms_tuple
 

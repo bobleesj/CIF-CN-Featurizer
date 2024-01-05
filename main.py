@@ -52,6 +52,7 @@ def main():
         if file.endswith('.cif'):
             cif_file_path = os.path.join(cif_folder_directory, file)
             cif_parser.preprocess_cif_file(cif_file_path)
+            cif_parser.take_care_of_atomic_site(cif_file_path)
             files_lst.append(cif_file_path)
     
     # Number of files
@@ -229,12 +230,12 @@ def main():
             coordinate_number_binary_min_df = coordinate_number_binary_df.groupby(cols_to_keep).min().reset_index()
             coordinate_number_binary_max_df = coordinate_number_binary_df.groupby(cols_to_keep).max().reset_index()
             folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_df), "coordination_number_binary_all")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_avg_df), "coordination_number_binary_avg")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_min_df), "coordination_number_binary_min")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_max_df), "coordination_number_binary_max")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_binary_df), "interatomic_features_binary")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_binary_df), "atomic_environment_features_binary")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_binary_df), "atomic_environment_wyckoff_multiplicity_features_binary")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_avg_df), "coordination_number_binary_avg")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_min_df), "coordination_number_binary_min")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_binary_max_df), "coordination_number_binary_max")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_binary_df), "interatomic_features_binary")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_binary_df), "atomic_environment_features_binary")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_binary_df), "atomic_environment_wyckoff_multiplicity_features_binary")
 
 
         if not coordinate_number_ternary_df.empty:
@@ -245,16 +246,16 @@ def main():
             coordinate_number_ternary_max_df = coordinate_number_ternary_df.groupby(cols_to_keep).max().reset_index()
             atomic_env_wyckoff_ternary_df = df.wyckoff_mapping_to_number_ternary(atomic_env_wyckoff_ternary_df)            
             folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_df), "coordination_number_ternary_all")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_avg_df), "coordination_number_ternary_avg")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_min_df), "coordination_number_ternary_min")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_max_df), "coordination_number_ternary_max")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_ternary_df), "interatomic_features_ternary")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_ternary_df), "atomic_environment_features_ternary")
-            # folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_ternary_df), "atomic_environment_wyckoff_multiplicity_features_tenary")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_avg_df), "coordination_number_ternary_avg")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_min_df), "coordination_number_ternary_min")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(coordinate_number_ternary_max_df), "coordination_number_ternary_max")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_ternary_df), "interatomic_features_ternary")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_ternary_df), "atomic_environment_features_ternary")
+            folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_ternary_df), "atomic_environment_wyckoff_multiplicity_features_tenary")
  
         
-        # folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_universal_df), "interatomic_features_universal")
-        # folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_universal_df), "atomic_environment_wyckoff_multiplicity_features_universal")
+        folder.save_to_csv_directory(cif_folder_directory, round_df(interatomic_universal_df), "interatomic_features_universal")
+        folder.save_to_csv_directory(cif_folder_directory, round_df(atomic_env_wyckoff_universal_df), "atomic_environment_wyckoff_multiplicity_features_universal")
         folder.save_to_csv_directory(cif_folder_directory, round_df(featurizer_log_df), "featurizer_log")
     
 if __name__ == "__main__":
