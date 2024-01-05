@@ -30,7 +30,9 @@ python main.py
 
 ## Contributors
 - Anton Oliynyk
+- Arnab Dutta
 - Nikhil Kumar Barua
+- Nishant Yadav
 - Sangjoon Bob Lee
 
 
