@@ -1,4 +1,7 @@
 # CIF Coordination Number Featurizer
+![Feature Extraction Diagram](feature-extraction-diagram.png)
+
+
 The CIF File Featurizer is a Python script designed to process CIF (Crystallographic Information File) files and extract various features from them. These features include interatomic distances, atomic environment information, and coordination numbers. The script can handle binary and ternary compounds.
 
 ## Features
