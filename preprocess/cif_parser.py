@@ -198,6 +198,12 @@ def convert_decimal_to_fraction(decimal_str):
 def preprocess_cif_file(cif_file_path):
     """
     Preprocesses a CIF file, converting decimal numbers in the symmetry operations to fractions.
+    Example:
+    '1/3+y, 2/3+x, 1.16667-z'
+    
+    To
+    
+    '1/3+y, 2/3+x, 7/6-z'
     """
     with open(cif_file_path, 'r') as file:
         lines = file.readlines()
@@ -211,6 +217,45 @@ def preprocess_cif_file(cif_file_path):
                 if 'loop_' in lines[i] or i >= len(lines):
                     break
                 lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
+
+    with open(cif_file_path, 'w') as file:
+        file.writelines(lines)
+        
+        
+def take_care_of_atomic_site(cif_file_path):
+    """
+    Preprocesses a CIF file to make the atom symbols right for further parsing.
+    Example:
+    M1 Al - - - - -
+    M2 Al - - - - -
+    M3 Al - - - - -
+    M2 Sb - - - - -
+    
+    To
+    
+    Al1 Al - - - - -
+    Al2 Al - - - - -
+    Al3 Al - - - - -
+    Sb1 Sb - - - - -
+    """
+    with open(cif_file_path, 'r') as file:
+        lines = file.readlines()
+
+    atom_symbol_count = {}  # Dictionary to keep track of atom symbol counts
+    process_lines = False
+    for i, line in enumerate(lines):
+        if '_atom_site_occupancy' in line:
+            process_lines = True
+        elif process_lines:
+            if line.strip():  # Check if the line is not blank
+                parts = line.split()
+                if len(parts) > 0:
+                    atom_symbol = parts[1]
+                    atom_symbol_count[atom_symbol] = atom_symbol_count.get(atom_symbol, 0) + 1
+                    parts[0] = atom_symbol + str(atom_symbol_count[atom_symbol])
+                    lines[i] = ' '.join(parts) + '\n'
+            else:
+                process_lines = False
 
     with open(cif_file_path, 'w') as file:
         file.writelines(lines)
