@@ -46,14 +46,9 @@ def main():
     script_directory = os.path.dirname(os.path.abspath(__file__))    
     cif_folder_directory = folder.choose_CIF_directory(script_directory)
 
-    # Preprocess all .cif files in the chosen directory and construct files_lst
-    files_lst = []
-    for file in os.listdir(cif_folder_directory):
-        if file.endswith('.cif'):
-            cif_file_path = os.path.join(cif_folder_directory, file)
-            cif_parser.preprocess_cif_file(cif_file_path)
-            cif_parser.take_care_of_atomic_site(cif_file_path)
-            files_lst.append(cif_file_path)
+    # Get a list of all .cif files in the chosen directory
+    files_lst = [os.path.join(cif_folder_directory, file) for file in os.listdir(cif_folder_directory) if file.endswith('.cif')]
+    total_files = len(files_lst)
     
     # Number of files
     total_files = len(files_lst)
@@ -90,6 +85,13 @@ def main():
 
         isBinary = isTernary = False
         A = B = R = M = X = ''
+
+        if not cif_parser.valid_cif(filename):
+            print(f"\n({idx}/{total_files}) Rejecting {filename_base}... No structure found.")
+            continue
+        
+        cif_parser.preprocess_cif_file(filename)
+        cif_parser.take_care_of_atomic_site(filename)
 
         CIF_block = cif_parser.get_CIF_block(filename)
         CIF_id = CIF_block.name

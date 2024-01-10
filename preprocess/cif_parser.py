@@ -216,7 +216,9 @@ def preprocess_cif_file(cif_file_path):
                 i += 1
                 if 'loop_' in lines[i] or i >= len(lines):
                     break
-                lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
+
+                if re.findall("^ \d+ ", lines[i]):
+                    lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
 
     with open(cif_file_path, 'w') as file:
         file.writelines(lines)
@@ -244,7 +246,7 @@ def take_care_of_atomic_site(cif_file_path):
     atom_symbol_count = {}  # Dictionary to keep track of atom symbol counts
     process_lines = False
     for i, line in enumerate(lines):
-        if '_atom_site_occupancy' in line:
+        if re.findall("^ _atom_site", line):
             process_lines = True
         elif process_lines:
             if line.strip():  # Check if the line is not blank
@@ -253,9 +255,21 @@ def take_care_of_atomic_site(cif_file_path):
                     atom_symbol = parts[1]
                     atom_symbol_count[atom_symbol] = atom_symbol_count.get(atom_symbol, 0) + 1
                     parts[0] = atom_symbol + str(atom_symbol_count[atom_symbol])
-                    lines[i] = ' '.join(parts) + '\n'
+                    lines[i] = ' '+' '.join(parts) + '\n'
             else:
                 process_lines = False
 
     with open(cif_file_path, 'w') as file:
         file.writelines(lines)
+
+def valid_cif(cif_file_path):
+    with open(cif_file_path, "r") as file:
+        lines = file.readlines()
+
+    is_valid = False
+    for i in lines:
+        if get_loop_tags()[1] in i:
+            is_valid = True
+            break
+
+    return is_valid
