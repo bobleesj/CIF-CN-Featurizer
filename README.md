@@ -37,6 +37,7 @@ python main.py
 - Nikhil Kumar Barua
 - Nishant Yadav
 - Sangjoon Bob Lee
+- Siddha Sankalpa Sethi
 
 
 ## Publications 
