@@ -9,7 +9,8 @@ __pycache__/
 *.so
 
 # CIF files
-cif_test
+.cif
+.csv
 
 # Distribution / packaging
 .Python
