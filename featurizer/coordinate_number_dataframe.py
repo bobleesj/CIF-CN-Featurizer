@@ -27,23 +27,37 @@ def get_coordinate_number_binary_df(isBinary,
     A_CIF_rad, A_Pauling_rad = atom_radii[A]["CIF"], atom_radii[A]["Pauling"]
     B_CIF_rad, B_Pauling_rad = atom_radii[B]["CIF"], atom_radii[B]["Pauling"]
 
+    # 4 methods in counting the CN number based on the radii value are used
     shortest_AA, shortest_BB, shortest_AB = distance.find_shortest_pair_distances(isBinary, unique_atoms_tuple, atomic_pair_list)
     shortest_distances_pair = {"AA": shortest_AA, "BB": shortest_BB, "AB": shortest_AB}
+    print("Shortest distance pair", shortest_distances_pair)
     A_CIF_rad_refined, B_CIF_rad_refined = optimize.optimize_CIF_rad_binary(A_CIF_rad, B_CIF_rad, shortest_distances_pair)
+    
+    # rad_sum_binary is used to determine
     rad_sum_binary = db.compute_rad_sum_binary(A_CIF_rad, B_CIF_rad,
                                             A_CIF_rad_refined, B_CIF_rad_refined,
                                             A_Pauling_rad, B_Pauling_rad)
 
     # Insert values for unique_labels, output_dict
-    CN_counts = cn_featurizer.calculate_diff_counts_per_label(unique_labels, atom_pair_info_dict, rad_sum_binary, A, B, R, M, X)
+    CN_count_dict = cn_featurizer.calculate_diff_counts_per_label(unique_labels, atom_pair_info_dict, rad_sum_binary, A, B, R, M, X)
+    print("CN_counts", CN_count_dict)
+    
+    '''
+    CN_counts {
+                'Ge1': {'dist_by_shortest_dist': 1, 'dist_by_CIF_rad_sum': 7, 'dist_by_CIF_rad_refined_sum': 7, 'dist_by_Pauling_rad_sum': 7},
+                'Ge2': {'dist_by_shortest_dist': 1, 'dist_by_CIF_rad_sum': 7, 'dist_by_CIF_rad_refined_sum': 7, 'dist_by_Pauling_rad_sum': 7},
+                'Ge3': {'dist_by_shortest_dist': 14, 'dist_by_CIF_rad_sum': 18, 'dist_by_CIF_rad_refined_sum': 18, 'dist_by_Pauling_rad_sum': 18},
+                'Er1': {'dist_by_shortest_dist': 13, 'dist_by_CIF_rad_sum': 13, 'dist_by_CIF_rad_refined_sum': 13, 'dist_by_Pauling_rad_sum': 13}
+                }
+    '''
+
     atom_labels = {'A': A, 'B': B, 'R': R, 'M': M, 'X': X}
 
     for label in unique_labels:
-        df = cn_featurizer.process_labels(label, atom_pair_info_dict, CN_counts, cell_lengths, cell_angles_rad, atom_labels, rad_sum_binary, CIF_id, formula_string)
+        df = cn_featurizer.process_labels(label, atom_pair_info_dict, CN_count_dict, cell_lengths, cell_angles_rad, atom_labels, rad_sum_binary, CIF_id, formula_string)
         coordinate_number_binary_df = pd.concat([coordinate_number_binary_df, df], ignore_index=True)
     
     return coordinate_number_binary_df
-
 
 
 

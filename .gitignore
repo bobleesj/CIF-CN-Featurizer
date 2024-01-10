@@ -8,6 +8,9 @@ __pycache__/
 # C extensions
 *.so
 
+# CIF files
+cif_test
+
 # Distribution / packaging
 .Python
 build/

@@ -281,8 +281,8 @@ loop_
  _atom_site_fract_y
  _atom_site_fract_z
  _atom_site_occupancy
- Os Os 16 c 0 0 0 1
- Th Th 8 b 0.375 0.375 0.375 1
+ Os1 Os 16 c 0 0 0 1
+ Th1 Th 8 b 0.375 0.375 0.375 1
 
 
 _exptl_crystal_colour                    ?

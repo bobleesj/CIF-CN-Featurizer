@@ -97,9 +97,9 @@ loop_
  _atom_site_fract_y
  _atom_site_fract_z
  _atom_site_occupancy
- SbI Sb 4 e 0.15 0.64 0.327 1
- Rh Rh 4 e 0.223 0.0 0.212 1
- SbII Sb 4 e 0.34 0.367 0.127 1
+ Sb1 Sb 4 e 0.15 0.64 0.327 1
+ Rh1 Rh 4 e 0.223 0.0 0.212 1
+ Sb2 Sb 4 e 0.34 0.367 0.127 1
 
 
 _exptl_crystal_colour                    ?

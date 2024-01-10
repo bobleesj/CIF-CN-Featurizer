@@ -131,9 +131,9 @@ loop_
  _atom_site_fract_y
  _atom_site_fract_z
  _atom_site_occupancy
- Al Al 36 f 0.244 0.079 0.096 1
- Ge2 Ge 18 e 0.352 0 0.25 1
- Ge1 Ge 12 c 0 0 0.137 1
+ Al1 Al 36 f 0.244 0.079 0.096 1
+ Ge1 Ge 18 e 0.352 0 0.25 1
+ Ge2 Ge 12 c 0 0 0.137 1
 
 
 _exptl_crystal_colour                    ?
