@@ -211,11 +211,22 @@ def process_labels(label, atom_pair_info_dict, counts, cell_lengths, cell_angles
                 atom_counts = [A_atom_count_in_CN, B_atom_count_in_CN]
                 atoms = ['A', 'B']
 
-            hull = ConvexHull(polyhedron_points)
+            if len(jth_atoms_labels) < 4:
+                print(f"\nSkipping... {central_atom_label} has lower C.N. {len(jth_atoms_labels)}\n")
+                continue
+
+            try:
+                hull = ConvexHull(polyhedron_points)
+            except:
+                print(f"\nError in determining polyhedron for {central_atom_label}.\n")
+                continue
             polyhedron_points = np.array(polyhedron_points)
             polyhedron_metrics = compute_polyhedron_metrics(polyhedron_points, central_atom_coord, hull)
 
             df = cn_dataframe.get_coordniate_number_df(polyhedron_metrics, atom_counts, atoms, formula_string, label, dist_type, CIF_id)
             dfs.append(df)
     
-    return pd.concat(dfs, ignore_index=True).round(5)
+    if not dfs == []:
+        return pd.concat(dfs, ignore_index=True).round(5)
+
+    return pd.DataFrame()
