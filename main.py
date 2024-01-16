@@ -51,8 +51,10 @@ def main():
     for file in os.listdir(cif_folder_directory):
         if file.endswith('.cif'):
             cif_file_path = os.path.join(cif_folder_directory, file)
+            # CIF cleaning before parsing
             cif_parser.preprocess_cif_file(cif_file_path)
             cif_parser.take_care_of_atomic_site(cif_file_path)
+            cif_parser.remove_text_after_author(cif_file_path)
             files_lst.append(cif_file_path)
     
     # Number of files

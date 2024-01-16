@@ -259,3 +259,50 @@ def take_care_of_atomic_site(cif_file_path):
 
     with open(cif_file_path, 'w') as file:
         file.writelines(lines)
+        
+import re
+
+def remove_text_after_author(cif_file_path):
+    """
+    Removes everything between the second ';' and '#' after finding _publ_author_name and _publ_author_address.
+    Example:
+    _publ_author_name
+    _publ_author_address
+    'Nishio Hamane D.'
+    ;
+    Tokyo University
+    Institute for Solid State Physics (ISSP)
+    Kashiwa / Chiba
+    Japan
+    ;
+    'Saito K.'
+
+    # Standardized crystallographic data
+
+    Here 'Saito K.' has to be removed
+    """
+    with open(cif_file_path, 'r') as file:
+        lines = file.readlines()
+
+    in_author_info = False
+    author_counter = 0
+    semicolon_counter = 0
+
+    for i, line in enumerate(lines):
+        if '_publ_author_name' in line or '_publ_author_address' in line:
+            in_author_info = True
+            author_counter += 1
+        elif in_author_info and author_counter == 2:
+            if ';' in line:
+                # Remove everything after ';'
+                semicolon_counter += 1
+                lines[i] = ';' + '\n'
+            elif semicolon_counter == 2 and '#' not in line:
+                # Clear the line between second ';' and '#'
+                lines[i] = '\n'
+            elif '#' in line:
+                # Break the loop after seeing #
+                break
+
+    with open(cif_file_path, 'w') as file:
+        file.writelines(lines)
