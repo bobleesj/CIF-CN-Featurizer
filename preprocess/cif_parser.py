@@ -3,6 +3,7 @@ import re
 from util.string_parser import remove_string_braket
 import numpy as np
 from fractions import Fraction
+import pandas as pd
 
 
 def get_atom_type(label):
@@ -15,16 +16,40 @@ def get_atom_type(label):
             return match.group(1)
     return None
 
+def formula_sorter(formula_string, num_of_unique_atoms):
+    mendeleev_data = {}
+    data_set = pd.read_excel('./element_database/element_properties_for_ML-my elements.xlsx')
+    for i in range(len(data_set)):
+        mendeleev_data[data_set.iloc[i]['Symbol']] = data_set.iloc[i]['Mendeleev number']
 
+    elem = re.findall(r"[A-Z][a-z]*\s*", formula_string)
+
+    el = {}
+    mendel_el = []
+    for i in range(len(elem)):
+        el[mendeleev_data[elem[i]]] = elem[i]
+        mendel_el.append(mendeleev_data[elem[i]])
+    mendel_el.sort()
+
+    A_labels, M_labels, B_labels = None, None, None
+
+    if num_of_unique_atoms == 2:
+        A_labels, B_labels = el[mendel_el[0]], el[mendel_el[1]]
+
+    if num_of_unique_atoms == 3:
+        A_labels, M_labels, B_labels = el[mendel_el[0]], el[mendel_el[1]], el[mendel_el[2]]
+
+    return (A_labels, M_labels, B_labels)
+    
 
 def extract_formula_and_atoms(block):
     """
     Extract the chemical formula and unique atoms from a CIF block.
     """
 
-    A_labels = ["Sc", "Y", "La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Th", "U"]
-    B_labels = ["Si", "Ga", "Ge", "In", "Sn", "Sb", "Al"]
-    M_labels = ["Fe", "Co", "Ni", "Ru", "Rh", "Pd", "Os", "Ir", "Pt"]
+    # A_labels = ["Sc", "Y", "La", "Ce", "Pr", "Nd", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Th", "U"]
+    # B_labels = ["Si", "Ga", "Ge", "In", "Sn", "Sb", "Al"]
+    # M_labels = ["Fe", "Co", "Ni", "Ru", "Rh", "Pd", "Os", "Ir", "Pt"]
     
     formula = None
     formula_string = None
@@ -47,6 +72,8 @@ def extract_formula_and_atoms(block):
     unique_atoms_tuple = [(atom, int(count) if count else 1) for atom, count in matches]
     num_of_unique_atoms = len({atom for atom, _ in unique_atoms_tuple})
     sorted_unique_atoms_tuple = None
+    
+    A_labels, M_labels, B_labels = formula_sorter(formula_string, num_of_unique_atoms)
 
     A_elements = []
     B_elements = []
@@ -216,7 +243,10 @@ def preprocess_cif_file(cif_file_path):
                 i += 1
                 if 'loop_' in lines[i] or i >= len(lines):
                     break
-                lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
+
+                if re.findall("^ \d+ ", lines[i]):
+                    lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
+                    #print(lines[i])
 
     with open(cif_file_path, 'w') as file:
         file.writelines(lines)
@@ -244,7 +274,7 @@ def take_care_of_atomic_site(cif_file_path):
     atom_symbol_count = {}  # Dictionary to keep track of atom symbol counts
     process_lines = False
     for i, line in enumerate(lines):
-        if '_atom_site_occupancy' in line:
+        if re.findall("^ _atom_site", line):
             process_lines = True
         elif process_lines:
             if line.strip():  # Check if the line is not blank
@@ -253,15 +283,25 @@ def take_care_of_atomic_site(cif_file_path):
                     atom_symbol = parts[1]
                     atom_symbol_count[atom_symbol] = atom_symbol_count.get(atom_symbol, 0) + 1
                     parts[0] = atom_symbol + str(atom_symbol_count[atom_symbol])
-                    lines[i] = ' '.join(parts) + '\n'
+                    lines[i] = ' '+' '.join(parts) + '\n'
             else:
                 process_lines = False
 
     with open(cif_file_path, 'w') as file:
         file.writelines(lines)
-        
-import re
 
+def valid_cif(cif_file_path):
+    with open(cif_file_path, "r") as file:
+        lines = file.readlines()
+
+    is_valid = False
+    for i in lines:
+        if get_loop_tags()[1] in i:
+            is_valid = True
+            break
+
+    return is_valid
+    
 def remove_text_after_author(cif_file_path):
     """
     Removes everything between the second ';' and '#' after finding _publ_author_name and _publ_author_address.
@@ -283,26 +323,36 @@ def remove_text_after_author(cif_file_path):
     """
     with open(cif_file_path, 'r') as file:
         lines = file.readlines()
-
-    in_author_info = False
+        
+    new_lines = []
     author_counter = 0
     semicolon_counter = 0
+    in_author_info = False
 
-    for i, line in enumerate(lines):
-        if '_publ_author_name' in line or '_publ_author_address' in line:
-            in_author_info = True
-            author_counter += 1
-        elif in_author_info and author_counter == 2:
-            if ';' in line:
-                # Remove everything after ';'
-                semicolon_counter += 1
-                lines[i] = ';' + '\n'
-            elif semicolon_counter == 2 and '#' not in line:
-                # Clear the line between second ';' and '#'
-                lines[i] = '\n'
-            elif '#' in line:
-                # Break the loop after seeing #
-                break
-
+    for i, line in enumerate(lines):   
+        # If in correct block
+        if in_author_info and author_counter == 2:
+            # Process the valid author info lines
+            if semicolon_counter < 2:
+                new_lines.append(line)
+                # Up the semicolon count
+                if ';' in line: 
+                    semicolon_counter += 1
+            
+            # Process author info lines
+            elif semicolon_counter == 2:
+                if '# Standardized crystallographic data' in line:
+                    new_lines.append(line)
+                    in_author_info = False
+        
+        else:
+            # Append valid line
+            new_lines.append(line)
+            
+            # Whether in correct block or not?
+            if '_publ_author_name' in line or '_publ_author_address' in line:
+                in_author_info = True
+                author_counter += 1
+            
     with open(cif_file_path, 'w') as file:
-        file.writelines(lines)
+        file.writelines(new_lines)

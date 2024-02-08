@@ -1,19 +1,21 @@
 import pandas as pd
-import util.data as data
-import preprocess.optimize as optimize
-import featurizer.distance as distance
-import featurizer.environment_wyckoff as env_wychoff_featurizer
+from util import data as data
+from preprocess import optimize as optimize
+from featurizer import distance as distance
+from featurizer import environment_wyckoff as env_wychoff_featurizer
 import numpy as np
-import util.log as log
+from util import log as log
 
 def get_atom_values(atom, xl):
     row = xl[xl.iloc[:, 0] == atom]
     return {
-        'CIF_rad': row['CIF radius element'].values[0],
-        'Pauling_rad': row['Pauling R(CN12)'].values[0],
+        #'CIF_rad': row['CIF radius element'].values[0],
+        'CIF_rad': data.get_radii_data()[atom]['CIF_radius_element'],
+        #'Pauling_rad': row['Pauling R(CN12)'].values[0],
+        'Pauling_rad': data.get_radii_data()[atom]['Pauling_R(CN12)'],
         'Group': row['Group'].values[0],
         'Mendeleev_number': row['Mendeleev number'].values[0],
-        'valence_e': row['valence e total'].values[0],
+        'valence_e': row['no. of valence electrons'].values[0],
         'Pauling_EN': row['Pauling EN'].values[0],
         'MB_EN': row['Martynov Batsanov EN'].values[0]
     }
