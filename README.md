@@ -1,7 +1,6 @@
 # CIF Coordination Number Featurizer
 ![Feature Extraction Diagram](feature-extraction-diagram.png)
 
-
 The CIF File Featurizer is a Python script designed to process CIF (Crystallographic Information File) files and extract various features from them. These features include interatomic distances, atomic environment information, and coordination numbers. The script can handle binary and ternary compounds.
 
 ## Features
@@ -11,25 +10,30 @@ The CIF File Featurizer is a Python script designed to process CIF (Crystallogra
 - Calculate coordination numbers for each atom.
 - Save extracted features to CSV files for further analysis.
 
-## Prerequisites
+## Installation
 Before running the script, make sure you have the following dependencies installed:
 
-- Python 3.x
-- Click (Python package)
-- Pandas (Python package)
-- Gemmi (Python package)
 
 You can install these dependencies using pip:
 
 ```bash
-pip install click pandas gemmi
-```
-
-To run
-
-```python
+pip install click gemmi matplotlib numpy openpyxl pandas pytest scipy sympy
+cd cif-featurizer
 python main.py
 ```
+
+The recommended way for installation is using Conda
+
+```bash
+git clone https://github.com/bobleesj/cif-featurizer.git
+cd cif-featurizer
+conda create -n cif python=3.12
+conda activate cif
+pip install -r requirements.txt
+python main.py
+```
+
+> If you are new to Conda (Python package manager), I have written a tutorial for you here [Intro to Python package manager for beginners (Ft. Conda with Cheatsheet](https://bobleesj.github.io/tutorial/2024/02/26/intro-to-python-package-manager.html).
 
 ## Contributors
 - Anton Oliynyk
@@ -38,6 +42,9 @@ python main.py
 - Nishant Yadav
 - Sangjoon Bob Lee
 - Siddha Sankalpa Sethi
+
+## CIF CLEAN
+Before running `CIF Featurizer` it is recommended to use [CIF Cleaner](https://github.com/bobleesj/cif-cleaner/) to pre-process and relocate any CIF files with error. 
 
 
 ## Publications 

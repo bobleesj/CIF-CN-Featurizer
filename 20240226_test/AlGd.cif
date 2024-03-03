@@ -1,6 +1,6 @@
 ##############################################################################
 #                                                                            #
-# Al-Sb            # AlSb hp                                       #  458053 #
+# Al-Gd            # GdAl3                                         # 1005811 #
 #                                                                            #
 ##############################################################################
 #                                                                            #
@@ -18,99 +18,118 @@
 #                                                                            #
 ##############################################################################
 
-data_458053
-_audit_creation_date                     2024-01-04
+data_1005811
+_audit_creation_date                     2023-09-12
 _audit_creation_method
 ;
 Pearson's Crystal Data browser
 ;
-#_database_code_PCD                      458053
-_database_code_PDF                       04-003-6679
+#_database_code_PCD                      1005811
+_database_code_PDF                       ?
 
 # Entry summary
 
-_chemical_formula_structural             'Al~0.5~ Sb~0.5~'
-_chemical_formula_sum                    'Al0.50 Sb0.50'
+_chemical_formula_structural             'Gd Al~3~'
+_chemical_formula_sum                    'Al3 Gd'
 _chemical_name_mineral                   ?
 _chemical_compound_source                ?
-_chemical_name_structure_type            Sn,tI4,141
-_chemical_formula_weight                 74.4
+_chemical_name_structure_type            Mg~3~Cd,hP8,194
+_chemical_formula_weight                 238.2
 
 # Bibliographic data
 
 _publ_section_title
 ;
-Crystal Structures at High Pressures of Metallic Modifications of Compounds of Indium, Gallium, and Aluminum
+Ternary systems Gd-(Y,Tb,Dy,Ho,Er,Sc)-Al in the region to 25 at.% rare-earth metals
 ;
-_journal_coden_ASTM                      SCIEAS
-_journal_name_full                       'Science (Washington, DC, U. S.)'
-_journal_year                            1963
-_journal_volume                          139
-_journal_page_first                      845
-_journal_page_last                       847
-_journal_language                        English
+_journal_coden_ASTM                      DUKABM
+_journal_name_full                       'Dopov. Akad. Nauk Ukr. RSR, Ser. A'
+_journal_year                            1970
+_journal_volume                          ?
+_journal_page_first                      751
+_journal_page_last                       753
+_journal_language                        Ukrainian
 loop_
  _publ_author_name
  _publ_author_address
-'Jamieson J.C.'
+'Zalutskaya O.I.'
 ;
-Chicago University
-Department of Geophysical Sciences
-Chicago
-U.S.A. Illinois
+Lviv Ivan Franko State University
+Lviv
+Ukraine
+;
+'Kontsevoy V.G.'
+;
+Lviv Ivan Franko State University
+Lviv
+Ukraine
+;
+'Karamyshev N.I.'
+;
+Lviv Ivan Franko State University
+Lviv
+Ukraine
+;
+'Ryabov V.R.'
+;
+Lviv Ivan Franko State University
+Department of Inorganic Chemistry
+Lviv
+Ukraine
+;
+'Zalutskii I.I.'
+;
+Lviv Ivan Franko State University
+Lviv
+Ukraine
 ;
 
 # Standardized crystallographic data
 
-_cell_length_a                           5.375
-_cell_length_b                           5.375
-_cell_length_c                           2.892
+_cell_length_a                           6.323
+_cell_length_b                           6.323
+_cell_length_c                           4.598
 _cell_angle_alpha                        90
 _cell_angle_beta                         90
-_cell_angle_gamma                        90
-_cell_volume                             83.55
-_cell_formula_units_Z                    4
-_space_group_IT_number                   141
-_space_group_name_H-M_alt                'I 41/a m d (origin choice 2)'
+_cell_angle_gamma                        120
+_cell_volume                             159.2
+_cell_formula_units_Z                    2
+_space_group_IT_number                   194
+_space_group_name_H-M_alt                'P 63/m m c'
 loop_
  _space_group_symop_id
  _space_group_symop_operation_xyz
  1 'x, y, z'
- 2 '-x, 1/2-y, z'
- 3 '-x, -y, -z'
- 4 '-x, 1/2+y, -z'
- 5 '-x, y, z'
- 6 '1/4-y, 1/4-x, -1/4-z'
- 7 '1/4-y, -1/4+x, 1/4+z'
- 8 '-1/4-y, 1/4-x, -1/4+z'
- 9 '-1/4-y, -1/4+x, 1/4-z'
- 10 'x, 1/2-y, z'
- 11 'x, -y, -z'
- 12 'x, 1/2+y, -z'
- 13 '1/4+y, 1/4-x, -1/4+z'
- 14 '1/4+y, -1/4+x, 1/4-z'
- 15 '-1/4+y, 1/4-x, -1/4-z'
- 16 '-1/4+y, -1/4+x, 1/4+z'
- 17 '1/2+x, 1/2+y, 1/2+z'
- 18 '1/2-x, 1-y, 1/2+z'
- 19 '1/2-x, 1/2-y, 1/2-z'
- 20 '1/2-x, 1+y, 1/2-z'
- 21 '1/2-x, 1/2+y, 1/2+z'
- 22 '3/4-y, 3/4-x, 1/4-z'
- 23 '3/4-y, 1/4+x, 3/4+z'
- 24 '1/4-y, 3/4-x, 1/4+z'
- 25 '1/4-y, 1/4+x, 3/4-z'
- 26 '1/2+x, 1-y, 1/2+z'
- 27 '1/2+x, 1/2-y, 1/2-z'
- 28 '1/2+x, 1+y, 1/2-z'
- 29 '3/4+y, 3/4-x, 1/4+z'
- 30 '3/4+y, 1/4+x, 3/4-z'
- 31 '1/4+y, 3/4-x, 1/4-z'
- 32 '1/4+y, 1/4+x, 3/4+z'
+ 2 '-x+y, -x, 1/2-z'
+ 3 '-x+y, -x, z'
+ 4 '-x+y, y, 1/2-z'
+ 5 '-x+y, y, z'
+ 6 '-x, -x+y, -z'
+ 7 '-x, -x+y, 1/2+z'
+ 8 '-x, -y, -z'
+ 9 '-x, -y, 1/2+z'
+ 10 '-y, -x, 1/2-z'
+ 11 '-y, -x, z'
+ 12 '-y, x-y, 1/2-z'
+ 13 '-y, x-y, z'
+ 14 'x, x-y, 1/2-z'
+ 15 'x, x-y, z'
+ 16 'x, y, 1/2-z'
+ 17 'x-y, -y, -z'
+ 18 'x-y, -y, 1/2+z'
+ 19 'x-y, x, -z'
+ 20 'x-y, x, 1/2+z'
+ 21 'y, -x+y, -z'
+ 22 'y, -x+y, 1/2+z'
+ 23 'y, x, -z'
+ 24 'y, x, 1/2+z'
+
+# Atomic positions taken from type-defining entry
+
 loop_
  _atom_type_symbol
+ Gd
  Al
- Sb
 loop_
  _atom_site_label
  _atom_site_type_symbol
@@ -120,31 +139,28 @@ loop_
  _atom_site_fract_y
  _atom_site_fract_z
  _atom_site_occupancy
-M1 Al 4 b 0 0.25 0.375 0.5
-M2 Sb 4 b 0 0.25 0.375 0.5
+ Gd1 Gd 6 h 0.16667 0.33333 0.25 1
+ Al1 Al 2 d 0.333333 0.666667 0.75 1
 
 
 _exptl_crystal_colour                    ?
 _exptl_crystal_density_meas              ?
-_exptl_crystal_density_diffrn            5.91
+_exptl_crystal_density_diffrn            4.97
 _cell_measurement_temperature            ?
-_cell_measurement_radiation              X-rays
+_cell_measurement_radiation              'X-rays, Cr K'
 _cell_measurement_reflns_used            ?
 _diffrn_ambient_temperature              ?
-_diffrn_measurement_device               film
+_diffrn_measurement_device               'Debye-Scherrer film'
 _diffrn_measurement_device_type          ?
-_diffrn_radiation_type                   X-rays
+_diffrn_radiation_type                   ?
 _diffrn_reflns_number                    ?
 _exptl_absorpt_coefficient_mu            ?
 _exptl_absorpt_correction_type           ?
-_computing_structure_solution            'starting values from the literature'
+_computing_structure_solution            ?
 _refine_ls_number_parameters             ?
 _refine_ls_number_reflns                 ?
 _refine_ls_R_factor_gt                   ?
 _refine_ls_wR_factor_gt                  ?
-_pd_proc_ls_proof_R_factor               ?
-_pd_proc_ls_proof_wR_factor              ?
-_refine_ls_R_I_factor                    ?
 
-# End of data set 458053
+# End of data set 1005811
 

@@ -130,15 +130,6 @@ def get_unit_cell_lengths_angles(block):
     return tuple(lengths + angles)
 
 
-def exceeds_atom_count_limit(all_points, max_atoms_count):
-    """
-    Checks if the number of unique atomic positions after applying symmetry operations 
-    exceeds the specified atom count limit.
-    """
-
-    return len(all_points) > max_atoms_count
-
-
 def get_CIF_block(filename):
     """
     Returns a CIF block from its CIF filename.
@@ -195,81 +186,31 @@ def convert_decimal_to_fraction(decimal_str):
     fraction = Fraction(float(decimal_str)).limit_denominator(1000)
     return str(fraction)
 
-def preprocess_cif_file(cif_file_path):
-    """
-    Preprocesses a CIF file, converting decimal numbers in the symmetry operations to fractions.
-    Example:
-    '1/3+y, 2/3+x, 1.16667-z'
+
+# def preprocess_cif_file(cif_file_path):
+#     """
+#     Preprocesses a CIF file, converting decimal numbers in the symmetry operations to fractions.
+#     Example:
+#     '1/3+y, 2/3+x, 1.16667-z'
     
-    To
+#     To
     
-    '1/3+y, 2/3+x, 7/6-z'
-    """
-    with open(cif_file_path, 'r') as file:
-        lines = file.readlines()
+#     '1/3+y, 2/3+x, 7/6-z'
+#     """
+#     with open(cif_file_path, 'r') as file:
+#         lines = file.readlines()
 
-    decimal_regex = re.compile(r'\d+\.\d+')
+#     decimal_regex = re.compile(r'\d+\.\d+')
 
-    for i, line in enumerate(lines):
-        if '_space_group_symop_operation_xyz' in line:
-            while True:
-                i += 1
-                if 'loop_' in lines[i] or i >= len(lines):
-                    break
+#     for i, line in enumerate(lines):
+#         if '_space_group_symop_operation_xyz' in line:
+#             while True:
+#                 i += 1
+#                 if 'loop_' in lines[i] or i >= len(lines):
+#                     break
 
-                if re.findall("^ \d+ ", lines[i]):
-                    lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
+#                 if re.findall("^ \d+ ", lines[i]):
+#                     lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
 
-    with open(cif_file_path, 'w') as file:
-        file.writelines(lines)
-        
-        
-def take_care_of_atomic_site(cif_file_path):
-    """
-    Preprocesses a CIF file to make the atom symbols right for further parsing.
-    Example:
-    M1 Al - - - - -
-    M2 Al - - - - -
-    M3 Al - - - - -
-    M2 Sb - - - - -
-    
-    To
-    
-    Al1 Al - - - - -
-    Al2 Al - - - - -
-    Al3 Al - - - - -
-    Sb1 Sb - - - - -
-    """
-    with open(cif_file_path, 'r') as file:
-        lines = file.readlines()
-
-    atom_symbol_count = {}  # Dictionary to keep track of atom symbol counts
-    process_lines = False
-    for i, line in enumerate(lines):
-        if re.findall("^ _atom_site", line):
-            process_lines = True
-        elif process_lines:
-            if line.strip():  # Check if the line is not blank
-                parts = line.split()
-                if len(parts) > 0:
-                    atom_symbol = parts[1]
-                    atom_symbol_count[atom_symbol] = atom_symbol_count.get(atom_symbol, 0) + 1
-                    parts[0] = atom_symbol + str(atom_symbol_count[atom_symbol])
-                    lines[i] = ' '+' '.join(parts) + '\n'
-            else:
-                process_lines = False
-
-    with open(cif_file_path, 'w') as file:
-        file.writelines(lines)
-
-def valid_cif(cif_file_path):
-    with open(cif_file_path, "r") as file:
-        lines = file.readlines()
-
-    is_valid = False
-    for i in lines:
-        if get_loop_tags()[1] in i:
-            is_valid = True
-            break
-
-    return is_valid
+#     with open(cif_file_path, 'w') as file:
+#         file.writelines(lines)
