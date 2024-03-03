@@ -15,8 +15,6 @@ def print_intro_message():
     click.echo(textwrap.fill(intro_message, width=80))
 
 
-
-
 def get_user_input_on_file_skip():
     click.echo("\nQ1. Do you want to skip any CIF files based on the number of unique in the supercell?")
     skip_based_on_atoms = click.confirm('(Default: N)', default=False)
