@@ -1,5 +1,21 @@
 import textwrap
 import click
+import textwrap
+import click
+
+def print_intro_message():
+    print()
+    intro_message = (
+        "Welcome to CIF Featurizer!\n"
+        "This script processes Crystallographic Information File (CIF) files to extract various features such as interatomic distances, atomic environment information, and coordination numbers. It supports binary and ternary compounds.\n"
+        "It is recommended to preprocess all CIF files with CIF Cleaner to ensure data consistency and to handle any potential errors in the CIF files. For more details, visit: https://github.com/bobleesj/cif-cleaner\n"
+    )
+
+    # Use textwrap to ensure that the message fits within a certain width
+    click.echo(textwrap.fill(intro_message, width=80))
+
+
+
 
 def get_user_input_on_file_skip():
     click.echo("\nQ1. Do you want to skip any CIF files based on the number of unique in the supercell?")

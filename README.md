@@ -22,7 +22,7 @@ cd cif-featurizer
 python main.py
 ```
 
-The recommended way for installation is using Conda
+The recommended way for installation is Conda
 
 ```bash
 git clone https://github.com/bobleesj/cif-featurizer.git

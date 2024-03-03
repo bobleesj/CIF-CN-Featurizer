@@ -26,7 +26,7 @@ from util.unit import round_df
 
 
 def run_main():
-    
+    prompt.print_intro_message()
     # Configurations and initializations
     radii_data = db.get_radii_data()
 
