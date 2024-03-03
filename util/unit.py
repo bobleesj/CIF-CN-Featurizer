@@ -47,3 +47,8 @@ def rounded_distance(distance, precision=2):
     return round(distance, precision)
 
 
+def round_df(df):
+    numeric_cols = df.select_dtypes(include=['float64']).columns
+    df[numeric_cols] = df[numeric_cols].round(4)
+    return df
+

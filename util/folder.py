@@ -46,14 +46,12 @@ def save_to_csv_directory(folder_info, df, base_filename):
     if not os.path.exists(csv_directory):
         os.mkdir(csv_directory)
 
-    # Extract the name of the chosen folder
-    folder_name = os.path.basename(folder_info)
-
     # Set the name for the CSV file based on the chosen folder
-    csv_filename = f"{folder_name}_{base_filename}.csv"
+    csv_filename = f"{base_filename}.csv"
 
     # Save the DataFrame to the desired location (within the 'csv' sub-directory)
     df.to_csv(os.path.join(csv_directory, csv_filename), index=False)
 
     print(csv_filename, "saved")
+
 

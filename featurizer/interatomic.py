@@ -162,15 +162,14 @@ def get_interatomic_binary_df(filename,
 
 
 
-def get_interatomic_ternary_df(filename,
-                         interatomic_ternary_df,
-                        interatomic_universal_df,
-                        all_points,
-                        unique_atoms_tuple,
-                        atomic_pair_list,
-                        CIF_data,
-                        radii_data):
-    
+def get_interatomic_ternary_df(
+    interatomic_ternary_df,
+    interatomic_universal_df,
+    unique_atoms_tuple,
+    atomic_pair_list,
+    CIF_data,
+    radii_data):
+
     CIF_id, cell_lengths, cell_angles_rad, CIF_loop_values, formula_string = CIF_data
     R, M, X = unique_atoms_tuple[0][0], unique_atoms_tuple[1][0], unique_atoms_tuple[2][0]         
     atom_R_count = atom_M_count = atom_X_count = 0   
@@ -321,7 +320,6 @@ def get_interatomic_ternary_df(filename,
     shortest_heteroatomic_distance_by_refined_atom_sizes = shortest_heteroatomic_distance / refined_radii[shortest_hetero_key]
     highest_refined_percent_diff = max([abs(p) for p in percent_diffs])
     lowest_refined_percent_diff = min([abs(p) for p in percent_diffs])
-
 
     interatomic_universal_data = {
         "CIF_id": [CIF_id],
