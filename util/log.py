@@ -9,5 +9,3 @@ def print_json_pretty(data_name, data):
         else:
             print(f"- {key}: {value}")
     print()
-
-

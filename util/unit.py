@@ -23,7 +23,9 @@ def get_cartesian_from_fractional(frac_coords, cell_lengths, cell_angles):
     sinb = np.sin(beta)
     cosg = np.cos(gamma)
     sing = np.sin(gamma)
-    volume = 1.0 - cosa**2.0 - cosb**2.0 - cosg**2.0 + 2.0 * cosa * cosb * cosg
+    volume = (
+        1.0 - cosa**2.0 - cosb**2.0 - cosg**2.0 + 2.0 * cosa * cosb * cosg
+    )
     volume = np.sqrt(volume)
     r = np.zeros((3, 3))
     r[0, 0] = a
@@ -43,12 +45,11 @@ def rounded_distance(distance, precision=2):
     """
     Round a distance value to a specified precision.
     """
-    
+
     return round(distance, precision)
 
 
 def round_df(df):
-    numeric_cols = df.select_dtypes(include=['float64']).columns
+    numeric_cols = df.select_dtypes(include=["float64"]).columns
     df[numeric_cols] = df[numeric_cols].round(4)
     return df
-
