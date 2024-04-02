@@ -9,19 +9,18 @@ import pandas as pd
 from click import style
 
 # Local application/library specific imports
-import preprocess.cif_parser as cif_parser
+from preprocess import cif_parser
 import preprocess.supercell as supercell
 import preprocess.supercell_handler as supercell_handler
 import featurizer.interatomic as interatomic_featurizer
 import featurizer.environment_binary as env_featurizer_binary
 import featurizer.environment_dataframe as env_dataframe
-import featurizer.environment_ternary as env_featurizer_ternary
 import featurizer.environment_wyckoff as env_wychoff_featurizer
-import featurizer.coordinate_number_dataframe as coordinate_number_dataframe
+import featurizer.coordination_number_dataframe as coordination_number_dataframe
 import util.data as db
 import util.dataframe as df
-from util.folder import choose_CIF_directory, save_to_csv_directory
 import util.prompt as prompt
+from util.folder import choose_CIF_directory, save_to_csv_directory
 from util.unit import round_df
 
 
@@ -187,7 +186,7 @@ def run_main():
             )
 
             cn_binary_df = (
-                coordinate_number_dataframe.get_coordinate_number_binary_df(
+                coordination_number_dataframe.get_coordinate_number_binary_df(
                     isBinary,
                     cn_binary_df,
                     unique_atoms_tuple,
@@ -238,7 +237,7 @@ def run_main():
             )
 
             cn_ternary_df = (
-                coordinate_number_dataframe.get_coordinate_number_ternary_df(
+                coordination_number_dataframe.get_coordinate_number_ternary_df(
                     isBinary,
                     cn_ternary_df,
                     unique_atoms_tuple,

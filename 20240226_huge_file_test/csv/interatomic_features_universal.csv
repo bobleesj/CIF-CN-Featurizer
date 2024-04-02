@@ -1,0 +1,7 @@
+CIF_id,Compound,Shortest homoatomic distance,Shortest heteroatomic distance,Shortest homoatomic distance by 2 by atom size,Shortest heteroatomic distance by sum of atom sizes,Shortest homoatomic distance by 2 by refined atom size,Shortest heteroatomic distance by sum of refined sizes,Highest refined percent difference by 100 (abs value),Lowest refined percent difference by 100 (abs value),Packing efficiency
+458053,Al0.5Sb0.5,2.783,2.783,1.0622,1.0142,1.0,1.0,0.0622,0.0296,1.08068
+380981,URhIn,3.2437,2.6968,0.9987,0.9083,1.2212,1.0,0.1823,0.0177,0.60985
+457859,RhSb2,2.8294,2.516,0.9865,0.9054,1.0,1.0,0.1812,0.0135,0.46087
+250170,ThOs2,2.7277,3.1985,1.0201,1.0202,1.0,1.0,0.0204,0.0201,0.82086
+531015,ThSb,3.847,3.3316,1.0698,1.0308,1.0,1.0,0.0698,0.0181,0.72900
+1720931,Nd5Si3,2.755,3.0802,1.1713,1.0305,1.0,1.0,0.1714,0.0608,0.65278

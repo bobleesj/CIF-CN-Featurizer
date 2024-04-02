@@ -4,7 +4,7 @@ from collections import Counter
 from scipy.spatial import ConvexHull
 import pandas as pd
 from featurizer.polyhedron import *
-import featurizer.coordinate_number_dataframe as cn_dataframe
+import featurizer.coordination_number_dataframe as cn_dataframe
 import preprocess.supercell as supercell
 
 

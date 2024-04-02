@@ -1,0 +1,7 @@
+Filename,CIF,Compound,Number of atoms,Execution time (s),Total_time (s)
+AlSb.cif,458053,Al0.5Sb0.5,266,3.559,3.559
+URhIn.cif,380981,URhIn,206,2.36,5.919
+RhSb2.cif,457859,RhSb2,180,1.764,7.682
+ThOs2.cif,250170,ThOs2,642,21.184,28.867
+ThSb.cif,531015,ThSb,62,0.228,29.094
+Nd5Si3.cif,1720931,Nd5Si3,662,27.219,56.313
