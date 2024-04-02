@@ -4,7 +4,7 @@ import os
 import util.folder as folder
 
 
-def choose_CIF_directory(script_directory):
+def choose_cif_directory(script_directory):
     """
     Allows the user to select a directory from the given path.
     """
@@ -50,7 +50,7 @@ def get_target_directory(tag, chosen_folder_name):
     return os.path.join(chosen_folder_name, target_folder)
 
 
-def save_to_csv_directory(folder_info, df, base_filename):
+def save_as_csv(folder_info, df, base_filename):
     """
     Saves the dataframe as a CSV inside a 'csv' sub-directory of the provided folder.
     """

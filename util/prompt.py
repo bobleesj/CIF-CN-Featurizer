@@ -36,9 +36,6 @@ def get_user_input_on_file_skip():
     return supercell_max_atom_count
 
 
-import click
-
-
 def exceeds_atom_count_limit(all_points, supercell_max_atom_count):
     """
     Checks if the number of unique atomic positions after applying symmetry operations

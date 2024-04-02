@@ -1,9 +1,7 @@
-# Standard library imports
 import os
 import time
 from collections import defaultdict
 
-# Related third-party imports
 import click
 import pandas as pd
 from click import style
@@ -20,13 +18,12 @@ import featurizer.coordination_number_dataframe as coordination_number_dataframe
 import util.data as db
 import util.dataframe as df
 import util.prompt as prompt
-from util.folder import choose_CIF_directory, save_to_csv_directory
+from util.folder import choose_cif_directory, save_as_csv
 from util.unit import round_df
 
 
-def run_main():
+def run_main(is_interactive_mode=True, cif_dir = None):
     prompt.print_intro_message()
-    # Configurations and initializations
     radii_data = db.get_radii_data()
 
     # Initialize DataFrames
@@ -47,19 +44,20 @@ def run_main():
     atomic_env_binary_df = pd.DataFrame()
     atomic_env_ternary_df = pd.DataFrame()
 
-    # Get user input on skipping file based on supercell size
-    supercell_max_atom_count = prompt.get_user_input_on_file_skip()
-
-    # Get current main.py directory
-    script_directory = os.path.dirname(os.path.abspath(__file__))
-
     # Choose the CIF folder
-    cif_folder_dir = choose_CIF_directory(script_directory)
-
+    if is_interactive_mode:
+        # Get current main.py directory
+        script_directory = os.path.dirname(os.path.abspath(__file__))
+        # Get user input on skipping file based on supercell size
+        supercell_max_atom_count = prompt.get_user_input_on_file_skip()
+        cif_dir = choose_cif_directory(script_directory)
+    else:
+        supercell_max_atom_count = 1000
+        
     # Get a list of all .cif files in the chosen directory
     file_path_list = [
-        os.path.join(cif_folder_dir, file)
-        for file in os.listdir(cif_folder_dir)
+        os.path.join(cif_dir, file)
+        for file in os.listdir(cif_dir)
         if file.endswith(".cif")
     ]
 
@@ -88,7 +86,7 @@ def run_main():
             CIF_block,
             cell_lengths,
             cell_angles_rad,
-            CIF_loop_values,
+            cif_loop_values,
             all_coords_list,
         ) = supercell_handler.read_and_prepare_cif_data(filename)
         # Extract points, labels, and unique atom tuples from the coordinates list and loop values
@@ -96,7 +94,7 @@ def run_main():
             all_points,
             unique_labels,
             unique_atoms_tuple,
-        ) = supercell.get_points_and_labels(all_coords_list, CIF_loop_values)
+        ) = supercell.get_points_and_labels(all_coords_list, cif_loop_values)
 
         # Check if the number of atoms exceeds the defined maximum, skipping the file if so
         if prompt.exceeds_atom_count_limit(
@@ -126,7 +124,7 @@ def run_main():
             CIF_id,
             cell_lengths,
             cell_angles_rad,
-            CIF_loop_values,
+            cif_loop_values,
             formula_string,
         )
 
@@ -169,7 +167,7 @@ def run_main():
                 atomic_env_wyckoff_binary_df,
                 atomic_env_wyckoff_universal_df,
                 unique_atoms_tuple,
-                CIF_loop_values,
+                cif_loop_values,
                 radii_data,
                 CIF_data,
                 atomic_pair_list,
@@ -220,7 +218,7 @@ def run_main():
                 atomic_env_wyckoff_ternary_df,
                 atomic_env_wyckoff_universal_df,
                 unique_atoms_tuple,
-                CIF_loop_values,
+                cif_loop_values,
                 radii_data,
                 CIF_data,
                 atomic_pair_list,
@@ -255,7 +253,8 @@ def run_main():
         running_total_time += execution_time
         click.echo(
             style(
-                f"{execution_time:.2f}s to process {len(all_points)} atoms (total time {running_total_time:.2f}s)",
+                f"{execution_time:.2f}s to process {len(all_points)}"
+                f"atoms (total time {running_total_time:.2f}s)",
                 fg="green",
             )
         )
@@ -301,38 +300,38 @@ def run_main():
             cn_binary_max_df = (
                 cn_binary_df.groupby(cols_to_keep).max().reset_index()
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_binary_df),
                 "coordination_number_binary_all",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_binary_avg_df),
                 "coordination_number_binary_avg",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_binary_min_df),
                 "coordination_number_binary_min",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_binary_max_df),
                 "coordination_number_binary_max",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(interatomic_binary_df),
                 "interatomic_features_binary",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(atomic_env_binary_df),
                 "atomic_environment_features_binary",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(atomic_env_wyckoff_binary_df),
                 "atomic_environment_wyckoff_multiplicity_features_binary",
             )
@@ -358,55 +357,56 @@ def run_main():
                     atomic_env_wyckoff_ternary_df
                 )
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_ternary_df),
                 "coordination_number_ternary_all",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_ternary_avg_df),
                 "coordination_number_ternary_avg",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_ternary_min_df),
                 "coordination_number_ternary_min",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(cn_ternary_max_df),
                 "coordination_number_ternary_max",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(interatomic_ternary_df),
                 "interatomic_features_ternary",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(atomic_env_ternary_df),
                 "atomic_environment_features_ternary",
             )
-            save_to_csv_directory(
-                cif_folder_dir,
+            save_as_csv(
+                cif_dir,
                 round_df(atomic_env_wyckoff_ternary_df),
                 "atomic_environment_wyckoff_multiplicity_features_tenary",
             )
 
-        save_to_csv_directory(
-            cif_folder_dir,
+        save_as_csv(
+            cif_dir,
             round_df(interatomic_universal_df),
             "interatomic_features_universal",
         )
-        save_to_csv_directory(
-            cif_folder_dir,
+        save_as_csv(
+            cif_dir,
             round_df(atomic_env_wyckoff_universal_df),
             "atomic_environment_wyckoff_multiplicity_features_universal",
         )
-        save_to_csv_directory(
-            cif_folder_dir, round_df(featurizer_log_df), "featurizer_log"
-        )
+        if is_interactive_mode:
+            save_as_csv(
+                cif_dir, round_df(featurizer_log_df), "featurizer_log"
+            )
 
 
 if __name__ == "__main__":
