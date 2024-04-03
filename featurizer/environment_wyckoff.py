@@ -317,16 +317,16 @@ def get_env_wychoff_ternary_df(
     )
     (
         CIF_id,
-        cell_lengths,
-        cell_angles_rad,
+        _,
+        _,
         CIF_loop_values,
         formula_string,
     ) = CIF_data
     atoms = [R, M, X]
     atom_radii = data.get_atom_radii(atoms, radii_data)
-    R_CIF_rad, R_Pauling_rad = atom_radii[R]["CIF"], atom_radii[R]["Pauling"]
-    M_CIF_rad, M_Pauling_rad = atom_radii[M]["CIF"], atom_radii[M]["Pauling"]
-    X_CIF_rad, X_Pauling_rad = atom_radii[X]["CIF"], atom_radii[X]["Pauling"]
+    R_CIF_rad, _ = atom_radii[R]["CIF"], atom_radii[R]["Pauling"]
+    M_CIF_rad, _ = atom_radii[M]["CIF"], atom_radii[M]["Pauling"]
+    X_CIF_rad, _ = atom_radii[X]["CIF"], atom_radii[X]["Pauling"]
 
     # Initialize the shortest distances with a large number
     (
@@ -421,8 +421,7 @@ def get_env_wychoff_ternary_df(
     )
 
     atomic_environment_wyckoff_ternary_df.round(5)
-    # log.print_json_pretty("atomic_environment_ternary_Wyckoff_data", atomic_environment_Wyckoff_ternary_data)
-
+    
     first_data = {
         "CIF_id": [CIF_id],
         "Compound": [formula_string],

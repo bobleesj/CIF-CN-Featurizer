@@ -6,7 +6,7 @@ def get_CIF_info(file_path, loop_tags, supercell_generation_method=3):
     """
     Parse the CIF data from the given file path.
     """
-    CIF_block = cif_parser.get_CIF_block(file_path)
+    CIF_block = cif_parser.get_cif_block(file_path)
     cell_lengths, cell_angles_rad = cif_parser.get_cell_lenghts_angles_rad(
         CIF_block
     )
@@ -29,7 +29,7 @@ def get_CIF_info(file_path, loop_tags, supercell_generation_method=3):
 
 def read_and_prepare_cif_data(filename):
     loop_tags = cif_parser.get_loop_tags()
-    CIF_block = cif_parser.get_CIF_block(filename)
+    CIF_block = cif_parser.get_cif_block(filename)
     CIF_id = CIF_block.name
     cell_lengths, cell_angles_rad = supercell.process_cell_data(CIF_block)
     CIF_loop_values = cif_parser.get_loop_values(CIF_block, loop_tags)

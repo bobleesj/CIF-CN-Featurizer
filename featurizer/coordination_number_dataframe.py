@@ -2,8 +2,7 @@ import pandas as pd
 import featurizer.distance as distance
 import preprocess.optimize as optimize
 import util.data as db
-import preprocess.cif_parser as cif_parser
-import featurizer.coordinate_number as cn_featurizer
+import featurizer.coordination_number as cn_featurizer
 import os
 import time
 
@@ -29,7 +28,6 @@ def get_coordinate_number_binary_df(
     A, B = unique_atoms_tuple[0][0], unique_atoms_tuple[1][0]
     R = M = X = ""
 
-    atoms = [A, B]
     atoms_for_radii = [
         unique_atoms_tuple[0][0],
         unique_atoms_tuple[1][0],
@@ -137,7 +135,7 @@ def get_coordinate_number_ternary_df(
         "XX": shortest_XX,
         "RM": shortest_RM,
         "MX": shortest_MX,
-        "RX": shortest_RM,
+        "RX": shortest_RX,
     }
 
     (
@@ -190,7 +188,8 @@ def get_coordniate_number_df(
     metrics, atom_counts, atom_labels, formula_string, label, dist_type, CIF_id
 ):
     """
-    Generates a DataFrame containing information derived from metrics, atom_counts, and other provided arguments.
+    Generates a DataFrame containing information
+    derived from metrics, atom_counts, and other provided arguments.
     """
     data = {
         "CIF_id": [CIF_id],
@@ -260,7 +259,8 @@ def update_log_dataframe(
 
 def calculate_execution_time(start_time, running_total_time):
     """
-    Calculatse execution time based on the provided start time and update the running total time.
+    Calculatse execution time based on the
+    provided start time and update the running total time.
     """
     end_time = time.time()
     execution_time = end_time - start_time

@@ -12,7 +12,8 @@ def update_difference_lists(
     dist, dist_sums, prev_dist_sums, diff_lists, first_iteration
 ):
     """
-    Updates the difference between consecutive distance sums, except during the first iteration.
+    Updates the difference between consecutive distance sums,
+    except during the first iteration.
     """
     if not first_iteration:
         for key, data in dist_sums.items():
@@ -23,7 +24,8 @@ def update_difference_lists(
 
 def get_counts_before_max_difference(diff_lists):
     """
-    Determines the number of iterations before the maximum difference is reached for each key.
+    Determines the number of iterations before the
+    maximum difference is reached for each key.
     """
     counts = {}
     for key in diff_lists:
