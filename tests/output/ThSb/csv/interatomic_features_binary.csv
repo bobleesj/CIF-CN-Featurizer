@@ -1,0 +1,2 @@
+CIF_id,Compound,A,B,distAA,distBB,distAB,Asize,Bsize,Asize_by_Bsize,distAA_by2_byAsize,distBB_by2_byBsize,distAB_by2_byAsizebyBsize,Asize_ref,Bsize_ref,percent_diff_A_by_100,percent_diff_B_by_100,distAA_minus_ref_diff,distBB_minus_ref_diff,distAB_minus_ref_diff,refined_packing_eff,R_factor
+531015,ThSb,Th,Sb,3.847,3.847,3.3316,1.798,1.434,1.2538,1.0698,1.3414,1.0308,1.9235,1.4081,0.0698,-0.0181,0.0,0.268,0.0,0.72900,0.0052

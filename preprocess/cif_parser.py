@@ -206,7 +206,7 @@ def get_unit_cell_lengths_angles(block):
     return tuple(lengths + angles)
 
 
-def get_CIF_block(filename):
+def get_cif_block(filename):
     """
     Returns a CIF block from its CIF filename.
     """
@@ -268,30 +268,93 @@ def convert_decimal_to_fraction(decimal_str):
     return str(fraction)
 
 
-# def preprocess_cif_file(cif_file_path):
-#     """
-#     Preprocesses a CIF file, converting decimal numbers in the symmetry operations to fractions.
-#     Example:
-#     '1/3+y, 2/3+x, 1.16667-z'
+# Index is one lower than the actual line number
+def get_line_start_end_line_indexes(file_path, start_keyword):
+    """
+    Finds the starting and ending indexes of the lines in atom_site_loop
+    """
 
-#     To
+    with open(file_path, "r") as f:
+        lines = f.readlines()
 
-#     '1/3+y, 2/3+x, 7/6-z'
-#     """
-#     with open(cif_file_path, 'r') as file:
-#         lines = file.readlines()
+    start_index = None
+    end_index = None
 
-#     decimal_regex = re.compile(r'\d+\.\d+')
+    # Find the start index
+    for i, line in enumerate(lines):
+        if start_keyword in line:
+            start_index = i + 1
+            break
 
-#     for i, line in enumerate(lines):
-#         if '_space_group_symop_operation_xyz' in line:
-#             while True:
-#                 i += 1
-#                 if 'loop_' in lines[i] or i >= len(lines):
-#                     break
+    if start_index is None:
+        return None, None
 
-#                 if re.findall("^ \d+ ", lines[i]):
-#                     lines[i] = decimal_regex.sub(lambda m: convert_decimal_to_fraction(m.group()), lines[i])
+    # Find the end index
+    for i in range(start_index, len(lines)):
+        if lines[i].strip() == "":
+            end_index = i
+            break
 
-#     with open(cif_file_path, 'w') as file:
-#         file.writelines(lines)
+    return start_index, end_index
+
+
+def get_loop_content(file_path, start_keyword):
+    start_index, end_index = get_line_start_end_line_indexes(
+        file_path, start_keyword
+    )
+
+    if start_index is None or end_index is None:
+        print("Section starting with", start_keyword, "not found.")
+        return None
+
+    with open(file_path, "r") as f:
+        lines = f.readlines()
+
+    # Extract the content between start_index and end_index
+    content_lines = lines[start_index:end_index]
+
+    return content_lines
+
+
+def extract_formula_and_tag(compound_formula_tag):
+    parts = compound_formula_tag.split()
+
+    # First part is the compound formula
+    compound_formula = parts[0]
+
+    # The rest are tags
+    tags = "_".join(parts[1:])
+
+    return compound_formula, tags
+
+
+def get_compound_phase_tag_id_from_third_line(file_path):
+    """
+    Extracts the compound name and tag from the provided CIF file path.
+    """
+    with open(file_path, "r") as f:
+        # Read first three lines
+        f.readline()  # First line
+        f.readline()  # Second line
+        third_line = f.readline().strip()  # Thrid line
+        third_line = third_line.replace(",", "")
+
+        # Split based on '#' and filter out empty strings
+        third_line_parts = [
+            part.strip() for part in third_line.split("#") if part.strip()
+        ]
+        CIF_id = third_line_parts[-1]
+        if not CIF_id.isdigit():
+            raise RuntimeError(
+                "The CIF file is wrongly formatted in the third line"
+            )
+
+        # If the thrid line does not contain the CIF ID, then it's wrongly formatted
+        # if third_line_parts[0] not in third_line_parts[1]
+
+        compound_phase = third_line_parts[0]
+        compound_formala_tag = third_line_parts[1]
+        compound_id = third_line_parts[2]
+
+        compound_formula, tags = extract_formula_and_tag(compound_formala_tag)
+        return compound_phase, compound_formula, tags, compound_id

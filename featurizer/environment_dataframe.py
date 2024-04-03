@@ -11,9 +11,9 @@ def get_env_binary_df(
     unique_shortest_labels,
     atom_pairs_info_dict,
     atom_counts,
-    CIF_data,
+    cif_data,
 ):
-    CIF_id, _, _, _, formula_string = CIF_data
+    cif_id, _, _, _, formula_string = cif_data
     A, B = unique_atoms_tuple[0][0], unique_atoms_tuple[1][0]
 
     # 1st, 2nd binary features - # shortest distance count
@@ -130,7 +130,7 @@ def get_env_binary_df(
     ) = A_B_count_at_shortest_dist_avg_result
 
     atomic_environment_binary_data = {
-        "CIF_id": [CIF_id],
+        "CIF_id": [cif_id],
         "Compound": [formula_string],
         "A": [A],
         "B": [B],

@@ -9,7 +9,7 @@ import util.data as data
 import preprocess.optimize as optimize
 import featurizer.distance as distance
 import preprocess.cif_parser as cif_parser
-import featurizer.coordinate_number as cn_featurizer
+import featurizer.coordination_number as cn_featurizer
 import featurizer.interatomic as interatomic_featurizer
 import util.folder as folder
 import preprocess.supercell as supercell
@@ -82,9 +82,6 @@ def get_interatomic_binary_df(
     A_A_radius_sum = 2 * A_CIF_rad_refined
     B_B_radius_sum = 2 * B_CIF_rad_refined
     A_B_radius_sum = A_CIF_rad_refined + B_CIF_rad_refined
-
-    diff_A = A_CIF_rad_refined - A_CIF_rad
-    diff_B = B_CIF_rad_refined - B_CIF_rad
 
     percent_diff_A = (A_CIF_rad_refined - A_CIF_rad) / A_CIF_rad
     percent_diff_B = (B_CIF_rad_refined - B_CIF_rad) / B_CIF_rad
@@ -248,7 +245,7 @@ def get_interatomic_ternary_df(
         unique_atoms_tuple[1][0],
         unique_atoms_tuple[2][0],
     )
-    atom_R_count = atom_M_count = atom_X_count = 0
+
     atoms = [R, M, X]
     atom_radii = data.get_atom_radii(atoms, radii_data)
     R_CIF_rad, R_Pauling_rad = atom_radii[R]["CIF"], atom_radii[R]["Pauling"]
@@ -304,9 +301,6 @@ def get_interatomic_ternary_df(
     interatomic_distR_R_rad = shortest_RR / 2
     interatomic_distM_M_rad = shortest_MM / 2
     interatomic_distX_X_rad = shortest_XX / 2
-    interatomic_distR_M_rad = shortest_RM / 2
-    interatomic_distM_X_rad = shortest_MX / 2
-    interatomic_distR_X_rad = shortest_RX / 2
 
     # d(R-R)/2/R, d(M-M)/2/M, d(X-X)/2/X features
     distR_R_by2_byRsize = interatomic_distR_R_rad / R_CIF_rad

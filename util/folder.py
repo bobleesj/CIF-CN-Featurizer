@@ -4,7 +4,7 @@ import os
 import util.folder as folder
 
 
-def choose_CIF_directory(script_directory):
+def choose_cif_directory(script_directory):
     """
     Allows the user to select a directory from the given path.
     """
