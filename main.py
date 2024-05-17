@@ -13,6 +13,7 @@ from featurizer.output import (
     output_ternary,
     output_universal,
     output_log,
+    output_handler,
 )
 from util import df_util, folder, data, prompt
 from preprocess import format
@@ -337,35 +338,25 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         universal_merged_df = output_universal.postprocess_merge_dfs(
             interatomic_universal_df, atomic_env_wyckoff_universal_df
         )
-
-        # Save .csv outputs
-        output_log.save_log_csv(
-            is_interactive_mode, featurizer_log_df, cif_dir_path
+        # Add compound columns
+        (
+            binary_merged_df,
+            ternary_merged_df,
+            universal_merged_df,
+        ) = output_handler.add_compound_element_cols(
+            binary_merged_df, ternary_merged_df, universal_merged_df, "Fe2O3"
         )
 
-        # Include A, B, compound cols for binary
-        binary_merged_df = df_util.add_formula_info_to_cols(
-            binary_merged_df, formula
-        )
-
-        # Include R, M, X, compound cols for ternary
-        ternary_merged_df = df_util.add_formula_info_to_cols(
-            ternary_merged_df, formula
-        )
-        # Include compoiund col for unieral
-        universal_merged_df = df_util.add_formula_info_to_cols(
-            universal_merged_df, formula, True
-        )
-
-        df_util.print_df_columns(universal_merged_df)
         df_util.print_df_columns(binary_merged_df)
         df_util.print_df_columns(ternary_merged_df)
-
-        # Include compound col for universal
-
+        df_util.print_df_columns(universal_merged_df)
+        # Save
         folder.save_df_to_csv(cif_dir_path, universal_merged_df, "universal")
         folder.save_df_to_csv(cif_dir_path, binary_merged_df, "binary")
         folder.save_df_to_csv(cif_dir_path, ternary_merged_df, "ternary")
+        output_log.save_log_csv(
+            is_interactive_mode, featurizer_log_df, cif_dir_path
+        )
 
 
 if __name__ == "__main__":
