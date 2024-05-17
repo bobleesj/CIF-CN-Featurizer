@@ -22,7 +22,7 @@ import featurizer.environment_wyckoff as env_wychoff_featurizer
 import featurizer.coordination_number_dataframe as cn_df
 
 
-def run_main(is_interactive_mode=True, cif_dir=None):
+def run_main(is_interactive_mode=True, cif_dir_path=None):
     prompt.print_intro_message()
     radii_data = data.get_radii_data()
 
@@ -44,25 +44,30 @@ def run_main(is_interactive_mode=True, cif_dir=None):
     atomic_env_binary_df = pd.DataFrame()
     atomic_env_ternary_df = pd.DataFrame()
 
+    # Output
+    binary_merged_df = pd.DataFrame()
+    ternary_merged_df = pd.DataFrame()
+    universal_merged_df = pd.DataFrame()
+
     # Choose the CIF folder
     if is_interactive_mode:
         # Get current main.py directory
         script_directory = os.path.dirname(os.path.abspath(__file__))
         # Get user input on skipping file based on supercell size
         supercell_max_atom_count = prompt.get_user_input_on_file_skip()
-        cif_dir = folder.choose_cif_directory(script_directory)
+        cif_dir_path = folder.choose_cif_directory(script_directory)
     else:
         supercell_max_atom_count = 1000
 
     # Get a list of all .cif files in the chosen directory
     file_path_list = [
-        os.path.join(cif_dir, file)
-        for file in os.listdir(cif_dir)
+        os.path.join(cif_dir_path, file)
+        for file in os.listdir(cif_dir_path)
         if file.endswith(".cif")
     ]
 
     # PART 1: REFORMAT
-    format.move_files_based_on_format_error(cif_dir)
+    format.move_files_based_on_format_error(cif_dir_path)
 
     # Number of files
     total_files = len(file_path_list)
@@ -115,7 +120,7 @@ def run_main(is_interactive_mode=True, cif_dir=None):
         (
             unique_atoms_tuple,
             num_of_unique_atoms,
-            formula_string,
+            formula,
         ) = cif_parser.extract_formula_and_atoms(cif_block)
         atomic_pair_list = supercell.get_atomic_pair_list(
             all_points, cell_lengths, cell_angles_rad
@@ -128,7 +133,7 @@ def run_main(is_interactive_mode=True, cif_dir=None):
             cell_lengths,
             cell_angles_rad,
             cif_loop_values,
-            formula_string,
+            formula,
         )
 
         # Determine the compound type based on the number of unique atoms
@@ -263,7 +268,7 @@ def run_main(is_interactive_mode=True, cif_dir=None):
             {
                 "filename": filename_base,
                 "entry": cif_id,
-                "compound": formula_string,
+                "compound": formula,
                 "number_of_atoms": len(all_points),
                 "executione_time_s": execution_time,
                 "total_time_s": running_total_time,
@@ -273,7 +278,6 @@ def run_main(is_interactive_mode=True, cif_dir=None):
     featurizer_log_df = pd.DataFrame(log_list)
     featurizer_log_df = featurizer_log_df.round(3)
 
-    # Note: Save csv file using an individual function for ease of debugging purposes
     if num_files_processed != 0:
         cols_to_keep = ["entry", "compound", "central_atom"]
         click.echo(style(f"Saving csv files in the csv folder", fg="blue"))
@@ -282,11 +286,8 @@ def run_main(is_interactive_mode=True, cif_dir=None):
         )
 
         if not cn_binary_df.empty:
-            binary_non_numeric_cols_to_remove = cn_binary_df.select_dtypes(
-                include=["object"]
-            ).columns.difference(cols_to_keep)
-            cn_binary_df = cn_binary_df.drop(
-                binary_non_numeric_cols_to_remove, axis=1
+            cn_binary_df = df_util.remove_non_numeric_cols(
+                cn_binary_df, cols_to_keep
             )
             atomic_env_wyckoff_binary_df = (
                 df_util.wyckoff_mapping_to_number_binary(
@@ -296,7 +297,7 @@ def run_main(is_interactive_mode=True, cif_dir=None):
             dfs = df_util.get_avg_min_max_dfs(cn_binary_df, cols_to_keep)
             cn_binary_avg_df, cn_binary_min_df, cn_binary_max_df = dfs
 
-            output_binary.merge_dfs_and_save_binary_output(
+            binary_merged_df = output_binary.postprocess_merge_dfs(
                 interatomic_binary_df,
                 interatomic_universal_df,
                 atomic_env_wyckoff_binary_df,
@@ -308,12 +309,8 @@ def run_main(is_interactive_mode=True, cif_dir=None):
             )
 
         if not cn_ternary_df.empty:
-            ternary_non_numeric_cols_to_remove = cn_ternary_df.select_dtypes(
-                include=["object"]
-            ).columns.difference(cols_to_keep)
-
-            cn_ternary_df = cn_ternary_df.drop(
-                ternary_non_numeric_cols_to_remove, axis=1
+            cn_ternary_df = df_util.remove_non_numeric_cols(
+                cn_ternary_df, cols_to_keep
             )
 
             dfs = df_util.get_avg_min_max_dfs(cn_ternary_df, cols_to_keep)
@@ -325,7 +322,7 @@ def run_main(is_interactive_mode=True, cif_dir=None):
                 )
             )
 
-            output_ternary.merge_dfs_and_save_ternary_output(
+            ternary_merged_df = output_ternary.postprocess_merge_dfs(
                 interatomic_ternary_df,
                 interatomic_universal_df,
                 atomic_env_wyckoff_ternary_df,
@@ -336,11 +333,39 @@ def run_main(is_interactive_mode=True, cif_dir=None):
                 cn_ternary_max_df,
             )
 
-        # Save universal
-        output_universal.merge_dfs_and_save_universal_output(
+        # Save universal ouput
+        universal_merged_df = output_universal.postprocess_merge_dfs(
             interatomic_universal_df, atomic_env_wyckoff_universal_df
         )
-        output_log.save_log(is_interactive_mode, featurizer_log_df, cif_dir)
+
+        # Save .csv outputs
+        output_log.save_log_csv(
+            is_interactive_mode, featurizer_log_df, cif_dir_path
+        )
+
+        # Include A, B, compound cols for binary
+        binary_merged_df = df_util.add_formula_info_to_cols(
+            binary_merged_df, formula
+        )
+
+        # Include R, M, X, compound cols for ternary
+        ternary_merged_df = df_util.add_formula_info_to_cols(
+            ternary_merged_df, formula
+        )
+        # Include compoiund col for unieral
+        universal_merged_df = df_util.add_formula_info_to_cols(
+            universal_merged_df, formula, True
+        )
+
+        df_util.print_df_columns(universal_merged_df)
+        df_util.print_df_columns(binary_merged_df)
+        df_util.print_df_columns(ternary_merged_df)
+
+        # Include compound col for universal
+
+        folder.save_df_to_csv(cif_dir_path, universal_merged_df, "universal")
+        folder.save_df_to_csv(cif_dir_path, binary_merged_df, "binary")
+        folder.save_df_to_csv(cif_dir_path, ternary_merged_df, "ternary")
 
 
 if __name__ == "__main__":

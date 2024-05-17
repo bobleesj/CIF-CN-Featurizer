@@ -1,6 +1,6 @@
 import gemmi
 import re
-from util.string_parser import remove_string_braket
+from util.parser import remove_string_braket
 from fractions import Fraction
 
 

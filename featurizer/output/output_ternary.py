@@ -6,7 +6,7 @@ from util import df_util
 pd.set_option("display.max_columns", None)
 
 
-def merge_dfs_and_save_ternary_output(
+def postprocess_merge_dfs(
     interatomic_ternary_df,
     interatomic_universal_df,
     atomic_env_wyckoff_ternary_df,
@@ -68,25 +68,16 @@ def merge_dfs_and_save_ternary_output(
 
     # Merging the DataFrames based on 'CIF_id' with suffixes
     # to avoid duplicate columns
-    merged_df = (
-        interatomic_ternary_df.merge(
-            interatomic_universal_df,
-            on="entry",
-        )
-        .merge(
-            atomic_env_wyckoff_ternary_df,
-            on="entry",
-        )
-        .merge(
-            atomic_env_wyckoff_universal_df,
-            on="entry",
-        )
-        .merge(atomic_env_ternary_df, on="entry")
-        .merge(cn_ternary_avg_avg_df, on="entry")
-        .merge(cn_ternary_avg_min_df, on="entry")
-        .merge(cn_ternary_avg_max_df, on="entry")
-    )
+    dfs = [
+        interatomic_ternary_df,
+        interatomic_universal_df,
+        atomic_env_wyckoff_ternary_df,
+        atomic_env_wyckoff_universal_df,
+        atomic_env_ternary_df,
+        cn_ternary_avg_avg_df,
+        cn_ternary_avg_min_df,
+        cn_ternary_avg_max_df,
+    ]
+    merged_df = df_util.merge_dfs_on_entry(dfs)
 
-    # Print the head of the merged DataFrame
-    for i, column in enumerate(merged_df.columns):
-        print(i + 1, column)
+    return merged_df

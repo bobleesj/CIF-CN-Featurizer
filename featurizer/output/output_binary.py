@@ -1,27 +1,14 @@
 import pandas as pd
 from featurizer.output import wyckoff_cols_drop
 from util import df_util as df
-from util.folder import save_to_csv_directory
+from util.folder import save_df_to_csv
 from util import df_util
 
 # Set pandas options to display all columns
 pd.set_option("display.max_columns", None)
 
 
-def prefix_columns(df, prefix):
-    df.columns = [
-        prefix + col if col != "entry" else col for col in df.columns
-    ]
-    return df
-
-
-def drop_unwanted_columns(df, columns_to_drop=["A", "B", "Compound"]):
-    return df.drop(
-        columns=[col for col in columns_to_drop if col in df.columns]
-    )
-
-
-def merge_dfs_and_save_binary_output(
+def postprocess_merge_dfs(
     interatomic_binary_df,
     interatomic_universal_df,
     atomic_env_wyckoff_binary_df,
@@ -48,10 +35,10 @@ def merge_dfs_and_save_binary_output(
     cn_binary_avg_max_df = cn_binary_max_df.groupby("entry").mean()
 
     # Dropping unwanted columns from each DataFrame
-    atomic_env_wyckoff_binary_df = drop_unwanted_columns(
+    atomic_env_wyckoff_binary_df = df_util.drop_unwanted_columns(
         atomic_env_wyckoff_binary_df, columns_to_drop
     )
-    atomic_env_wyckoff_universal_df = drop_unwanted_columns(
+    atomic_env_wyckoff_universal_df = df_util.drop_unwanted_columns(
         atomic_env_wyckoff_universal_df, columns_to_drop
     )
 
@@ -80,30 +67,19 @@ def merge_dfs_and_save_binary_output(
         cn_binary_avg_max_df, "CN_MAX_"
     )
 
-    # Merging the DataFrames based on 'CIF_id' with suffixes
-    # to avoid duplicate columns
-    merged_df = (
-        interatomic_binary_df.merge(
-            interatomic_universal_df,
-            on="entry",
-        )
-        .merge(
-            atomic_env_wyckoff_binary_df,
-            on="entry",
-        )
-        .merge(
-            atomic_env_wyckoff_universal_df,
-            on="entry",
-        )
-        .merge(atomic_env_binary_df, on="entry")
-        .merge(cn_binary_avg_avg_df, on="entry")
-        .merge(cn_binary_avg_min_df, on="entry")
-        .merge(cn_binary_avg_max_df, on="entry")
-    )
+    dfs = [
+        interatomic_binary_df,
+        interatomic_universal_df,
+        atomic_env_wyckoff_binary_df,
+        atomic_env_wyckoff_universal_df,
+        atomic_env_binary_df,
+        cn_binary_avg_avg_df,
+        cn_binary_avg_min_df,
+        cn_binary_avg_max_df,
+    ]
+    merged_df = df_util.merge_dfs_on_entry(dfs)
 
-    # Print the head of the merged DataFrame
-    for i, column in enumerate(merged_df.columns):
-        print(i + 1, column)
+    return merged_df
 
 
 def save_individual_binary_outputs(
@@ -129,4 +105,4 @@ def save_individual_binary_outputs(
 
     # Loop through the dictionary and save each DataFrame
     for file_name, df in dataframes.items():
-        save_to_csv_directory(cif_dir, df_util.round_df(df), file_name)
+        save_df_to_csv(cif_dir, df_util.round_df(df), file_name)

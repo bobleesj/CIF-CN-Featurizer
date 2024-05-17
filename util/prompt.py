@@ -48,9 +48,3 @@ def exceeds_atom_count_limit(all_points, supercell_max_atom_count):
     """
 
     return len(all_points) > supercell_max_atom_count
-
-
-def print_df_columns(df):
-    # Print the head of the merged DataFrame
-    for i, column in enumerate(df.columns):
-        print(i + 1, column)

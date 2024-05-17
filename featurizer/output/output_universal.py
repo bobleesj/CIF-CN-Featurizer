@@ -1,9 +1,8 @@
 from featurizer.output import wyckoff_cols_drop
 from util import df_util
-from util import prompt
 
 
-def merge_dfs_and_save_universal_output(
+def postprocess_merge_dfs(
     interatomic_universal_df, atomic_env_wyckoff_universal_df
 ):
     # Rename columns by replacing 'INT_' or 'UNI_INT' with ''
@@ -26,8 +25,8 @@ def merge_dfs_and_save_universal_output(
         atomic_env_wyckoff_universal_df, "WYC_UNI_"
     )
 
-    merged_df = interatomic_universal_df.merge(
-        atomic_env_wyckoff_universal_df, on="entry"
+    merged_df = df_util.merge_dfs_on_entry(
+        [interatomic_universal_df, atomic_env_wyckoff_universal_df]
     )
 
-    prompt.print_df_columns(merged_df)
+    return merged_df
