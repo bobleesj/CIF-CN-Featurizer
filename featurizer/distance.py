@@ -38,6 +38,8 @@ def find_shortest_pair_distances(
             if (label1 == atom1 and label2 == atom2) or (
                 label1 == atom2 and label2 == atom1
             ):
-                shortest_distances[key] = min(shortest_distances[key], distance)
+                shortest_distances[key] = min(
+                    shortest_distances[key], distance
+                )
 
     return tuple(shortest_distances[key] for key, _, _ in pair_keys)

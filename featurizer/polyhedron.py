@@ -41,7 +41,9 @@ def compute_polyhedron_metrics(polyhedron_points, central_atom_coord, hull):
     shortest_distance_to_edge = np.min(distances_to_edges)
 
     radius_of_inscribed_sphere = shortest_distance_to_face
-    volume_of_inscribed_sphere = 4 / 3 * np.pi * radius_of_inscribed_sphere**3
+    volume_of_inscribed_sphere = (
+        4 / 3 * np.pi * radius_of_inscribed_sphere**3
+    )
 
     packing_efficiency = volume_of_inscribed_sphere / hull.volume
 

@@ -1,2 +1,2 @@
-Filename,CIF,Compound,Number of atoms,Execution time (s),Total_time (s)
-ThSb.cif,531015,ThSb,62,0.243,0.243
+filename,entry,compound,number_of_atoms,executione_time_s,total_time_s
+ThSb.cif,531015,ThSb,62,0.255,0.255

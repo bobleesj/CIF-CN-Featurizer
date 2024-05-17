@@ -50,40 +50,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Tran V.H.'
+''
 ;
-Polish Academy of Sciences (PAN)
-Trzebiatowski W. Institute of Low Temperature and Structure Research
-Wroclaw
-Poland
-;
-'Troc R.'
-;
-Polish Academy of Sciences (PAN)
-Trzebiatowski W. Institute of Low Temperature and Structure Research
-Wroclaw
-Poland
-;
-'Bouree Vigneron F.'
-;
-National Center for Scientific Research (CNRS)
-Laboratoire Leon Brillouin (LLB)
-Gif-sur-Yvette
-France
-;
-'Roisnel T.'
-;
-National Center for Scientific Research (CNRS)
-Laboratoire Leon Brillouin (LLB)
-Gif-sur-Yvette
-France
-;
-'Andre G.'
-;
-National Center for Scientific Research (CNRS)
-Laboratoire Leon Brillouin (LLB)
-Gif-sur-Yvette
-France
 ;
 
 # Standardized crystallographic data

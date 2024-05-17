@@ -50,40 +50,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Gerward L.'
+''
 ;
-Denmark Technical University (DTU)
-Laboratory of Applied Physics
-Lyngby
-Denmark
-;
-'Olsen J.S.'
-;
-Copenhagen University (UCPH)
-Department of Physics
-Copenhagen
-Denmark
-;
-'Steenstrup S.'
-;
-Copenhagen University (UCPH)
-Department of Physics
-Copenhagen
-Denmark
-;
-'Benedict U.'
-;
-European Commission Joint Research Center (JRC)
-Institute for Transuranium Elements
-Karlsruhe
-Germany
-;
-'Dabos Seignon S.'
-;
-European Commission Joint Research Center (JRC)
-Institute for Transuranium Elements
-Karlsruhe
-Germany
 ;
 
 # Standardized crystallographic data

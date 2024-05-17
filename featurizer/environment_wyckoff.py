@@ -158,10 +158,7 @@ def get_env_wychoff_binary_df(
     identical_lowest_wyckoff_multiplicity_count = len(lowest_wyckoff_elements)
 
     atomic_environment_binary_Wyckoff_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
-        "A": [A],
-        "B": [B],
+        "entry": [CIF_id],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
         "A_lowest_wyckoff_label": [A_lowest_wyckoff_multiplicity],
         "B_lowest_wyckoff_label": [B_lowest_wyckoff_multiplicity],
@@ -184,8 +181,7 @@ def get_env_wychoff_binary_df(
     # log.print_json_pretty("atomic_environment_binary_Wyckoff_data", atomic_environment_binary_Wyckoff_data)
 
     first_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
+        "entry": [CIF_id],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
     }
 
@@ -397,8 +393,7 @@ def get_env_wychoff_ternary_df(
     identical_lowest_wyckoff_count = len(lowest_wyckoff_elements)
 
     atomic_environment_Wyckoff_ternary_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
+        "entry": [CIF_id],
         "R": [R],
         "M": [M],
         "X": [X],
@@ -421,10 +416,9 @@ def get_env_wychoff_ternary_df(
     )
 
     atomic_environment_wyckoff_ternary_df.round(5)
-    
+
     first_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
+        "entry": [CIF_id],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
     }
 
@@ -459,7 +453,9 @@ def get_env_wychoff_ternary_df(
             X_value = X_values[property]
 
         property_values = {R: R_value, M: M_value, X: X_value}
-        highest_property_element = max(property_values, key=property_values.get)
+        highest_property_element = max(
+            property_values, key=property_values.get
+        )
         lowest_property_element = min(property_values, key=property_values.get)
 
         lowest_wyckoff_property_values = []

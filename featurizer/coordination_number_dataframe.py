@@ -1,7 +1,7 @@
 import pandas as pd
 import featurizer.distance as distance
 import preprocess.optimize as optimize
-import util.data as db
+import util.data as data
 import featurizer.coordination_number as cn_featurizer
 import os
 import time
@@ -32,7 +32,7 @@ def get_coordinate_number_binary_df(
         unique_atoms_tuple[0][0],
         unique_atoms_tuple[1][0],
     ]  # [A, B]
-    atom_radii = db.get_atom_radii(atoms_for_radii, radii_data)
+    atom_radii = data.get_atom_radii(atoms_for_radii, radii_data)
     A_CIF_rad, A_Pauling_rad = atom_radii[A]["CIF"], atom_radii[A]["Pauling"]
     B_CIF_rad, B_Pauling_rad = atom_radii[B]["CIF"], atom_radii[B]["Pauling"]
 
@@ -51,7 +51,7 @@ def get_coordinate_number_binary_df(
     A_CIF_rad_refined, B_CIF_rad_refined = optimize.optimize_CIF_rad_binary(
         A_CIF_rad, B_CIF_rad, shortest_distances_pair
     )
-    rad_sum_binary = db.compute_rad_sum_binary(
+    rad_sum_binary = data.compute_rad_sum_binary(
         A_CIF_rad,
         B_CIF_rad,
         A_CIF_rad_refined,
@@ -111,7 +111,7 @@ def get_coordinate_number_ternary_df(
     ) = CIF_data
 
     atoms = [R, M, X]
-    atom_radii = db.get_atom_radii(atoms, radii_data)
+    atom_radii = data.get_atom_radii(atoms, radii_data)
     R_CIF_rad, R_Pauling_rad = atom_radii[R]["CIF"], atom_radii[R]["Pauling"]
     M_CIF_rad, M_Pauling_rad = atom_radii[M]["CIF"], atom_radii[M]["Pauling"]
     X_CIF_rad, X_Pauling_rad = atom_radii[X]["CIF"], atom_radii[X]["Pauling"]
@@ -145,7 +145,7 @@ def get_coordinate_number_ternary_df(
     ) = optimize.optimize_CIF_rad_ternary(
         R_CIF_rad, M_CIF_rad, X_CIF_rad, shortest_distances_pair
     )
-    rad_sum_ternary = db.compute_rad_sum_ternary(
+    rad_sum_ternary = data.compute_rad_sum_ternary(
         R_CIF_rad,
         M_CIF_rad,
         X_CIF_rad,
@@ -192,11 +192,11 @@ def get_coordniate_number_df(
     derived from metrics, atom_counts, and other provided arguments.
     """
     data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
-        "Central atom": [label],
-        "CN method": [dist_type],
-        "Coordination number": [metrics["number_of_vertices"]],
+        "entry": [CIF_id],
+        "compound": [formula_string],
+        "central_atom": [label],
+        "CN_method": [dist_type],
+        "Coordination_number": [metrics["number_of_vertices"]],
     }
 
     # Insert atom counts after CN_number

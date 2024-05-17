@@ -23,13 +23,19 @@ def get_shortest_distances_count(
 
             if label.startswith(R):
                 R_shortest_dist = data_dict["shortest_distances"][0]
-                R_shortest_dist_count = data_dict["shortest_distances_count"][0]
+                R_shortest_dist_count = data_dict["shortest_distances_count"][
+                    0
+                ]
             elif label.startswith(M):
                 M_shortest_dist = data_dict["shortest_distances"][0]
-                M_shortest_dist_count = data_dict["shortest_distances_count"][0]
+                M_shortest_dist_count = data_dict["shortest_distances_count"][
+                    0
+                ]
             elif label.startswith(X):
                 X_shortest_dist = data_dict["shortest_distances"][0]
-                X_shortest_dist_count = data_dict["shortest_distances_count"][0]
+                X_shortest_dist_count = data_dict["shortest_distances_count"][
+                    0
+                ]
 
     sum_counts = defaultdict(int)
 

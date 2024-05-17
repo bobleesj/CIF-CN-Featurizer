@@ -17,12 +17,14 @@ def get_env_binary_df(
     A, B = unique_atoms_tuple[0][0], unique_atoms_tuple[1][0]
 
     # 1st, 2nd binary features - # shortest distance count
-    binary_distance_result = env_featurizer_binary.get_shortest_distances_count(
-        unique_atoms_tuple,
-        unique_labels,
-        unique_shortest_labels,
-        atom_pairs_info_dict,
-        atom_counts,
+    binary_distance_result = (
+        env_featurizer_binary.get_shortest_distances_count(
+            unique_atoms_tuple,
+            unique_labels,
+            unique_shortest_labels,
+            atom_pairs_info_dict,
+            atom_counts,
+        )
     )
 
     (
@@ -130,18 +132,19 @@ def get_env_binary_df(
     ) = A_B_count_at_shortest_dist_avg_result
 
     atomic_environment_binary_data = {
-        "CIF_id": [cif_id],
-        "Compound": [formula_string],
-        "A": [A],
-        "B": [B],
+        "entry": [cif_id],
         "A_shortest_dist_count": [A_shortest_dist_count],
         "B_shortest_dist_count": [B_shortest_dist_count],
         "A_avg_shortest_dist_count": [A_avg_shortest_dist_count],
         "B_avg_shortest_dist_count": [B_avg_shortest_dist_count],
         "A_shortest_tol_dist_count": [A_shortest_tol_dist_count],
         "B_shortest_tol_dist_count": [B_shortest_tol_dist_count],
-        "A_avg_shortest_dist_within_tol_count": [A_avg_shortest_dist_tol_count],
-        "B_avg_shortest_dist_within_tol_count": [B_avg_shortest_dist_tol_count],
+        "A_avg_shortest_dist_within_tol_count": [
+            A_avg_shortest_dist_tol_count
+        ],
+        "B_avg_shortest_dist_within_tol_count": [
+            B_avg_shortest_dist_tol_count
+        ],
         "A_second_by_first_shortest_dist": [A_second_by_first_shortest_dist],
         "B_second_by_first_shortest_dist": [B_second_by_first_shortest_dist],
         "A_avg_second_by_first_shortest_dist": [
@@ -197,7 +200,7 @@ def get_env_ternary_df(
     atom_counts,
     CIF_data,
 ):
-    CIF_id, _, _, _, formula_string = CIF_data
+    cif_id, _, _, _, formula_string = CIF_data
     R, M, X = (
         unique_atoms_tuple[0][0],
         unique_atoms_tuple[1][0],
@@ -369,8 +372,7 @@ def get_env_ternary_df(
     ) = avg_count_at_X_shortest_dist_res
 
     atomic_environment_ternary_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
+        "entry": [cif_id],
         "R": [R],
         "M": [M],
         "X": [X],

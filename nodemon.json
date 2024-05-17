@@ -1,0 +1,7 @@
+{
+    "exec": "black -l 79 . && python main.py",
+    "ext": "py",
+    "ignore": ["*.pyc", "*__pycache__*"],
+    "watch": ["*.*"]
+  }
+  

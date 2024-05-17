@@ -2,12 +2,18 @@ import preprocess.cif_parser as cif_parser
 from collections import defaultdict
 
 
-def get_unique_shortest_labels(atom_pairs_info_dict, unique_labels, cif_parser):
+def get_unique_shortest_labels(
+    atom_pairs_info_dict, unique_labels, cif_parser
+):
     """
-    This function processes given atom pair information and unique labels to determine the shortest labels representing
-    unique atom types. The purpose is to identify unique atom types based on their shortest distance in a crystal structure
-    (usually from CIF files). For atoms with multiple labels (e.g., multiple occurrences in the structure), it selects the label with the shortest
-    interatomic distance, assuming this represents the most relevant configuration for that atom.
+    This function processes given atom pair information
+    and unique labels to determine the shortest labels representing
+    unique atom types. The purpose is to identify unique
+    atom types based on their shortest distance in a crystal structure
+    (usually from CIF files). For atoms with multiple labels
+    (e.g., multiple occurrences in the structure), it selects
+    the label with the shortest interatomic distance, assuming this
+    represents the most relevant configuration for that atom.
     """
 
     unique_shortest_labels = []
@@ -21,7 +27,9 @@ def get_unique_shortest_labels(atom_pairs_info_dict, unique_labels, cif_parser):
         atom_counts[atom_type] += 1
 
     # Find atom types with more than one label
-    multiple_labels = [atom for atom, count in atom_counts.items() if count > 1]
+    multiple_labels = [
+        atom for atom, count in atom_counts.items() if count > 1
+    ]
 
     if multiple_labels:
         for multiple_label in multiple_labels:
@@ -50,7 +58,9 @@ def get_unique_shortest_labels(atom_pairs_info_dict, unique_labels, cif_parser):
                 if label.startswith(multiple_label)
             ]
             unique_shortest_labels = [
-                label for label in unique_labels if label not in matching_labels
+                label
+                for label in unique_labels
+                if label not in matching_labels
             ]
             unique_shortest_labels.append(shortest_label)
     else:
@@ -67,10 +77,13 @@ def get_shortest_distances_count(
     atom_counts,
 ):
     """
-    Retrieves the shortest distances count and average shortest distances count for the given unique atom types based on their labels.
+    Retrieves the shortest distances count andaverage shortest distances
+    count for the given unique atom types based on their labels.
 
-    This function iterates over the given unique shortest labels and, using the provided atom pairs information dictionary,
-    determines the count of shortest distances and the average shortest distances count for each atom type.
+    This function iterates over the given unique shortest labels
+    and, using the provided atom pairs information dictionary,
+    determines the count of shortest distances and the average
+    shortest distances count for each atom type.
     """
     A, B = unique_atoms_tuple[0][0], unique_atoms_tuple[1][0]
 
@@ -79,9 +92,13 @@ def get_shortest_distances_count(
             data_dict = atom_pairs_info_dict[label]
 
             if label.startswith(A):
-                A_shortest_dist_count = data_dict["shortest_distances_count"][0]
+                A_shortest_dist_count = data_dict["shortest_distances_count"][
+                    0
+                ]
             elif label.startswith(B):
-                B_shortest_dist_count = data_dict["shortest_distances_count"][0]
+                B_shortest_dist_count = data_dict["shortest_distances_count"][
+                    0
+                ]
 
     # 2nd Binary features - average shortest distance count
     sum_counts = defaultdict(int)
@@ -114,9 +131,13 @@ def get_shortest_dist_count_with_tol(
     atom_counts,
 ):
     """
-    Retrieves the shortest distances count and average shortest distances count within a tolerance of 5% for the given unique atom types based on their labels.
+    Retrieves the shortest distances count and average
+    shortest distances count within a tolerance of 5%
+    for the given unique atom types based on their labels.
 
-    The function first determines the shortest distance and the average shortest distance within the tolerance for each unique label.
+    The function first determines the shortest distance
+    and the average shortest distance within the tolerance
+    for each unique label.
     """
     A, B = unique_atoms_tuple[0][0], unique_atoms_tuple[1][0]
     A_shortest_tol_dist_count = 0

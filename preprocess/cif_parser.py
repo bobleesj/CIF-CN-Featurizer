@@ -165,7 +165,11 @@ def extract_formula_and_atoms(block):
                 if atom not in A_labels and atom not in M_labels
             ]
 
-        if len(A_elements) != 0 or len(B_elements) != 0 or len(M_elements) != 0:
+        if (
+            len(A_elements) != 0
+            or len(B_elements) != 0
+            or len(M_elements) != 0
+        ):
             sorted_unique_atoms_tuple = A_elements + M_elements + B_elements
 
     return sorted_unique_atoms_tuple, num_of_unique_atoms, formula_string
@@ -194,7 +198,11 @@ def get_unit_cell_lengths_angles(block):
     Returns the unit cell lengths and angles from a given block.
     """
     keys_lengths = ["_cell_length_a", "_cell_length_b", "_cell_length_c"]
-    keys_angles = ["_cell_angle_alpha", "_cell_angle_beta", "_cell_angle_gamma"]
+    keys_angles = [
+        "_cell_angle_alpha",
+        "_cell_angle_beta",
+        "_cell_angle_gamma",
+    ]
 
     lengths = [
         remove_string_braket(block.find_value(key)) for key in keys_lengths

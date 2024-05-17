@@ -113,10 +113,7 @@ def get_interatomic_binary_df(
     )
 
     interatomic_binary_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
-        "A": [A],
-        "B": [B],
+        "entry": [CIF_id],
         "distAA": [interatomic_distA_A],
         "distBB": [interatomic_distB_B],
         "distAB": [interatomic_distA_B],
@@ -191,8 +188,7 @@ def get_interatomic_binary_df(
     lowest_refined_percent_diff = min([abs(p) for p in percent_diffs])
 
     interatomic_universal_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
+        "entry": [CIF_id],
         "Shortest homoatomic distance": [shortest_homoatomic_distance],
         "Shortest heteroatomic distance": [shortest_heteroatomic_distance],
         "Shortest homoatomic distance by 2 by atom size": [
@@ -351,11 +347,7 @@ def get_interatomic_ternary_df(
     ) / shortest_MX
 
     interatomic_ternary_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
-        "R": [R],
-        "M": [M],
-        "X": [X],
+        "entry": [CIF_id],
         "distRR": [shortest_RR],
         "distMM": [shortest_MM],
         "distXX": [shortest_XX],
@@ -456,8 +448,7 @@ def get_interatomic_ternary_df(
     lowest_refined_percent_diff = min([abs(p) for p in percent_diffs])
 
     interatomic_universal_data = {
-        "CIF_id": [CIF_id],
-        "Compound": [formula_string],
+        "entry": [CIF_id],
         "Shortest homoatomic distance": [shortest_homoatomic_distance],
         "Shortest heteroatomic distance": [shortest_heteroatomic_distance],
         "Shortest homoatomic distance by 2 by atom size": [

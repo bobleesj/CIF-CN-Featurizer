@@ -29,7 +29,10 @@ def wyckoff_mapping_to_number_binary(df):
         "i": "9",
         "j": "10",
     }
-    columns_to_map_binary = ["A_lowest_wyckoff_label", "B_lowest_wyckoff_label"]
+    columns_to_map_binary = [
+        "A_lowest_wyckoff_label",
+        "B_lowest_wyckoff_label",
+    ]
 
     for col in columns_to_map_binary:
         df[col] = df[col].replace(wyckoff_mapping)
@@ -60,3 +63,34 @@ def wyckoff_mapping_to_number_ternary(df):
         df[col] = df[col].replace(wyckoff_mapping)
 
     return df
+
+
+def drop_central_atom_compound_cols(df):
+    return df.drop(["central_atom", "compound"], axis=1)
+
+
+def get_avg_min_max_dfs(df, cols_to_keep):
+    avg_df = df.groupby(cols_to_keep).mean().reset_index()
+    min_df = df.groupby(cols_to_keep).min().reset_index()
+    max_df = df.groupby(cols_to_keep).max().reset_index()
+
+    return avg_df, min_df, max_df
+
+
+def round_df(df):
+    numeric_cols = df.select_dtypes(include=["float64"]).columns
+    df[numeric_cols] = df[numeric_cols].round(4)
+    return df
+
+
+def prefix_columns(df, prefix):
+    df.columns = [
+        prefix + col if col != "entry" else col for col in df.columns
+    ]
+    return df
+
+
+def drop_unwanted_columns(df, columns_to_drop=["A", "B", "Compound"]):
+    return df.drop(
+        columns=[col for col in columns_to_drop if col in df.columns]
+    )

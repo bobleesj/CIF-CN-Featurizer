@@ -19,7 +19,9 @@ def choose_cif_directory(script_directory):
     ]
 
     if not directories:
-        print("No directories found in the current path containing .cif files!")
+        print(
+            "No directories found in the current path containing .cif files!"
+        )
         return None
     print("\nAvailable folders containing CIF files:")
     for idx, dir_name in enumerate(directories, start=1):
