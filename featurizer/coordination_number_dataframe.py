@@ -193,68 +193,39 @@ def get_coordniate_number_df(
     """
     data = {
         "entry": [CIF_id],
-        "compound": [formula_string],
+        "formula": [formula_string],
         "central_atom": [label],
         "CN_method": [dist_type],
-        "Coordination_number": [metrics["number_of_vertices"]],
+        "coordination_number": [metrics["number_of_vertices"]],
     }
 
     # Insert atom counts after CN_number
     for atom, count in zip(atom_labels, atom_counts):
-        data[f"{atom} atom count in CN"] = [count]
+        data[f"{atom}_atom_count"] = [count]
 
     # Append the remaining columns
     data.update(
         {
-            "Volume of polyhedron": [metrics["Volume_of_polyhedron"]],
-            "Distance from central atom to center of mass": [
+            "polyhedron_volume": [metrics["Volume_of_polyhedron"]],
+            "central_atom_to_center_of_mass_dist": [
                 metrics["distance_to_center"]
             ],
-            "Number of edges": [metrics["number_of_edges"]],
-            "Number of faces": [metrics["number_of_faces"]],
-            "Shortest distance to center of any face": [
+            "number_of_edges": [metrics["number_of_edges"]],
+            "number_of_faces": [metrics["number_of_faces"]],
+            "shortest_distance_to_face": [
                 metrics["shortest_distance_to_face"]
             ],
-            "Shortest distance to center of any edge": [
+            "shortest_distance_to_edge": [
                 metrics["shortest_distance_to_edge"]
             ],
-            "Volume of the inscribed sphere": [
+            "volume_of_inscribed_sphere": [
                 metrics["volume_of_inscribed_sphere"]
             ],
-            "Packing efficiency of inscribed sphere in polyhedron": [
-                metrics["packing_efficiency"]
-            ],
+            "packing_efficiency": [metrics["packing_efficiency"]],
         }
     )
 
     return pd.DataFrame(data)
-
-
-def update_log_dataframe(
-    log_df,
-    CIF_id,
-    filename,
-    formula_string,
-    all_points,
-    execution_time,
-    running_total_time,
-):
-    """
-    Updates the log DataFrame with the provided data.
-    """
-    log_data = {
-        "Filename": [os.path.basename(filename)],
-        "Compound": [formula_string],
-        "# of unique atoms after symmetry operations": [len(all_points)],
-        "Execution Time (s)": [execution_time],
-        "Total Execution Time (s)": [running_total_time],
-    }
-
-    df = pd.DataFrame(log_data)
-    log_df = pd.concat([log_df, df], ignore_index=True)
-    log_df = log_df.round(4)
-
-    return log_df, log_data
 
 
 def calculate_execution_time(start_time, running_total_time):

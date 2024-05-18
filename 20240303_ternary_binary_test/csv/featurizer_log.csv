@@ -1,3 +1,4 @@
-filename,entry,compound,number_of_atoms,executione_time_s,total_time_s
-URhIn.cif,380981,URhIn,206,2.396,2.396
-ThSb.cif,531015,ThSb,62,0.2,2.596
+filename,entry,formula,number_of_atoms,executione_time_s,total_time_s
+URhIn.cif,380981,URhIn,206,2.375,2.375
+RhSb2.cif,457859,RhSb2,180,1.752,4.127
+ThSb.cif,531015,ThSb,62,0.197,4.324

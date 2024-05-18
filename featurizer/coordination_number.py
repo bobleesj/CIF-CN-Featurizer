@@ -190,8 +190,8 @@ def process_atom_pairs(
     dist_type,
 ):
     """
-    Processes atomic pairs to gather information like polyhedron points, central atom coordinates,
-    and counts of atom types in coordination.
+    Processes atomic pairs to gather information like polyhedron points,
+    central atom coordinates, and counts of atom types in coordination.
     """
     polyhedron_points = []
     central_atom_coord = None

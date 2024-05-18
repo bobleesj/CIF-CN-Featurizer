@@ -70,8 +70,8 @@ def wyckoff_mapping_to_number_ternary(df):
     return df
 
 
-def drop_central_atom_compound_cols(df):
-    return df.drop(["central_atom", "compound"], axis=1)
+def drop_central_atom_formula_cols(df):
+    return df.drop(["central_atom", "formula"], axis=1)
 
 
 def get_avg_min_max_dfs(df, cols_to_keep):
@@ -95,7 +95,7 @@ def prefix_columns(df, prefix):
     return df
 
 
-def drop_unwanted_columns(df, columns_to_drop=["A", "B", "Compound"]):
+def drop_unwanted_columns(df, columns_to_drop=["A", "B", "formula"]):
     return df.drop(
         columns=[col for col in columns_to_drop if col in df.columns]
     )
@@ -113,6 +113,7 @@ def print_df_columns(df):
     # Print the head of the merged DataFrame
     for i, column in enumerate(df.columns):
         print(i + 1, column)
+    print()
 
 
 def remove_non_numeric_cols(df, cols_to_keep):
@@ -128,3 +129,12 @@ def remove_non_numeric_cols(df, cols_to_keep):
     # Drop these columns from the DataFrame
     df = df.drop(non_numeric_cols_to_remove, axis=1)
     return df
+
+
+def remove_duplicate_columns(df):
+    """
+    Remove duplicate columns by keeping the first occurrence only.
+    """
+    # Drop duplicates among columns, keeping the first occurrence of each column name
+    cleaned_df = df.loc[:, ~df.columns.duplicated()]
+    return cleaned_df

@@ -373,9 +373,6 @@ def get_env_ternary_df(
 
     atomic_environment_ternary_data = {
         "entry": [cif_id],
-        "R": [R],
-        "M": [M],
-        "X": [X],
         "R_shortest_dist_count": R_shortest_dist_count,
         "M_shortest_dist_count": M_shortest_dist_count,
         "X_shortest_dist_count": X_shortest_dist_count,

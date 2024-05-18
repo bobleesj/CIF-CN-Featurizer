@@ -13,7 +13,7 @@ from featurizer.output import (
     output_ternary,
     output_universal,
     output_log,
-    output_handler,
+    output_util,
 )
 from util import df_util, folder, data, prompt
 from preprocess import format
@@ -260,7 +260,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         click.echo(
             style(
                 f"{execution_time:.2f}s to process {len(all_points)}"
-                f"atoms (total time {running_total_time:.2f}s)",
+                f" atoms (total time {running_total_time:.2f}s)",
                 fg="green",
             )
         )
@@ -269,7 +269,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             {
                 "filename": filename_base,
                 "entry": cif_id,
-                "compound": formula,
+                "formula": formula,
                 "number_of_atoms": len(all_points),
                 "executione_time_s": execution_time,
                 "total_time_s": running_total_time,
@@ -277,10 +277,9 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         )
 
     featurizer_log_df = pd.DataFrame(log_list)
-    featurizer_log_df = featurizer_log_df.round(3)
 
     if num_files_processed != 0:
-        cols_to_keep = ["entry", "compound", "central_atom"]
+        cols_to_keep = ["entry", "formula", "central_atom"]
         click.echo(style(f"Saving csv files in the csv folder", fg="blue"))
         atomic_env_wyckoff_universal_df = df_util.join_columns_with_comma(
             atomic_env_wyckoff_universal_df
@@ -338,22 +337,36 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         universal_merged_df = output_universal.postprocess_merge_dfs(
             interatomic_universal_df, atomic_env_wyckoff_universal_df
         )
-        # Add compound columns
-        (
-            binary_merged_df,
-            ternary_merged_df,
-            universal_merged_df,
-        ) = output_handler.add_compound_element_cols(
-            binary_merged_df, ternary_merged_df, universal_merged_df, "Fe2O3"
+
+        # Apply the renaming function to columns
+        binary_merged_df.rename(
+            columns=output_util.remove_col_prefix_for_formula_info,
+            inplace=True,
+        )
+        ternary_merged_df.rename(
+            columns=output_util.remove_col_prefix_for_formula_info,
+            inplace=True,
         )
 
+        universal_merged_df.rename(
+            columns=output_util.remove_col_prefix_for_formula_info,
+            inplace=True,
+        )
+
+        # Drop duplicate columns of "formula" from universal int
+        binary_merged_df = df_util.remove_duplicate_columns(binary_merged_df)
+        ternary_merged_df = df_util.remove_duplicate_columns(ternary_merged_df)
+
+        # Print df columns
         df_util.print_df_columns(binary_merged_df)
         df_util.print_df_columns(ternary_merged_df)
         df_util.print_df_columns(universal_merged_df)
+
         # Save
-        folder.save_df_to_csv(cif_dir_path, universal_merged_df, "universal")
         folder.save_df_to_csv(cif_dir_path, binary_merged_df, "binary")
         folder.save_df_to_csv(cif_dir_path, ternary_merged_df, "ternary")
+        folder.save_df_to_csv(cif_dir_path, universal_merged_df, "universal")
+        # Save log
         output_log.save_log_csv(
             is_interactive_mode, featurizer_log_df, cif_dir_path
         )

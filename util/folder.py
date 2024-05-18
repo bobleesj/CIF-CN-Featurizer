@@ -54,7 +54,8 @@ def get_target_directory(tag, chosen_folder_name):
 
 def save_df_to_csv(folder_path, df, base_filename):
     """
-    Saves the dataframe as a CSV inside a 'csv' sub-directory of the provided folder.
+    Saves the dataframe as a CSV inside a 'csv' sub-directory
+    of the provided folder.
     """
     # Create the sub-directory for CSVs if it doesn't exist
     csv_directory = os.path.join(folder_path, "csv")
@@ -63,8 +64,10 @@ def save_df_to_csv(folder_path, df, base_filename):
 
     # Set the name for the CSV file based on the chosen folder
     csv_filename = f"{base_filename}.csv"
+    # Round numeric columns to three decimal places
+    df_rounded = df.round(3)
 
     # Save the DataFrame to the desired location (within the 'csv' sub-directory)
-    df.to_csv(os.path.join(csv_directory, csv_filename), index=False)
+    df_rounded.to_csv(os.path.join(csv_directory, csv_filename), index=False)
 
     print(csv_filename, "saved in the chosen folder.")

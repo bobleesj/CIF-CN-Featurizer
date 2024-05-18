@@ -1,20 +1,8 @@
-import click
-import os
-import glob
 import pandas as pd
-import time
-import math
-from click import style
 import util.data as data
 import preprocess.optimize as optimize
 import featurizer.distance as distance
-import preprocess.cif_parser as cif_parser
-import featurizer.coordination_number as cn_featurizer
-import featurizer.interatomic as interatomic_featurizer
-import util.folder as folder
-import preprocess.supercell as supercell
 import util.unitcell as unitcell
-import util.log as log
 
 
 def get_interatomic_binary_df(
@@ -114,6 +102,9 @@ def get_interatomic_binary_df(
 
     interatomic_binary_data = {
         "entry": [CIF_id],
+        "formula": [formula_string],
+        "A": [A],
+        "B": [B],
         "distAA": [interatomic_distA_A],
         "distBB": [interatomic_distB_B],
         "distAB": [interatomic_distA_B],
@@ -189,27 +180,24 @@ def get_interatomic_binary_df(
 
     interatomic_universal_data = {
         "entry": [CIF_id],
-        "Shortest homoatomic distance": [shortest_homoatomic_distance],
-        "Shortest heteroatomic distance": [shortest_heteroatomic_distance],
-        "Shortest homoatomic distance by 2 by atom size": [
+        "formula": [formula_string],
+        "shortest_homoatomic_dist": [shortest_homoatomic_distance],
+        "shortest_heteroatomic_dist": [shortest_heteroatomic_distance],
+        "shortest_homoatomic_dist_by_2_by_atom_size": [
             shortest_homoatomic_distance_by_2_by_atom_size
         ],
-        "Shortest heteroatomic distance by sum of atom sizes": [
+        "shortest_heteroatomic_dist_by_sum_of_atom_sizes": [
             shortest_heteroatomic_distance_by_sum_of_atom_sizes
         ],
-        "Shortest homoatomic distance by 2 by refined atom size": [
+        "shortest_homoatomic_dist_by_2_by_refined_atom_size": [
             shortest_homoatomic_distance_by_2_by_refined_atom_sizes
         ],
-        "Shortest heteroatomic distance by sum of refined sizes": [
+        "shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": [
             shortest_heteroatomic_distance_by_refined_atom_sizes
         ],
-        "Highest refined percent difference by 100 (abs value)": [
-            highest_refined_percent_diff
-        ],
-        "Lowest refined percent difference by 100 (abs value)": [
-            lowest_refined_percent_diff
-        ],
-        "Packing efficiency": [packing_efficiency],
+        "highest_refined_percent_diff_abs": [highest_refined_percent_diff],
+        "lowest_refined_percent_diff_abs": [lowest_refined_percent_diff],
+        "packing_efficiency": [packing_efficiency],
     }
 
     df = pd.DataFrame(interatomic_universal_data)
@@ -348,6 +336,10 @@ def get_interatomic_ternary_df(
 
     interatomic_ternary_data = {
         "entry": [CIF_id],
+        "formula": [formula_string],
+        "R": [R],
+        "M": [M],
+        "X": [X],
         "distRR": [shortest_RR],
         "distMM": [shortest_MM],
         "distXX": [shortest_XX],
@@ -449,27 +441,24 @@ def get_interatomic_ternary_df(
 
     interatomic_universal_data = {
         "entry": [CIF_id],
-        "Shortest homoatomic distance": [shortest_homoatomic_distance],
-        "Shortest heteroatomic distance": [shortest_heteroatomic_distance],
-        "Shortest homoatomic distance by 2 by atom size": [
+        "formula": [formula_string],
+        "shortest_homoatomic_dist": [shortest_homoatomic_distance],
+        "shortest_heteroatomic_dist": [shortest_heteroatomic_distance],
+        "shortest_homoatomic_dist_by_2_by_atom_size": [
             shortest_homoatomic_distance_by_2_by_atom_size
         ],
-        "Shortest heteroatomic distance by sum of atom sizes": [
+        "shortest_heteroatomic_dist_by_sum_of_atom_sizes": [
             shortest_heteroatomic_distance_by_sum_of_atom_sizes
         ],
-        "Shortest homoatomic distance by 2 by refined atom size": [
+        "shortest_homoatomic_dist_by_2_by_refined_atom_size": [
             shortest_homoatomic_distance_by_2_by_refined_atom_sizes
         ],
-        "Shortest heteroatomic distance by sum of refined sizes": [
+        "shortest_heteroatomic_dist_by_sum_of_refined_atom_sizes": [
             shortest_heteroatomic_distance_by_refined_atom_sizes
         ],
-        "Highest refined percent difference by 100 (abs value)": [
-            highest_refined_percent_diff
-        ],
-        "Lowest refined percent difference by 100 (abs value)": [
-            lowest_refined_percent_diff
-        ],
-        "Packing efficiency": [packing_efficiency],
+        "highest_refined_percent_diff_abs": [highest_refined_percent_diff],
+        "lowest_refined_percent_diff_abs": [lowest_refined_percent_diff],
+        "packing_efficiency": [packing_efficiency],
     }
 
     # log.print_json_pretty("interatomic_universal_data", interatomic_universal_data)

@@ -394,9 +394,6 @@ def get_env_wychoff_ternary_df(
 
     atomic_environment_Wyckoff_ternary_data = {
         "entry": [CIF_id],
-        "R": [R],
-        "M": [M],
-        "X": [X],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
         "R_lowest_wyckoff_label": [R_lowest_wyckoff_multiplicity],
         "M_lowest_wyckoff_label": [M_lowest_wyckoff_multiplicity],
