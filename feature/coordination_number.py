@@ -3,8 +3,8 @@ from util.unit import *
 from collections import Counter
 from scipy.spatial import ConvexHull
 import pandas as pd
-from featurizer.polyhedron import *
-import featurizer.coordination_number_dataframe as cn_dataframe
+from feature.polyhedron import *
+import feature.coordination_number_df as cn_df
 import preprocess.supercell as supercell
 
 
@@ -333,7 +333,7 @@ def process_labels(
                 polyhedron_points, central_atom_coord, hull
             )
 
-            df = cn_dataframe.get_coordniate_number_df(
+            df = cn_df.get_coordniate_number_df(
                 polyhedron_metrics,
                 atom_counts,
                 atoms,

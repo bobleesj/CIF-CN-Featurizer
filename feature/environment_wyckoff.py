@@ -1,8 +1,8 @@
 import pandas as pd
 import util.data as data
 import preprocess.optimize as optimize
-import featurizer.distance as distance
-import featurizer.environment_wyckoff as env_wychoff_featurizer
+import feature.distance as distance
+import feature.environment_wyckoff as env_wychoff_featurizer
 import numpy as np
 import util.log as log
 

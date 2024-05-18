@@ -7,8 +7,8 @@ import pandas as pd
 from click import style
 
 from preprocess import cif_parser, supercell, supercell_handler
-from featurizer import interatomic
-from featurizer.output import (
+from feature import interatomic
+from feature.output import (
     output_binary,
     output_ternary,
     output_universal,
@@ -17,10 +17,10 @@ from featurizer.output import (
 )
 from util import df_util, folder, data, prompt
 from preprocess import format
-import featurizer.environment_binary as env_featurizer_binary
-import featurizer.environment_dataframe as env_dataframe
-import featurizer.environment_wyckoff as env_wychoff_featurizer
-import featurizer.coordination_number_dataframe as cn_df
+import feature.environment_binary as env_featurizer_binary
+import feature.environment_df as env_dataframe
+import feature.environment_wyckoff as env_wychoff_featurizer
+import feature.coordination_number_df as cn_df
 
 
 def run_main(is_interactive_mode=True, cif_dir_path=None):
@@ -52,9 +52,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
 
     # Choose the CIF folder
     if is_interactive_mode:
-        # Get current main.py directory
         script_directory = os.path.dirname(os.path.abspath(__file__))
-        # Get user input on skipping file based on supercell size
         supercell_max_atom_count = prompt.get_user_input_on_file_skip()
         cif_dir_path = folder.choose_cif_directory(script_directory)
     else:
@@ -117,7 +115,6 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             )
             continue
 
-        # Calculate interatomic distances
         (
             unique_atoms_tuple,
             num_of_unique_atoms,
@@ -358,14 +355,24 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         ternary_merged_df = df_util.remove_duplicate_columns(ternary_merged_df)
 
         # Print df columns
-        df_util.print_df_columns(binary_merged_df)
-        df_util.print_df_columns(ternary_merged_df)
-        df_util.print_df_columns(universal_merged_df)
+        if not cn_binary_df.empty:
+            folder.save_df_to_csv(
+                cif_dir_path, binary_merged_df, "feature_binary"
+            )
+            df_util.print_df_columns(binary_merged_df)
 
-        # Save
-        folder.save_df_to_csv(cif_dir_path, binary_merged_df, "binary")
-        folder.save_df_to_csv(cif_dir_path, ternary_merged_df, "ternary")
-        folder.save_df_to_csv(cif_dir_path, universal_merged_df, "universal")
+        if not cn_ternary_df.empty:
+            folder.save_df_to_csv(
+                cif_dir_path, ternary_merged_df, "feature_ternary"
+            )
+            df_util.print_df_columns(ternary_merged_df)
+
+        if not universal_merged_df.empty:
+            df_util.print_df_columns(universal_merged_df)
+            folder.save_df_to_csv(
+                cif_dir_path, universal_merged_df, "feature_universal"
+            )
+
         # Save log
         output_log.save_log_csv(
             is_interactive_mode, featurizer_log_df, cif_dir_path

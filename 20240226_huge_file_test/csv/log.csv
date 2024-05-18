@@ -1,0 +1,7 @@
+filename,entry,formula,number_of_atoms,executione_time_s,total_time_s
+AlSb.cif,458053,Al0.5Sb0.5,266,3.596,3.596
+URhIn.cif,380981,URhIn,206,2.381,5.977
+RhSb2.cif,457859,RhSb2,180,1.797,7.774
+ThOs2.cif,250170,ThOs2,642,21.142,28.916
+ThSb.cif,531015,ThSb,62,0.236,29.152
+Nd5Si3.cif,1720931,Nd5Si3,662,24.412,53.564

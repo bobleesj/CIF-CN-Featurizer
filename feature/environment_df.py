@@ -1,5 +1,5 @@
-import featurizer.environment_binary as env_featurizer_binary
-import featurizer.environment_ternary as env_featurizer_ternary
+import feature.environment_binary as env_featurizer_binary
+import feature.environment_ternary as env_featurizer_ternary
 import util.log as log
 import pandas as pd
 

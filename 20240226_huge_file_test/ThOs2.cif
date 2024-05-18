@@ -53,12 +53,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Thomson J.R.'
+''
 ;
-Imperial College London
-Department of Metallurgy
-London
-United Kingdom
 ;
 
 # Standardized crystallographic data

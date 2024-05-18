@@ -1,4 +1,4 @@
-from featurizer.output import wyckoff_cols_drop
+from feature.output import wyckoff_cols_drop
 from util import df_util
 
 

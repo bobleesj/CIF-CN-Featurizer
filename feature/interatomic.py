@@ -1,7 +1,7 @@
 import pandas as pd
 import util.data as data
 import preprocess.optimize as optimize
-import featurizer.distance as distance
+import feature.distance as distance
 import util.unitcell as unitcell
 
 

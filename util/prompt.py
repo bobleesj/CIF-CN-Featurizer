@@ -1,7 +1,5 @@
 import textwrap
 import click
-import textwrap
-import click
 
 
 def print_intro_message():
@@ -12,9 +10,6 @@ def print_intro_message():
         " to extract various features such as interatomic distances, atomic"
         " environment information, and coordination numbers. "
         " It supports binary and ternary compounds.\n"
-        " It is recommended to preprocess all CIF files with CIF Cleaner"
-        " to ensure data consistency and to handle any potential errors in the CIF files."
-        " For more details, visit: https://github.com/bobleesj/cif-cleaner\n"
     )
 
     # Use textwrap to ensure that the message fits within a certain width
@@ -43,8 +38,8 @@ def get_user_input_on_file_skip():
 
 def exceeds_atom_count_limit(all_points, supercell_max_atom_count):
     """
-    Checks if the number of unique atomic positions after applying symmetry operations
-    exceeds the specified atom count limit.
+    Checks if the number of unique atomic positions after applyin
+    symmetry operations exceeds the specified atom count limit.
     """
 
     return len(all_points) > supercell_max_atom_count

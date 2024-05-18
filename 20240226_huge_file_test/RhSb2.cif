@@ -52,17 +52,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Zhdanov G.S.'
+''
 ;
-Moscow M.V. Lomonosov State University (MSU)
-Moscow
-Russia
-;
-'Kuz'min R.N.'
-;
-Moscow M.V. Lomonosov State University (MSU)
-Moscow
-Russia
 ;
 
 # Standardized crystallographic data

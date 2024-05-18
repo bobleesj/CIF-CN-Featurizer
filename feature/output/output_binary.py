@@ -1,5 +1,5 @@
 import pandas as pd
-from featurizer.output import wyckoff_cols_drop
+from feature.output import wyckoff_cols_drop
 from util import df_util as df
 from util.folder import save_df_to_csv
 from util import df_util

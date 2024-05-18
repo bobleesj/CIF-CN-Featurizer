@@ -1,8 +1,8 @@
 import pandas as pd
-import featurizer.distance as distance
+import feature.distance as distance
 import preprocess.optimize as optimize
 import util.data as data
-import featurizer.coordination_number as cn_featurizer
+import feature.coordination_number as cn_featurizer
 import os
 import time
 
