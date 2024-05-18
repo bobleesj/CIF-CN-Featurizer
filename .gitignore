@@ -8,8 +8,8 @@ __pycache__/
 # C extensions
 *.so
 
-# Do not upload csv folder
-**/csv/
+# Ignore all CSV files
+*.csv
 # 20240402_ThSb/csv/
 # 20240402_URhIn/csv/
 # 20240303_ternary_binary_test/csv/
