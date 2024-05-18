@@ -45,7 +45,10 @@ def generate_features(formula):
 
         try:
             pd.testing.assert_frame_equal(
-                original_df_rounded, output_df_rounded, check_like=True, atol=1e-5
+                original_df_rounded,
+                output_df_rounded,
+                check_like=True,
+                atol=1e-5,
             )
 
         except AssertionError as e:

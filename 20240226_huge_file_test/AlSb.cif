@@ -52,12 +52,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Jamieson J.C.'
+''
 ;
-Chicago University
-Department of Geophysical Sciences
-Chicago
-U.S.A. Illinois
 ;
 
 # Standardized crystallographic data

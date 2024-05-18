@@ -19,7 +19,9 @@ def choose_cif_directory(script_directory):
     ]
 
     if not directories:
-        print("No directories found in the current path containing .cif files!")
+        print(
+            "No directories found in the current path containing .cif files!"
+        )
         return None
     print("\nAvailable folders containing CIF files:")
     for idx, dir_name in enumerate(directories, start=1):
@@ -50,19 +52,22 @@ def get_target_directory(tag, chosen_folder_name):
     return os.path.join(chosen_folder_name, target_folder)
 
 
-def save_to_csv_directory(folder_info, df, base_filename):
+def save_df_to_csv(folder_path, df, base_filename):
     """
-    Saves the dataframe as a CSV inside a 'csv' sub-directory of the provided folder.
+    Saves the dataframe as a CSV inside a 'csv' sub-directory
+    of the provided folder.
     """
     # Create the sub-directory for CSVs if it doesn't exist
-    csv_directory = os.path.join(folder_info, "csv")
+    csv_directory = os.path.join(folder_path, "csv")
     if not os.path.exists(csv_directory):
         os.mkdir(csv_directory)
 
     # Set the name for the CSV file based on the chosen folder
     csv_filename = f"{base_filename}.csv"
+    # Round numeric columns to three decimal places
+    df_rounded = df.round(3)
 
     # Save the DataFrame to the desired location (within the 'csv' sub-directory)
-    df.to_csv(os.path.join(csv_directory, csv_filename), index=False)
+    df_rounded.to_csv(os.path.join(csv_directory, csv_filename), index=False)
 
-    print(csv_filename, "saved")
+    print(csv_filename, "saved in the chosen folder.")

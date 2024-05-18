@@ -50,33 +50,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'He J.'
+''
 ;
-Guangxi University
-Key Laboratory of Nonferrous Metal Materials and New Processing Technology
-Nanning / Guangxi
-China
-;
-'He W.'
-;
-Guangxi University
-Key Laboratory of Nonferrous Metal Materials and New Processing Technology
-Nanning / Guangxi
-China
-;
-'Yao X.'
-;
-Guangxi University
-Key Laboratory of Nonferrous Metal Materials and New Processing Technology
-Nanning / Guangxi
-China
-;
-'Zeng L.'
-;
-Guangxi University
-Key Laboratory of Nonferrous Metal Materials and New Processing Technology
-Nanning / Guangxi
-China
 ;
 
 # Standardized crystallographic data

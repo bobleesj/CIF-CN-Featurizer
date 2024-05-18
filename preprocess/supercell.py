@@ -187,7 +187,9 @@ def get_atomic_pair_list(flattened_points, cell_lengths, angles):
     """
 
     atomic_info_list = []
-    seen_pairs = set()  # This set will track pairs that we've already processed
+    seen_pairs = (
+        set()
+    )  # This set will track pairs that we've already processed
 
     for i, point1 in enumerate(flattened_points):
         distances_from_point_i = []
@@ -353,7 +355,9 @@ def get_atom_pair_info_dict(unique_atom_labels, atomic_pairs):
 
     for idx, atom_label in enumerate(unique_atom_labels):
         atom_pairs_filtered = filter_and_swap_pairs(atomic_pairs, atom_label)
-        unique_distances = get_unique_distances(atom_pairs_filtered, atom_label)
+        unique_distances = get_unique_distances(
+            atom_pairs_filtered, atom_label
+        )
 
         top_six_distances = sorted(unique_distances)[:6]
         # print(atom_label, top_six_distances)
@@ -367,7 +371,9 @@ def get_atom_pair_info_dict(unique_atom_labels, atomic_pairs):
 
         shared_points = None
         for i in range(6, 0, -1):
-            shared_points = find_common_points(points_with_common_distances[:i])
+            shared_points = find_common_points(
+                points_with_common_distances[:i]
+            )
             if shared_points:
                 # print(f"The point with the largest occurrences of the {i} shortest distances are found")
                 break

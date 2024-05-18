@@ -126,6 +126,6 @@ def move_files_based_on_format_error(dir_path):
     # Check if the DataFrame has more than one column
     if df_errors.shape[1] > 1:
         # Use the save_to_csv_directory function to save the DataFrame
-        folder.save_to_csv_directory(dir_path, df_errors, "error_log")
+        folder.save_df_to_csv(dir_path, df_errors, "error_log")
     else:
         print("All files are propertly formatted.")
