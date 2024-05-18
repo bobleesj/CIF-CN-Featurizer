@@ -10,10 +10,10 @@ __pycache__/
 
 # Ignore all CSV files
 *.csv
-# 20240402_ThSb/csv/
-# 20240402_URhIn/csv/
-# 20240303_ternary_binary_test/csv/
-# 20240226_huge_file_test/csv/
+20240402_ThSb/csv/
+20240402_URhIn/csv/
+20240303_ternary_binary_test/csv/
+20240226_huge_file_test/csv/
 
 
 # Distribution / packaging
