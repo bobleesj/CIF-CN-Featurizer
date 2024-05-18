@@ -54,19 +54,19 @@ def postprocess_merge_dfs(
     )
 
     interatomic_ternary_df_copy = df_util.prefix_columns(
-        interatomic_ternary_df_copy, "INT_BI_"
+        interatomic_ternary_df_copy, "INT_"
     )
     interatomic_universal_df_copy = df_util.prefix_columns(
         interatomic_universal_df_copy, "INT_UNI_"
     )
     atomic_env_wyckoff_ternary_df_copy = df_util.prefix_columns(
-        atomic_env_wyckoff_ternary_df_copy, "WYC_BI_"
+        atomic_env_wyckoff_ternary_df_copy, "WYC_"
     )
     atomic_env_wyckoff_universal_df_copy = df_util.prefix_columns(
         atomic_env_wyckoff_universal_df_copy, "WYC_UNI_"
     )
     atomic_env_ternary_df_copy = df_util.prefix_columns(
-        atomic_env_ternary_df_copy, "ENV_BI_"
+        atomic_env_ternary_df_copy, "ENV_"
     )
     cn_ternary_avg_avg_df = df_util.prefix_columns(
         cn_ternary_avg_avg_df, "CN_AVG_"

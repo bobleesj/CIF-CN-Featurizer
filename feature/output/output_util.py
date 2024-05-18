@@ -63,7 +63,7 @@ def add_formula_info_to_ternary_col(df, formula):
 
 
 def remove_col_prefix_for_formula_info(col_name):
-    prefixes = ["INT_BI_", "INT_UNI_"]
+    prefixes = ["INT_", "INT_"]
     suffixes = ["formula", "R", "M", "X", "A", "B"]
 
     for prefix in prefixes:

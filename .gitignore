@@ -8,6 +8,10 @@ __pycache__/
 # C extensions
 *.so
 
+# Do not upload csv folder
+csv/
+
+
 # Distribution / packaging
 .Python
 build/
