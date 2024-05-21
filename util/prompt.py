@@ -1,5 +1,6 @@
 import textwrap
 import click
+from click import style, echo
 
 
 def print_intro_message():
@@ -43,3 +44,15 @@ def exceeds_atom_count_limit(all_points, supercell_max_atom_count):
     """
 
     return len(all_points) > supercell_max_atom_count
+
+
+def print_progress_current(
+    i, filename_with_ext, supercell_points, total_file_count
+):
+    echo(
+        style(
+            f"Processing {filename_with_ext} with "
+            f"{len(supercell_points)} atoms ({i}/{total_file_count})",
+            fg="yellow",
+        )
+    )

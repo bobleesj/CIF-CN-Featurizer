@@ -1,7 +1,6 @@
-import shutil
-import pandas as pd
+import glob
 import os
-import util.folder as folder
+from os.path import join
 
 
 def choose_cif_directory(script_directory):
@@ -25,7 +24,8 @@ def choose_cif_directory(script_directory):
         return None
     print("\nAvailable folders containing CIF files:")
     for idx, dir_name in enumerate(directories, start=1):
-        print(f"{idx}. {dir_name}")
+        num_of_cif_files = get_cif_file_count_from_directory(dir_name)
+        print(f"{idx}. {dir_name}, {num_of_cif_files} files")
     while True:
         try:
             choice = int(
@@ -71,3 +71,8 @@ def save_df_to_csv(folder_path, df, base_filename):
     df_rounded.to_csv(os.path.join(csv_directory, csv_filename), index=False)
 
     print(csv_filename, "saved in the chosen folder.")
+
+
+def get_cif_file_count_from_directory(directory):
+    """Helper function to count .cif files in a given directory."""
+    return len(glob.glob(join(directory, "*.cif")))

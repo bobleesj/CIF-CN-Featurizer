@@ -69,7 +69,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
     format.move_files_based_on_format_error(cif_dir_path)
 
     # Number of files
-    total_files = len(file_path_list)
+    total_file_count = len(file_path_list)
 
     property_list_excel = pd.read_excel(
         "./element_database/element_properties_for_ML-my elements.xlsx"
@@ -81,11 +81,10 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
     log_list = []
 
     # Loop through each CIF file
-    for idx, filename in enumerate(file_path_list, start=1):
+    for i, filename in enumerate(file_path_list, start=1):
         start_time = time.time()
         num_files_processed += 1
         filename_base = os.path.basename(filename)
-        print(f"\n({idx}/{total_files}) Processing {filename_base}...")
 
         # Retrieve CIF data using the supercell handler
         (
@@ -98,30 +97,36 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         ) = supercell_handler.read_and_prepare_cif_data(filename)
         # Extract points, labels, and unique atom tuples
         (
-            all_points,
+            supercell_points,
             unique_labels,
             unique_atoms_tuple,
         ) = supercell.get_points_and_labels(all_coords_list, cif_loop_values)
 
+        prompt.print_progress_current(
+            i, filename_base, supercell_points, total_file_count
+        )
         # Check if the number of atoms exceeds the defined maximum
         if prompt.exceeds_atom_count_limit(
-            all_points, supercell_max_atom_count
+            supercell_points, supercell_max_atom_count
         ):
             click.echo(
                 style(
-                    f"Skipped - {filename_base} has {len(all_points)} atoms",
+                    f"Skipped - {filename_base} has {len(supercell_points)} atoms",
                     fg="yellow",
                 )
             )
             continue
 
+        # Extract formulas and unique atoms from cif block
         (
             unique_atoms_tuple,
             num_of_unique_atoms,
             formula,
         ) = cif_parser.extract_formula_and_atoms(cif_block)
+
+        # Get all pair distances
         atomic_pair_list = supercell.get_atomic_pair_list(
-            all_points, cell_lengths, cell_angles_rad
+            supercell_points, cell_lengths, cell_angles_rad
         )
         atom_pair_info_dict = supercell.get_atom_pair_info_dict(
             unique_labels, atomic_pair_list
@@ -157,7 +162,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
                 filename,
                 interatomic_binary_df,
                 interatomic_universal_df,
-                all_points,
+                supercell_points,
                 unique_atoms_tuple,
                 atomic_pair_list,
                 cif_data,
@@ -256,7 +261,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
 
         click.echo(
             style(
-                f"{execution_time:.2f}s to process {len(all_points)}"
+                f"{execution_time:.2f}s to process {len(supercell_points)}"
                 f" atoms (total time {running_total_time:.2f}s)",
                 fg="green",
             )
@@ -267,7 +272,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
                 "filename": filename_base,
                 "entry": cif_id,
                 "formula": formula,
-                "number_of_atoms": len(all_points),
+                "number_of_atoms": len(supercell_points),
                 "executione_time_s": execution_time,
                 "total_time_s": running_total_time,
             }
