@@ -158,7 +158,7 @@ def get_env_wychoff_binary_df(
     identical_lowest_wyckoff_multiplicity_count = len(lowest_wyckoff_elements)
 
     atomic_environment_binary_Wyckoff_data = {
-        "entry": [CIF_id],
+        "Entry": [CIF_id],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
         "A_lowest_wyckoff_label": [A_lowest_wyckoff_multiplicity],
         "B_lowest_wyckoff_label": [B_lowest_wyckoff_multiplicity],
@@ -181,7 +181,7 @@ def get_env_wychoff_binary_df(
     # log.print_json_pretty("atomic_environment_binary_Wyckoff_data", atomic_environment_binary_Wyckoff_data)
 
     first_data = {
-        "entry": [CIF_id],
+        "Entry": [CIF_id],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
     }
 
@@ -223,52 +223,52 @@ def get_env_wychoff_binary_df(
             )
             lowest_wyckoff_property_values.append(property_value)
 
-        # Fetch the corresponding number of sites and total multiplicity for these elements
-        highest_property_sites = (
-            A_sites_total if highest_property_element == A else B_sites_total
-        )
-        lowest_property_sites = (
-            A_sites_total if lowest_property_element == A else B_sites_total
-        )
-        highest_property_multiplicity = (
-            A_multiplicity_total
-            if highest_property_element == A
-            else B_multiplicity_total
-        )
-        lowest_property_multiplicity = (
-            A_multiplicity_total
-            if lowest_property_element == A
-            else B_multiplicity_total
-        )
+        # # Fetch the corresponding number of sites and total multiplicity for these elements
+        # highest_property_sites = (
+        #     A_sites_total if highest_property_element == A else B_sites_total
+        # )
+        # lowest_property_sites = (
+        #     A_sites_total if lowest_property_element == A else B_sites_total
+        # )
+        # highest_property_multiplicity = (
+        #     A_multiplicity_total
+        #     if highest_property_element == A
+        #     else B_multiplicity_total
+        # )
+        # lowest_property_multiplicity = (
+        #     A_multiplicity_total
+        #     if lowest_property_element == A
+        #     else B_multiplicity_total
+        # )
 
         atomic_environment_Wyckoff_universal_data.update(
             {
                 f"{property}_of_elements_with_lowest_wyckoff": [
                     np.around(lowest_wyckoff_property_values, 4)
                 ],
-                f"highest_{property}_sites": [highest_property_sites],
-                f"lowest_{property}_sites": [lowest_property_sites],
-                f"highest_{property}_multiplicity": [
-                    highest_property_multiplicity
-                ],
-                f"lowest_{property}_multiplicity": [
-                    lowest_property_multiplicity
-                ],
+                # f"highest_{property}_sites": [highest_property_sites],
+                # f"lowest_{property}_sites": [lowest_property_sites],
+                # f"highest_{property}_multiplicity": [
+                #     highest_property_multiplicity
+                # ],
+                # f"lowest_{property}_multiplicity": [
+                #     lowest_property_multiplicity
+                # ],
             }
         )
 
     # Create an empty dictionary
     ordered_data = {}
 
-    # First add keys that contain 'lowest_wyckoff'
-    for key, value in atomic_environment_Wyckoff_universal_data.items():
-        if "lowest_wyckoff" in key:
-            ordered_data[key] = value
+    # # First add keys that contain 'lowest_wyckoff'
+    # for key, value in atomic_environment_Wyckoff_universal_data.items():
+    #     if "lowest_wyckoff" in key:
+    #         ordered_data[key] = value
 
-    # Then add the rest
-    for key, value in atomic_environment_Wyckoff_universal_data.items():
-        if "lowest_wyckoff" not in key:
-            ordered_data[key] = value
+    # # Then add the rest
+    # for key, value in atomic_environment_Wyckoff_universal_data.items():
+    #     if "lowest_wyckoff" not in key:
+    #         ordered_data[key] = value
 
     # Merge first_data and ordered_data
     merged_data = {**first_data, **ordered_data}
@@ -393,7 +393,7 @@ def get_env_wychoff_ternary_df(
     identical_lowest_wyckoff_count = len(lowest_wyckoff_elements)
 
     atomic_environment_Wyckoff_ternary_data = {
-        "entry": [CIF_id],
+        "Entry": [CIF_id],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
         "R_lowest_wyckoff_label": [R_lowest_wyckoff_multiplicity],
         "M_lowest_wyckoff_label": [M_lowest_wyckoff_multiplicity],
@@ -415,7 +415,7 @@ def get_env_wychoff_ternary_df(
     atomic_environment_wyckoff_ternary_df.round(5)
 
     first_data = {
-        "entry": [CIF_id],
+        "Entry": [CIF_id],
         "lowest_wyckoff_elements": [lowest_wyckoff_elements],
     }
 
@@ -431,92 +431,92 @@ def get_env_wychoff_ternary_df(
         X: X_CIF_rad_refined,
     }
 
-    for property in [
-        "Mendeleev_number",
-        "valence_e",
-        "CIF_rad",
-        "CIF_rad_refined",
-        "Pauling_rad",
-        "Pauling_EN",
-        "MB_EN",
-    ]:
-        if property == "CIF_rad_refined":
-            R_value = CIF_rad_refined_values[R]
-            M_value = CIF_rad_refined_values[M]
-            X_value = CIF_rad_refined_values[X]
-        else:
-            R_value = R_values[property]
-            M_value = M_values[property]
-            X_value = X_values[property]
+    # for property in [
+    #     "Mendeleev_number",
+    #     "valence_e",
+    #     "CIF_rad",
+    #     "CIF_rad_refined",
+    #     "Pauling_rad",
+    #     "Pauling_EN",
+    #     "MB_EN",
+    # ]:
+    #     if property == "CIF_rad_refined":
+    #         R_value = CIF_rad_refined_values[R]
+    #         M_value = CIF_rad_refined_values[M]
+    #         X_value = CIF_rad_refined_values[X]
+    #     else:
+    #         R_value = R_values[property]
+    #         M_value = M_values[property]
+    #         X_value = X_values[property]
 
-        property_values = {R: R_value, M: M_value, X: X_value}
-        highest_property_element = max(
-            property_values, key=property_values.get
-        )
-        lowest_property_element = min(property_values, key=property_values.get)
+    #     property_values = {R: R_value, M: M_value, X: X_value}
+    #     highest_property_element = max(
+    #         property_values, key=property_values.get
+    #     )
+    #     lowest_property_element = min(property_values, key=property_values.get)
 
-        lowest_wyckoff_property_values = []
-        for element in lowest_wyckoff_elements:
-            property_value = property_values[element]
-            lowest_wyckoff_property_values.append(property_value)
+    #     lowest_wyckoff_property_values = []
+    #     for element in lowest_wyckoff_elements:
+    #         property_value = property_values[element]
+    #         lowest_wyckoff_property_values.append(property_value)
 
-        highest_property_sites = (
-            R_sites_total
-            if highest_property_element == "R"
-            else M_sites_total
-            if highest_property_element == "M"
-            else X_sites_total
-        )
-        lowest_property_sites = (
-            R_sites_total
-            if lowest_property_element == "R"
-            else M_sites_total
-            if lowest_property_element == "M"
-            else X_sites_total
-        )
-        highest_property_multiplicity = (
-            R_multiplicity_total
-            if highest_property_element == "R"
-            else M_multiplicity_total
-            if highest_property_element == "M"
-            else X_multiplicity_total
-        )
-        lowest_property_multiplicity = (
-            R_multiplicity_total
-            if lowest_property_element == "R"
-            else M_multiplicity_total
-            if lowest_property_element == "M"
-            else X_multiplicity_total
-        )
+    #     highest_property_sites = (
+    #         R_sites_total
+    #         if highest_property_element == "R"
+    #         else M_sites_total
+    #         if highest_property_element == "M"
+    #         else X_sites_total
+    #     )
+    #     lowest_property_sites = (
+    #         R_sites_total
+    #         if lowest_property_element == "R"
+    #         else M_sites_total
+    #         if lowest_property_element == "M"
+    #         else X_sites_total
+    #     )
+    #     highest_property_multiplicity = (
+    #         R_multiplicity_total
+    #         if highest_property_element == "R"
+    #         else M_multiplicity_total
+    #         if highest_property_element == "M"
+    #         else X_multiplicity_total
+    #     )
+    #     lowest_property_multiplicity = (
+    #         R_multiplicity_total
+    #         if lowest_property_element == "R"
+    #         else M_multiplicity_total
+    #         if lowest_property_element == "M"
+    #         else X_multiplicity_total
+    #     )
 
-        atomic_environment_Wyckoff_universal_data.update(
-            {
-                f"{property}_of_elements_with_lowest_wyckoff": [
-                    np.around(lowest_wyckoff_property_values, 4)
-                ],
-                f"highest_{property}_sites": [highest_property_sites],
-                f"lowest_{property}_sites": [lowest_property_sites],
-                f"highest_{property}_multiplicity": [
-                    highest_property_multiplicity
-                ],
-                f"lowest_{property}_multiplicity": [
-                    lowest_property_multiplicity
-                ],
-            }
-        )
+    #     atomic_environment_Wyckoff_universal_data.update(
+    #         {
+    #             f"{property}_of_elements_with_lowest_wyckoff": [
+    #                 np.around(lowest_wyckoff_property_values, 4)
+    #             ],
+    #             f"highest_{property}_sites": [highest_property_sites],
+    #             f"lowest_{property}_sites": [lowest_property_sites],
+    #             f"highest_{property}_multiplicity": [
+    #                 highest_property_multiplicity
+    #             ],
+    #             f"lowest_{property}_multiplicity": [
+    #                 lowest_property_multiplicity
+    #             ],
+    #         }
+    #     )
 
     # Create an empty dictionary
     ordered_data = {}
 
-    # First add keys that contain 'lowest_wyckoff'
-    for key, value in atomic_environment_Wyckoff_universal_data.items():
-        if "lowest_wyckoff" in key:
-            ordered_data[key] = value
+    # # First add keys that contain 'lowest_wyckoff'
+    # for key, value in atomic_environment_Wyckoff_universal_data.items():
+    #     if "lowest_wyckoff" in key:
+    #         ordered_data[key] = value
 
-    # Then add the rest
-    for key, value in atomic_environment_Wyckoff_universal_data.items():
-        if "lowest_wyckoff" not in key:
-            ordered_data[key] = value
+    # # Then add the rest
+    # for key, value in atomic_environment_Wyckoff_universal_data.items():
+    #     if "lowest_wyckoff" not in key:
+    #         ordered_data[key] = value
 
     # Merge first_data and ordered_data
     merged_data = {**first_data, **ordered_data}

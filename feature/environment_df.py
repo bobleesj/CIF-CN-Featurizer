@@ -132,7 +132,7 @@ def get_env_binary_df(
     ) = A_B_count_at_shortest_dist_avg_result
 
     atomic_environment_binary_data = {
-        "entry": [cif_id],
+        "Entry": [cif_id],
         "A_shortest_dist_count": [A_shortest_dist_count],
         "B_shortest_dist_count": [B_shortest_dist_count],
         "A_avg_shortest_dist_count": [A_avg_shortest_dist_count],
@@ -372,7 +372,7 @@ def get_env_ternary_df(
     ) = avg_count_at_X_shortest_dist_res
 
     atomic_environment_ternary_data = {
-        "entry": [cif_id],
+        "Entry": [cif_id],
         "R_shortest_dist_count": R_shortest_dist_count,
         "M_shortest_dist_count": M_shortest_dist_count,
         "X_shortest_dist_count": X_shortest_dist_count,

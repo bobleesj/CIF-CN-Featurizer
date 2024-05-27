@@ -2,6 +2,7 @@ import pandas as pd
 import feature.distance as distance
 import preprocess.optimize as optimize
 import util.data as data
+from util import df_util
 import feature.coordination_number as cn_featurizer
 import os
 import time
@@ -9,7 +10,8 @@ import time
 
 def get_coordinate_number_binary_df(
     isBinary,
-    coordinate_number_binary_df,
+    cn_binary_df,
+    cn_universal_df,
     unique_atoms_tuple,
     unique_labels,
     atomic_pair_list,
@@ -78,16 +80,25 @@ def get_coordinate_number_binary_df(
             CIF_id,
             formula_string,
         )
-        coordinate_number_binary_df = pd.concat(
-            [coordinate_number_binary_df, df], ignore_index=True
+        cn_binary_df = pd.concat([cn_binary_df, df], ignore_index=True)
+
+        columns_to_drop = [
+            "A_atom_count",
+            "B_atom_count",
+            "Formula",
+        ]
+        cn_universal_df = pd.concat(
+            [cn_universal_df, df.drop(columns=columns_to_drop)],
+            ignore_index=True,
         )
 
-    return coordinate_number_binary_df
+    return cn_binary_df, cn_universal_df
 
 
 def get_coordinate_number_ternary_df(
     isBinary,
-    coordinate_number_ternary_df,
+    cn_ternary_df,
+    cn_universal_df,
     unique_atoms_tuple,
     unique_labels,
     atomic_pair_list,
@@ -163,6 +174,13 @@ def get_coordinate_number_ternary_df(
     )
     atom_labels = {"A": A, "B": B, "R": R, "M": M, "X": X}
 
+    columns_to_drop = [
+        "R_atom_count",
+        "M_atom_count",
+        "X_atom_count",
+        "Formula",
+    ]
+
     for label in unique_labels:
         df = cn_featurizer.process_labels(
             label,
@@ -176,12 +194,13 @@ def get_coordinate_number_ternary_df(
             formula_string,
             isTernary=True,
         )
-        coordinate_number_ternary_df = pd.concat(
-            [coordinate_number_ternary_df, df], ignore_index=True
+        cn_ternary_df = pd.concat([cn_ternary_df, df], ignore_index=True)
+        cn_universal_df = pd.concat(
+            [cn_universal_df, df.drop(columns=columns_to_drop)],
+            ignore_index=True,
         )
-        coordinate_number_ternary_df = coordinate_number_ternary_df.round(5)
 
-    return coordinate_number_ternary_df
+    return cn_ternary_df, cn_universal_df
 
 
 def get_coordniate_number_df(
@@ -192,8 +211,8 @@ def get_coordniate_number_df(
     derived from metrics, atom_counts, and other provided arguments.
     """
     data = {
-        "entry": [CIF_id],
-        "formula": [formula_string],
+        "Entry": [CIF_id],
+        "Formula": [formula_string],
         "central_atom": [label],
         "CN_method": [dist_type],
         "coordination_number": [metrics["number_of_vertices"]],

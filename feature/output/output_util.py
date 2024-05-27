@@ -6,8 +6,8 @@ def add_formula_info_to_universal_col(df, formula):
     Adds a 'formula' column with
     """
     location = (
-        df.columns.get_loc("entry") + 1
-        if "entry" in df.columns
+        df.columns.get_loc("Entry") + 1
+        if "Entry" in df.columns
         else len(df.columns)
     )
     df.insert(location, "formula", formula)
@@ -27,11 +27,11 @@ def add_formula_info_to_binary_col(df, formula):
     B = parsed_formula[1][0]
 
     location = (
-        df.columns.get_loc("entry") + 1
-        if "entry" in df.columns
+        df.columns.get_loc("Entry") + 1
+        if "Entry" in df.columns
         else len(df.columns)
     )
-    df.insert(location, "formula", formula)
+    df.insert(location, "Formula", formula)
     df.insert(location + 1, "A", A)
     df.insert(location + 2, "B", B)
     return df
@@ -51,11 +51,11 @@ def add_formula_info_to_ternary_col(df, formula):
     X = parsed_formula[2][0]
 
     location = (
-        df.columns.get_loc("entry") + 1
-        if "entry" in df.columns
+        df.columns.get_loc("Entry") + 1
+        if "Entry" in df.columns
         else len(df.columns)
     )
-    df.insert(location, "formula", formula)
+    df.insert(location, "Formula", formula)
     df.insert(location + 1, "R", R)
     df.insert(location + 2, "M", M)
     df.insert(location + 3, "X", X)
@@ -64,7 +64,7 @@ def add_formula_info_to_ternary_col(df, formula):
 
 def remove_col_prefix_for_formula_info(col_name):
     prefixes = ["INT_", "INT_"]
-    suffixes = ["formula", "R", "M", "X", "A", "B"]
+    suffixes = ["Formula", "R", "M", "X", "A", "B"]
 
     for prefix in prefixes:
         if col_name.startswith(prefix):

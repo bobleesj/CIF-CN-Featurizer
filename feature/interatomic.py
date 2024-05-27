@@ -101,8 +101,8 @@ def get_interatomic_binary_df(
     )
 
     interatomic_binary_data = {
-        "entry": [CIF_id],
-        "formula": [formula_string],
+        "Entry": [CIF_id],
+        "Formula": [formula_string],
         "A": [A],
         "B": [B],
         "distAA": [interatomic_distA_A],
@@ -179,8 +179,8 @@ def get_interatomic_binary_df(
     lowest_refined_percent_diff = min([abs(p) for p in percent_diffs])
 
     interatomic_universal_data = {
-        "entry": [CIF_id],
-        "formula": [formula_string],
+        "Entry": [CIF_id],
+        "Formula": [formula_string],
         "shortest_homoatomic_dist": [shortest_homoatomic_distance],
         "shortest_heteroatomic_dist": [shortest_heteroatomic_distance],
         "shortest_homoatomic_dist_by_2_by_atom_size": [
@@ -335,8 +335,8 @@ def get_interatomic_ternary_df(
     ) / shortest_MX
 
     interatomic_ternary_data = {
-        "entry": [CIF_id],
-        "formula": [formula_string],
+        "Entry": [CIF_id],
+        "Formula": [formula_string],
         "R": [R],
         "M": [M],
         "X": [X],
@@ -411,7 +411,6 @@ def get_interatomic_ternary_df(
 
     percent_diffs = [percent_diff_R, percent_diff_M, percent_diff_X]
 
-    # Find key of shortest_homoatomic_distance and shortest_heteroatomic_distance in distances
     shortest_homo_key = [
         k
         for k, v in shortest_distances_pair.items()
@@ -440,8 +439,8 @@ def get_interatomic_ternary_df(
     lowest_refined_percent_diff = min([abs(p) for p in percent_diffs])
 
     interatomic_universal_data = {
-        "entry": [CIF_id],
-        "formula": [formula_string],
+        "Entry": [CIF_id],
+        "Formula": [formula_string],
         "shortest_homoatomic_dist": [shortest_homoatomic_distance],
         "shortest_heteroatomic_dist": [shortest_heteroatomic_distance],
         "shortest_homoatomic_dist_by_2_by_atom_size": [

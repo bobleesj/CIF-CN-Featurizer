@@ -28,7 +28,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
     radii_data = data.get_radii_data()
 
     # Initialize DataFrames
-    cn_binary_df = pd.DataFrame()
+    cn_universal_df = pd.DataFrame()
     cn_binary_max_df = pd.DataFrame()
     cn_binary_min_df = pd.DataFrame()
     cn_binary_avg_df = pd.DataFrame()
@@ -36,6 +36,8 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
     cn_ternary_max_df = pd.DataFrame()
     cn_ternary_min_df = pd.DataFrame()
     cn_ternary_avg_df = pd.DataFrame()
+    cn_binary_df = pd.DataFrame()
+
     interatomic_binary_df = pd.DataFrame()
     interatomic_ternary_df = pd.DataFrame()
     interatomic_universal_df = pd.DataFrame()
@@ -194,9 +196,13 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
                 cif_data,
             )
 
-            cn_binary_df = cn_df.get_coordinate_number_binary_df(
+            (
+                cn_binary_df,
+                cn_universal_df,
+            ) = cn_df.get_coordinate_number_binary_df(
                 isBinary,
                 cn_binary_df,
+                cn_universal_df,
                 unique_atoms_tuple,
                 unique_labels,
                 atomic_pair_list,
@@ -204,6 +210,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
                 cif_data,
                 radii_data,
             )
+            df_util.print_df_columns(cn_universal_df)
 
         if isTernary:
             (
@@ -243,9 +250,13 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
                 cif_data,
             )
 
-            cn_ternary_df = cn_df.get_coordinate_number_ternary_df(
+            (
+                cn_ternary_df,
+                cn_universal_df,
+            ) = cn_df.get_coordinate_number_ternary_df(
                 isBinary,
                 cn_ternary_df,
+                cn_universal_df,
                 unique_atoms_tuple,
                 unique_labels,
                 atomic_pair_list,
@@ -253,6 +264,8 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
                 cif_data,
                 radii_data,
             )
+
+            df_util.print_df_columns(cn_universal_df)
 
         # Finish the run
         end_time = time.time()
@@ -269,19 +282,19 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
 
         log_list.append(
             {
-                "filename": filename_base,
-                "entry": cif_id,
-                "formula": formula,
-                "number_of_atoms": len(supercell_points),
-                "executione_time_s": execution_time,
-                "total_time_s": running_total_time,
+                "Filename": filename_base,
+                "Entry": cif_id,
+                "Formula": formula,
+                "Number of atoms": len(supercell_points),
+                "Execution time (s)": execution_time,
+                "Total time (s)": running_total_time,
             }
         )
 
     featurizer_log_df = pd.DataFrame(log_list)
 
     if num_files_processed != 0:
-        cols_to_keep = ["entry", "formula", "central_atom"]
+        cols_to_keep = ["Entry", "Formula", "central_atom"]
         click.echo(style(f"Saving csv files in the csv folder", fg="blue"))
         atomic_env_wyckoff_universal_df = df_util.join_columns_with_comma(
             atomic_env_wyckoff_universal_df
@@ -291,19 +304,14 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             cn_binary_df = df_util.remove_non_numeric_cols(
                 cn_binary_df, cols_to_keep
             )
-            atomic_env_wyckoff_binary_df = (
-                df_util.wyckoff_mapping_to_number_binary(
-                    atomic_env_wyckoff_binary_df
-                )
-            )
+
             dfs = df_util.get_avg_min_max_dfs(cn_binary_df, cols_to_keep)
             cn_binary_avg_df, cn_binary_min_df, cn_binary_max_df = dfs
-
+            df_util.print_df_columns(atomic_env_wyckoff_binary_df)
             binary_merged_df = output_binary.postprocess_merge_dfs(
                 interatomic_binary_df,
                 interatomic_universal_df,
                 atomic_env_wyckoff_binary_df,
-                atomic_env_wyckoff_universal_df,
                 atomic_env_binary_df,
                 cn_binary_avg_df,
                 cn_binary_min_df,
@@ -318,17 +326,10 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             dfs = df_util.get_avg_min_max_dfs(cn_ternary_df, cols_to_keep)
             cn_ternary_avg_df, cn_ternary_min_df, cn_ternary_max_df = dfs
 
-            atomic_env_wyckoff_ternary_df = (
-                df_util.wyckoff_mapping_to_number_ternary(
-                    atomic_env_wyckoff_ternary_df
-                )
-            )
-
             ternary_merged_df = output_ternary.postprocess_merge_dfs(
                 interatomic_ternary_df,
                 interatomic_universal_df,
                 atomic_env_wyckoff_ternary_df,
-                atomic_env_wyckoff_universal_df,
                 atomic_env_ternary_df,
                 cn_ternary_avg_df,
                 cn_ternary_min_df,
@@ -337,7 +338,9 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
 
         # Save universal ouput
         universal_merged_df = output_universal.postprocess_merge_dfs(
-            interatomic_universal_df, atomic_env_wyckoff_universal_df
+            interatomic_universal_df,
+            atomic_env_wyckoff_universal_df,
+            cn_universal_df,
         )
 
         # Apply the renaming function to columns
@@ -355,11 +358,6 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             inplace=True,
         )
 
-        # Drop duplicate columns of "formula" from universal int
-        binary_merged_df = df_util.remove_duplicate_columns(binary_merged_df)
-        ternary_merged_df = df_util.remove_duplicate_columns(ternary_merged_df)
-
-        # Print df columns
         if not cn_binary_df.empty:
             folder.save_df_to_csv(
                 cif_dir_path, binary_merged_df, "feature_binary"
@@ -368,7 +366,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
 
         if not cn_ternary_df.empty:
             folder.save_df_to_csv(
-                cif_dir_path, ternary_merged_df, "feature_ternary"
+                cif_dir_path, binary_merged_df, "feature_ternary"
             )
             df_util.print_df_columns(ternary_merged_df)
 
