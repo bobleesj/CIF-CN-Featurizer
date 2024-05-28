@@ -10,6 +10,11 @@ Structure Analysis/Featurizer (SAF) is a Python script designed to process CIF (
 
 The script was originally developed to determine the coordination number for each crystallographic site on complex structures [[1](#ref1)]. Then, we further included an interactive functionality for experimentalists and data scientists to generate structural  features from `.cif` file. These features were engineered to be used as input data for ML models to predict crystal structures and their properties. **We are currently exploring this option in Summer 2024.**
 
+## Scope
+
+The current version supports processing of binary and ternary `.cif` files containing the following elements: Si, Sc, Fe, Co, Ni, Ga, Ge, Y, Ru, Rh, Pd, In, Sn, Sb, La, Ce, Pr, Nd, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Os, Ir, Pt, Th, U, and Al.
+
+
 ## Demo
 
 Start with the script via
