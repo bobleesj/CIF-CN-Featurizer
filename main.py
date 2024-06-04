@@ -366,7 +366,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
 
         if not cn_ternary_df.empty:
             folder.save_df_to_csv(
-                cif_dir_path, binary_merged_df, "feature_ternary"
+                cif_dir_path, ternary_merged_df, "feature_ternary"
             )
             df_util.print_df_columns(ternary_merged_df)
 
