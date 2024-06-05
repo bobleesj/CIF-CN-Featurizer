@@ -16,7 +16,7 @@ def preprocess_cif_file_on_label_element(file_path):
         _,
         _,
     ) = cif_parser.get_compound_phase_tag_id_from_third_line(file_path)
-
+    
     # Get lines in _atom_site_occupancy only
     modified_lines = []
     content_lines = cif_parser.get_loop_content(

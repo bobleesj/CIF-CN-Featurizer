@@ -43,14 +43,6 @@ def choose_cif_directory(script_directory):
             print("Invalid input. Please enter a number.")
 
 
-def get_target_directory(tag, chosen_folder_name):
-    """
-    Returns the target directory for a given name.
-    """
-    target_folder = chosen_folder_name + "_" + tag.strip()
-
-    return os.path.join(chosen_folder_name, target_folder)
-
 
 def save_df_to_csv(folder_path, df, base_filename):
     """

@@ -43,8 +43,7 @@ def move_files_based_on_format_error(dir_path):
         try:
             cif_editor.preprocess_cif_file_by_removing_author_loop(file_path)
             cif_editor.preprocess_cif_file_on_label_element(file_path)
-            cif_parser.get_compound_phase_tag_id_from_third_line(file_path)
-
+            
             print(f"Preprocessing {filename} ({idx} out of {total_files})")
             # Apply operations that would be done in practice
             cif_block = cif_parser.get_cif_block(file_path)

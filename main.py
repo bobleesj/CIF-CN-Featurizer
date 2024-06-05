@@ -25,7 +25,7 @@ import feature.coordination_number_df as cn_df
 
 def run_main(is_interactive_mode=True, cif_dir_path=None):
     prompt.print_intro_message()
-    radii_data = data.get_radii_data()
+    radii_data = data.get_radius_data()
 
     # Initialize DataFrames
     cn_universal_df = pd.DataFrame()

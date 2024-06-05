@@ -1,4 +1,4 @@
-def get_radii_data():
+def get_radius_data():
     """
     Return a dictionary of element radii data.
     """
