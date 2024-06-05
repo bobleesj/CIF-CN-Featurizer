@@ -2,7 +2,7 @@ import pandas as pd
 import feature.distance as distance
 import preprocess.optimize as optimize
 import util.data as data
-from util import df_util
+from util import folder, data, prompt
 import feature.coordination_number as cn_featurizer
 import os
 import time
@@ -199,6 +199,10 @@ def get_coordinate_number_ternary_df(
             [cn_universal_df, df.drop(columns=columns_to_drop)],
             ignore_index=True,
         )
+
+    # folder.save_df_to_csv(
+    #     "20240402_URhIn", cn_ternary_df, "cn_ternary_df"
+    #     )
 
     return cn_ternary_df, cn_universal_df
 
