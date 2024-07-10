@@ -12,6 +12,8 @@ __pycache__/
 20240303_ternary_binary_test/csv/
 20240226_huge_file_test/csv/
 
+# Cache
+.ruff_cache
 
 # C extensions
 *.so

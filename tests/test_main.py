@@ -6,9 +6,7 @@ from main import run_main
 def check_csv_files(output_dir, files_to_check):
     """Helper function to check expected vs. actual CSV files."""
     for file_name in files_to_check:
-        expected_file_path = os.path.join(
-            output_dir, "csv_expected", file_name
-        )
+        expected_file_path = os.path.join(output_dir, "csv_expected", file_name)
         output_file_path = os.path.join(output_dir, "csv", file_name)
 
         # Read the expected and output dataframes
@@ -25,9 +23,7 @@ def check_csv_files(output_dir, files_to_check):
                 atol=0.01,  # Allow a small difference in numeric values
             )
         except AssertionError as e:
-            assert (
-                False
-            ), f"DataFrame contents do not match in {file_name}: {e}"
+            assert False, f"DataFrame contents do not match in {file_name}: {e}"
 
 
 def test_ternary_features():

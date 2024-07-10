@@ -1,5 +1,5 @@
 {
-    "exec": "black -l 79 . && python main.py",
+    "exec": "ruff format && npx prettier --write **/*.md && python -m pytest",
     "ext": "py",
     "ignore": ["*.pyc", "*__pycache__*"],
     "watch": ["*.*"]

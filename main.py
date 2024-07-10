@@ -6,21 +6,21 @@ import click
 import pandas as pd
 from click import style
 
-from preprocess import cif_parser, supercell, supercell_handler
-from feature import interatomic
-from feature.output import (
+from core.preprocess import cif_parser, supercell, supercell_handler
+from core.feature import interatomic
+from core.feature.output import (
     output_binary,
     output_ternary,
     output_universal,
     output_log,
     output_util,
 )
-from util import df_util, folder, data, prompt
-from preprocess import format
-import feature.environment_binary as env_featurizer_binary
-import feature.environment_df as env_dataframe
-import feature.environment_wyckoff as env_wychoff_featurizer
-import feature.coordination_number_df as cn_df
+from core.utils import df_util, folder, data, prompt
+from core.preprocess import format
+import core.feature.environment_binary as env_featurizer_binary
+import core.feature.environment_df as env_dataframe
+import core.feature.environment_wyckoff as env_wychoff_featurizer
+import core.feature.coordination_number_df as cn_df
 
 
 def run_main(is_interactive_mode=True, cif_dir_path=None):
@@ -108,9 +108,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             i, filename_base, supercell_points, total_file_count
         )
         # Check if the number of atoms exceeds the defined maximum
-        if prompt.exceeds_atom_count_limit(
-            supercell_points, supercell_max_atom_count
-        ):
+        if prompt.exceeds_atom_count_limit(supercell_points, supercell_max_atom_count):
             click.echo(
                 style(
                     f"Skipped - {filename_base} has {len(supercell_points)} atoms",
@@ -301,9 +299,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         )
 
         if not cn_binary_df.empty:
-            cn_binary_df = df_util.remove_non_numeric_cols(
-                cn_binary_df, cols_to_keep
-            )
+            cn_binary_df = df_util.remove_non_numeric_cols(cn_binary_df, cols_to_keep)
 
             dfs = df_util.get_avg_min_max_dfs(cn_binary_df, cols_to_keep)
             cn_binary_avg_df, cn_binary_min_df, cn_binary_max_df = dfs
@@ -319,9 +315,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             )
 
         if not cn_ternary_df.empty:
-            cn_ternary_df = df_util.remove_non_numeric_cols(
-                cn_ternary_df, cols_to_keep
-            )
+            cn_ternary_df = df_util.remove_non_numeric_cols(cn_ternary_df, cols_to_keep)
 
             dfs = df_util.get_avg_min_max_dfs(cn_ternary_df, cols_to_keep)
             cn_ternary_avg_df, cn_ternary_min_df, cn_ternary_max_df = dfs
@@ -359,15 +353,11 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
         )
 
         if not cn_binary_df.empty:
-            folder.save_df_to_csv(
-                cif_dir_path, binary_merged_df, "feature_binary"
-            )
+            folder.save_df_to_csv(cif_dir_path, binary_merged_df, "feature_binary")
             df_util.print_df_columns(binary_merged_df)
 
         if not cn_ternary_df.empty:
-            folder.save_df_to_csv(
-                cif_dir_path, ternary_merged_df, "feature_ternary"
-            )
+            folder.save_df_to_csv(cif_dir_path, ternary_merged_df, "feature_ternary")
             df_util.print_df_columns(ternary_merged_df)
 
         if not universal_merged_df.empty:
@@ -377,9 +367,7 @@ def run_main(is_interactive_mode=True, cif_dir_path=None):
             )
 
         # Save log
-        output_log.save_log_csv(
-            is_interactive_mode, featurizer_log_df, cif_dir_path
-        )
+        output_log.save_log_csv(is_interactive_mode, featurizer_log_df, cif_dir_path)
 
 
 if __name__ == "__main__":
