@@ -52,19 +52,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Vincent R.'
+''
 ;
-Bristol University
-H.H. Wills Physics Laboratory
-Bristol
-United Kingdom
-;
-'Exelby D.R.'
-;
-Bristol University
-H.H. Wills Physics Laboratory
-Bristol
-United Kingdom
 ;
 
 # Standardized crystallographic data

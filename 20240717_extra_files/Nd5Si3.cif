@@ -1,6 +1,6 @@
 ##############################################################################
 #                                                                            #
-# Sb-Th            # ThSb hp                                       #  531015 #
+# Nd-Si            # Nd5Si3 tet                                    # 1720931 #
 #                                                                            #
 ##############################################################################
 #                                                                            #
@@ -18,141 +18,96 @@
 #                                                                            #
 ##############################################################################
 
-data_531015
-_audit_creation_date                     2023-06-30
+data_1720931
+_audit_creation_date                     2023-07-06
 _audit_creation_method
 ;
 Pearson's Crystal Data browser
 ;
-#_database_code_PCD                      531015
-_database_code_PDF                       04-004-5507
+#_database_code_PCD                      1720931
+_database_code_PDF                       ?
 
 # Entry summary
 
-_chemical_formula_structural             'Th Sb'
-_chemical_formula_sum                    'Sb Th'
+_chemical_formula_structural             'Nd~5~ Si~3~'
+_chemical_formula_sum                    'Nd5 Si3'
 _chemical_name_mineral                   ?
 _chemical_compound_source                ?
-_chemical_name_structure_type            CsCl,cP2,221
-_chemical_formula_weight                 353.8
+_chemical_name_structure_type            Cr~5~B~3~,tI32,140
+_chemical_formula_weight                 805.5
 
 # Bibliographic data
 
 _publ_section_title
-'The pressure-induced transformation B1 to B2 in actinide compounds'          
-_journal_coden_ASTM                      JACGAR
-_journal_name_full                       'J. Appl. Crystallogr.'
-_journal_year                            1990
-_journal_volume                          23
-_journal_page_first                      515
-_journal_page_last                       519
+'Isothermal section of Nd-Zr-Si ternary system at 773 K'                      
+_journal_coden_ASTM                      JREAE6
+_journal_name_full                       'J. Rare Earths'
+_journal_year                            2012
+_journal_volume                          30
+_journal_page_first                      79
+_journal_page_last                       83
 _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Gerward L.'
+''
 ;
-Denmark Technical University (DTU)
-Laboratory of Applied Physics
-Lyngby
-Denmark
-;
-'Olsen J.S.'
-;
-Copenhagen University (UCPH)
-Department of Physics
-Copenhagen
-Denmark
-;
-'Steenstrup S.'
-;
-Copenhagen University (UCPH)
-Department of Physics
-Copenhagen
-Denmark
-;
-'Benedict U.'
-;
-European Commission Joint Research Center (JRC)
-Institute for Transuranium Elements
-Karlsruhe
-Germany
-;
-'Dabos Seignon S.'
-;
-European Commission Joint Research Center (JRC)
-Institute for Transuranium Elements
-Karlsruhe
-Germany
 ;
 
 # Standardized crystallographic data
 
-_cell_length_a                           3.847
-_cell_length_b                           3.847
-_cell_length_c                           3.847
+_cell_length_a                           7.7924
+_cell_length_b                           7.7924
+_cell_length_c                           13.748
 _cell_angle_alpha                        90
 _cell_angle_beta                         90
 _cell_angle_gamma                        90
-_cell_volume                             56.93
-_cell_formula_units_Z                    1
-_space_group_IT_number                   221
-_space_group_name_H-M_alt                'P m -3 m'
+_cell_volume                             834.8
+_cell_formula_units_Z                    4
+_space_group_IT_number                   140
+_space_group_name_H-M_alt                'I 4/m c m'
 loop_
  _space_group_symop_id
  _space_group_symop_operation_xyz
  1 'x, y, z'
  2 '-x, -y, -z'
  3 '-x, -y, z'
- 4 '-x, -z, -y'
- 5 '-x, -z, y'
- 6 '-x, y, -z'
- 7 '-x, y, z'
- 8 '-x, z, -y'
- 9 '-x, z, y'
- 10 '-y, -x, -z'
- 11 '-y, -x, z'
- 12 '-y, -z, -x'
- 13 '-y, -z, x'
- 14 '-y, x, -z'
- 15 '-y, x, z'
- 16 '-y, z, -x'
- 17 '-y, z, x'
- 18 '-z, -x, -y'
- 19 '-z, -x, y'
- 20 '-z, -y, -x'
- 21 '-z, -y, x'
- 22 '-z, x, -y'
- 23 '-z, x, y'
- 24 '-z, y, -x'
- 25 '-z, y, x'
- 26 'x, -y, -z'
- 27 'x, -y, z'
- 28 'x, -z, -y'
- 29 'x, -z, y'
- 30 'x, y, -z'
- 31 'x, z, -y'
- 32 'x, z, y'
- 33 'y, -x, -z'
- 34 'y, -x, z'
- 35 'y, -z, -x'
- 36 'y, -z, x'
- 37 'y, x, -z'
- 38 'y, x, z'
- 39 'y, z, -x'
- 40 'y, z, x'
- 41 'z, -x, -y'
- 42 'z, -x, y'
- 43 'z, -y, -x'
- 44 'z, -y, x'
- 45 'z, x, -y'
- 46 'z, x, y'
- 47 'z, y, -x'
- 48 'z, y, x'
+ 4 '-x, y, 1/2-z'
+ 5 '-x, y, 1/2+z'
+ 6 '-y, -x, 1/2-z'
+ 7 '-y, -x, 1/2+z'
+ 8 '-y, x, -z'
+ 9 '-y, x, z'
+ 10 'x, -y, 1/2-z'
+ 11 'x, -y, 1/2+z'
+ 12 'x, y, -z'
+ 13 'y, -x, -z'
+ 14 'y, -x, z'
+ 15 'y, x, 1/2-z'
+ 16 'y, x, 1/2+z'
+ 17 '1/2+x, 1/2+y, 1/2+z'
+ 18 '1/2-x, 1/2-y, 1/2-z'
+ 19 '1/2-x, 1/2-y, 1/2+z'
+ 20 '1/2-x, 1/2+y, 1-z'
+ 21 '1/2-x, 1/2+y, 1+z'
+ 22 '1/2-y, 1/2-x, 1-z'
+ 23 '1/2-y, 1/2-x, 1+z'
+ 24 '1/2-y, 1/2+x, 1/2-z'
+ 25 '1/2-y, 1/2+x, 1/2+z'
+ 26 '1/2+x, 1/2-y, 1-z'
+ 27 '1/2+x, 1/2-y, 1+z'
+ 28 '1/2+x, 1/2+y, 1/2-z'
+ 29 '1/2+y, 1/2-x, 1/2-z'
+ 30 '1/2+y, 1/2-x, 1/2+z'
+ 31 '1/2+y, 1/2+x, 1-z'
+ 32 '1/2+y, 1/2+x, 1+z'
+
+# Atomic positions taken from type-defining entry
+
 loop_
  _atom_type_symbol
- Sb
- Th
+ Nd
+ Si
 loop_
  _atom_site_label
  _atom_site_type_symbol
@@ -162,32 +117,30 @@ loop_
  _atom_site_fract_y
  _atom_site_fract_z
  _atom_site_occupancy
- Sb Sb 1 b 0.5 0.5 0.5 1
- Th Th 1 a 0 0 0 1
+ Nd1 Nd 16 l 0.166 0.666 0.15 1
+ Si1 Si 8 h 0.625 0.125 0 1
+ Nd2 Nd 4 c 0 0 0 1
+ Si2 Si 4 a 0 0 0.25 1
 
 
 _exptl_crystal_colour                    ?
 _exptl_crystal_density_meas              ?
-_exptl_crystal_density_diffrn            10.32
+_exptl_crystal_density_diffrn            6.41
 _cell_measurement_temperature            ?
-_cell_measurement_pressure               100
 _cell_measurement_radiation              'X-rays, Cu Ka'
 _cell_measurement_reflns_used            ?
 _diffrn_ambient_temperature              ?
-_diffrn_measurement_device               'Debye-Scherrer film'
+_diffrn_measurement_device               'automatic diffractometer'
 _diffrn_measurement_device_type          ?
-_diffrn_radiation_type                   'X-rays, Cu Ka'
+_diffrn_radiation_type                   ?
 _diffrn_reflns_number                    ?
 _exptl_absorpt_coefficient_mu            ?
 _exptl_absorpt_correction_type           ?
-_computing_structure_solution            'starting values from the literature'
+_computing_structure_solution            ?
 _refine_ls_number_parameters             ?
 _refine_ls_number_reflns                 ?
 _refine_ls_R_factor_gt                   ?
 _refine_ls_wR_factor_gt                  ?
-_pd_proc_ls_proof_R_factor               ?
-_pd_proc_ls_proof_wR_factor              ?
-_refine_ls_R_I_factor                    ?
 
-# End of data set 531015
+# End of data set 1720931
 

@@ -52,81 +52,8 @@ _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Nadarajah R.'
+''
 ;
-Essen
-Germany
-;
-'Farle M.'
-;
-Duisburg-Essen University (UDE)
-Center for Nanointegration Duisburg-Essen (CENIDE)
-Duisburg
-Germany
-;
-'Wende H.'
-;
-Duisburg-Essen University (UDE)
-Center for Nanointegration Duisburg-Essen (CENIDE)
-Duisburg
-Germany
-;
-'Gokce B.'
-;
-Essen
-Germany
-;
-'Landers J.'
-;
-Duisburg-Essen University (UDE)
-Center for Nanointegration Duisburg-Essen (CENIDE)
-Duisburg
-Germany
-;
-'Salamon S.'
-;
-Duisburg-Essen University (UDE)
-Center for Nanointegration Duisburg-Essen (CENIDE)
-Duisburg
-Germany
-;
-'Koch D.'
-;
-Darmstadt Technical University (TU Darmstadt)
-Fachbereich Materialwissenschaft
-Darmstadt
-Germany
-;
-'Tahir S.'
-;
-Essen
-Germany
-;
-'Donate Buendia C.'
-;
-Essen
-Germany
-;
-'Zingsem B.'
-;
-Duisburg-Essen University (UDE)
-Center for Nanointegration Duisburg-Essen (CENIDE)
-Duisburg
-Germany
-;
-'Dunin Borkowski R.E.'
-;
-Julich Research Center (FZJ)
-Ernst Ruska-Center (ER-C)
-Julich
-Germany
-;
-'Donner W.'
-;
-Darmstadt Technical University (TU Darmstadt)
-Fachbereich Materialwissenschaft
-Darmstadt
-Germany
 ;
 
 # Standardized crystallographic data

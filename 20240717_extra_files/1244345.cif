@@ -1,6 +1,6 @@
 ##############################################################################
 #                                                                            #
-# Fe-Ni            # Fe0.5Ni0.5 rt                                 # 1242657 #
+# Pt-Ru            # Ru0.5Pt0.5                                    # 1244345 #
 #                                                                            #
 ##############################################################################
 #                                                                            #
@@ -18,70 +18,53 @@
 #                                                                            #
 ##############################################################################
 
-data_1242657
+data_1244345
 _audit_creation_date                     2024-02-18
 _audit_creation_method
 ;
 Pearson's Crystal Data browser
 ;
-#_database_code_PCD                      1242657
+#_database_code_PCD                      1244345
 _database_code_PDF                       ?
 
 # Entry summary
 
-_chemical_formula_structural             'Fe~0.5~ Ni~0.5~'
-_chemical_formula_sum                    'Fe0.50 Ni0.50'
-_chemical_name_mineral                   'taenite cF'
+_chemical_formula_structural             'Ru~0.5~ Pt~0.5~'
+_chemical_formula_sum                    'Pt0.50 Ru0.50'
+_chemical_name_mineral                   ?
 _chemical_compound_source                ?
 _chemical_name_structure_type            Cu,cF4,225
-_chemical_formula_weight                 57.3
+_chemical_formula_weight                 148.1
 
 # Bibliographic data
 
 _publ_section_title
 ;
-Effects of Ni content on nanocrystalline Fe-Co-Ni ternary alloys synthesized by a chemical reduction method
+Supercritical flow synthesis of Pt~1-x~Ru~x~ nanoparticles: Comparative phase diagram study of nanostructure versus bulk
 ;
-_journal_coden_ASTM                      JMMMDC
-_journal_name_full                       'J. Magn. Magn. Mater.'
-_journal_year                            2016
-_journal_volume                          405
-_journal_page_first                      174
-_journal_page_last                       180
+_journal_coden_ASTM                      CMATEX
+_journal_name_full                       'Chem. Mater.'
+_journal_year                            2017
+_journal_volume                          29
+_journal_page_first                      3265
+_journal_page_last                       3273
 _journal_language                        English
 loop_
  _publ_author_name
  _publ_author_address
-'Chokprasombat K.'
+''
 ;
-Thaksin University
-Songkhla
-Thailand
-;
-'Pinitsoontorn S.'
-;
-Khon Kaen University (KKU)
-Department of Physics
-Khon Kaen
-Thailand
-;
-'Maensiri S.'
-;
-Nakhon Ratchasima Suranaree University of Technology
-Institute of Science
-Nakhon Ratchasima
-Thailand
 ;
 
 # Standardized crystallographic data
 
-_cell_length_a                           3.546
-_cell_length_b                           3.546
-_cell_length_c                           3.546
+_cell_length_a                           3.858
+_cell_length_b                           3.858
+_cell_length_c                           3.858
 _cell_angle_alpha                        90
 _cell_angle_beta                         90
 _cell_angle_gamma                        90
-_cell_volume                             44.6
+_cell_volume                             57.4
 _cell_formula_units_Z                    4
 _space_group_IT_number                   225
 _space_group_name_H-M_alt                'F m -3 m'
@@ -282,8 +265,8 @@ loop_
  192 '1/2+z, 1/2+y, x'
 loop_
  _atom_type_symbol
- Fe
- Ni
+ Pt
+ Ru
 loop_
  _atom_site_label
  _atom_site_type_symbol
@@ -293,30 +276,37 @@ loop_
  _atom_site_fract_y
  _atom_site_fract_z
  _atom_site_occupancy
- Fe1 Fe 4 a 0 0 0 0.5
- Ni1 Ni 4 a 0 0 0 0.5
+ Pt1 Pt 4 a 0 0 0 0.5
+ Ru1 Ru 4 a 0 0 0 0.5
 
 
 _exptl_crystal_colour                    ?
 _exptl_crystal_density_meas              ?
-_exptl_crystal_density_diffrn            8.53
+_exptl_crystal_density_diffrn            17.13
 _cell_measurement_temperature            ?
-_cell_measurement_radiation              'X-rays, Cu Ka'
-_cell_measurement_wavelength             1.5406
-_pd_proc_wavelength                      1.5406
+_cell_measurement_radiation              'X-rays, synchrotron'
+_cell_measurement_wavelength             0.50037
+_pd_proc_wavelength                      0.50037
 _cell_measurement_reflns_used            ?
 _diffrn_ambient_temperature              ?
 _diffrn_measurement_device               'automatic diffractometer'
-_diffrn_measurement_device_type          ?
-_diffrn_radiation_type                   ?
+_diffrn_measurement_device_type
+;
+Japan, Hyogo, Japan Synchrotron Radiation Research Institute, SPring-8, BL44B2
+;
+_diffrn_radiation_type                   'X-rays, synchrotron'
+_diffrn_radiation_wavelength             0.50037
 _diffrn_reflns_number                    ?
 _exptl_absorpt_coefficient_mu            ?
 _exptl_absorpt_correction_type           ?
-_computing_structure_solution            ?
+_computing_structure_solution            'starting values from the literature'
 _refine_ls_number_parameters             ?
 _refine_ls_number_reflns                 ?
 _refine_ls_R_factor_gt                   ?
 _refine_ls_wR_factor_gt                  ?
+_pd_proc_ls_proof_R_factor               ?
+_pd_proc_ls_proof_wR_factor              ?
+_refine_ls_R_I_factor                    0.0058
 
-# End of data set 1242657
+# End of data set 1244345
 
