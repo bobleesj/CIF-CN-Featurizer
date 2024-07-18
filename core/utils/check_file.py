@@ -3,7 +3,6 @@ from core.config import get_all_possible_elements
 
 
 def check_availability_for_binary_ternary(file_path, elements):
-
     possible_elements = get_all_possible_elements()
 
     for element in elements:

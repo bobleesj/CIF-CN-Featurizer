@@ -80,7 +80,6 @@ def process_folder(dir_path):
             # log.print_dict_pretty(uni_combined_data, "uni_data")
 
         if len(elements) == 3:
-
             ternary_int_data, uni_int_data = ternary_interatomic.compute_ternary_interatomic_features(cif)
             ternary_wyc_data, uni_wyc_data = ternary_wyc.compute_ternary_wyk_features(cif)
             ternary_env_data = ternary_env_handler.compute_ternary_env_features(cif)

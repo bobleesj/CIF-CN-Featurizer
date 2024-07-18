@@ -39,6 +39,7 @@ def get_CN_metrices_per_method(cif: Cif):
 
             except Exception:
                 print(f"Error in determining polyhedron for {label} using {method} - skipped")
+                site_data[label][method] = None
                 continue  # Move to the next method
 
             # Returns non if ther eis any error
