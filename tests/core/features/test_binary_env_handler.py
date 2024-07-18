@@ -5,7 +5,7 @@ from core.features.binary_env_handler import (
 
 from core.utils.log import print_connected_points
 
-
+@pytest.mark.now
 def test_compute_binary_env_features_ThSb(ThSb_cif):
     print_connected_points(ThSb_cif.connections)
     # assert False
@@ -44,7 +44,7 @@ def test_compute_binary_env_features_ThSb(ThSb_cif):
     for key in result:
         assert result[key] == pytest.approx(expected[key], abs=0.005)
 
-
+@pytest.mark.now
 def test_compute_binary_env_features_RhSb2(RhSb2_cif):
     print_connected_points(RhSb2_cif.connections)
 

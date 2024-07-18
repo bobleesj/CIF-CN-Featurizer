@@ -3,7 +3,7 @@ from cifkit import Cif
 from core.features.ternary_interatomic import compute_ternary_interatomic_features
 
 
-# @pytest.mark.now
+@pytest.mark.now
 def test_compute_ternary_interatomic_feature():
     file_path = "tests/cif/ternary/URhIn.cif"
     cif = Cif(file_path)

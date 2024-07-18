@@ -18,7 +18,7 @@ each crystallographic site on complex structures [[1](#ref1)]. Then, we further
 included an interactive functionality for experimentalists and data scientists
 to generate structural features from `.cif` file. These features were engineered
 to be used as input data for ML models to predict crystal structures and their
-properties. **We are currently exploring this option in Summer 2024.**
+properties.
 
 ## Scope
 
