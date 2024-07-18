@@ -1,5 +1,5 @@
 {
-    "exec": "black -l 79 . && python main.py",
+    "exec": "black -l 120 . && npx prettier --write **/*.md && python main.py",
     "ext": "py",
     "ignore": ["*.pyc", "*__pycache__*"],
     "watch": ["*.*"]
