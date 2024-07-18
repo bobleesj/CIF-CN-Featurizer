@@ -23,10 +23,9 @@ properties. **We are currently exploring this option in Summer 2024.**
 ## Scope
 
 The current version supports the processing of **binary** and **ternary** `.cif`
-files containing the following elements: `Si`, `Sc`, `Fe`, `Co`, `Ni`, `Ga`,
-`Ge`, `Y,` `Ru`, `Rh`, `Pd`, `In`, `Sn`, `Sb`, `La`, `Ce`, `Pr`, `Nd`, `Sm`,
-E`u,` `Gd`, `Tb`, `Dy`, `Ho`, `Er`, `Tm`, `Yb`, `Lu`, `Os`, `Ir`, `Pt`,
-`Th`,`U,` and `Al`.
+files containing the following elements: 'Si' 'Sc' 'Fe' 'Co' 'Ni' 'Ga' 'Ge' 'Y'
+'Ru' 'Rh' 'Pd' 'In' 'Sn' 'Sb' 'La' 'Ce' 'Pr' 'Nd' 'Sm' 'Eu' 'Gd' 'Tb' 'Dy' 'Ho'
+'Er' 'Tm' 'Yb' 'Lu' 'Os' 'Ir' 'Pt' 'Th' 'U"' 'Al' 'Mo' 'Hf' 'Ta'
 
 > You may use CIF Cleaner (https://github.com/bobleesj/cif-cleaner) to filter
 > binary and ternary .cif files
@@ -34,8 +33,8 @@ E`u,` `Gd`, `Tb`, `Dy`, `Ho`, `Er`, `Tm`, `Yb`, `Lu`, `Os`, `Ir`, `Pt`,
 ### Adding more elements
 
 To add more elements, you need to provide `CIF_radius` and `Pauling_CN12` values
-in the `get_radius_data()` function located in
-`data.py/compute_rad_sum_binary.py` as shown below:
+in the `get_radius_data()` function located in `core/data/radius.py` as shown
+below:
 
 ```python
 def get_radius_data():
@@ -58,8 +57,8 @@ def get_radius_data():
 
 For binary compounds, atoms are labeled as `AB`, and for ternary compounds,
 atoms are labeled as `RMX`, where `R=A` and `M=B`. If you want to customize
-this, modify the `extract_formula_and_atoms` function in
-`preprocess.cif_parser.py` as shown below:
+this, modify the `get_binary_AB_labels` or `get_ternary_RMX_labels` function in
+`core/config.py` as shown below:
 
 ```python
 A_labels = ["Sc", "Y", "La", "Ce", "Pr", "Nd", "Sm",
@@ -105,9 +104,9 @@ Enter the number corresponding to the folder containing .cif files: 3
 
 After running the script using `python main.py` and selecting the folder
 contianing `.cif` files, `.csv` files are generated. For binary compounds,
-`feature_binary.csv` with 124 features is generated. For ternary compounds,
-`feature_ternary.csv` with 165 unique features is generated. For all types of
-compounds, `feature_universal.csv` is generated.
+`binary_features.csv` with 124 features is generated. For ternary compounds,
+`ternary_features.csv` with 165 unique features is generated. For all types of
+compounds, `universal_featrues.csv` is generated.
 
 ### Coordination numbers
 

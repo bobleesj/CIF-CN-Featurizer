@@ -1,3 +1,0 @@
-CIF_id,Compound,Central atom,Coordination number,A atom count in CN,B atom count in CN,Volume of polyhedron,Distance from central atom to center of mass,Number of edges,Number of faces,Shortest distance to center of any face,Shortest distance to center of any edge,Volume of the inscribed sphere,Packing efficiency of inscribed sphere in polyhedron
-531015,ThSb,Sb1,14.0,8.0,6.0,113.8666,0.0,36.0,24.0,2.8674,2.7202,98.7517,0.8673
-531015,ThSb,Th1,14.0,6.0,8.0,113.8666,0.0,36.0,24.0,2.8674,2.7202,98.7517,0.8673
