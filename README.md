@@ -192,7 +192,7 @@ Compounds_. **976**, 173241 (2024).
 
 #### Binary structural features
 
-| #    | Feature                                                  | comment                                                                                                                                                  |
+| #    | Feature                                                  | Description                                                                                                                                                  |
 | --- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | Entry                                                           | Used to match with CAF data or any other data to merge in one single file                                                                                |
 | 2   | formula                                                         |  Label                                                                                                                                                   |
@@ -295,7 +295,7 @@ Compounds_. **976**, 173241 (2024).
 
 #### Ternary structural features
 
-|     | Feature                                                         |
+|  #   | Feature                                                         |
 | --- | --------------------------------------------------------------- |
 | 1   | Entry                                                           |
 | 2   | formula                                                         |
