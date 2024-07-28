@@ -11,6 +11,9 @@ coordination numbers. The script can sequentially process more than 10,000
 `.cif` files and generate millions of data points used as ML input data for
 predicting crystal structures and properties.
 
+:warning: **Caution:** Do you want to generate geometric features beyond binary and ternary files? Please email me at [sl5400@columbia.edu](mailto:sl5400@columbia.edu).
+
+
 ## Motivation
 
 The script was originally developed to determine the coordination number for
@@ -192,7 +195,7 @@ Compounds_. **976**, 173241 (2024).
 
 #### Binary structural features
 
-| #    | Feature                                                  | Description                                                                                                                                                  |
+| #   | Feature                                                         | Description                                                                                                                                              |
 | --- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1   | Entry                                                           | Used to match with CAF data or any other data to merge in one single file                                                                                |
 | 2   | formula                                                         |  Label                                                                                                                                                   |
@@ -295,7 +298,7 @@ Compounds_. **976**, 173241 (2024).
 
 #### Ternary structural features
 
-|  #   | Feature                                                         |
+| #   | Feature                                                         |
 | --- | --------------------------------------------------------------- |
 | 1   | Entry                                                           |
 | 2   | formula                                                         |
