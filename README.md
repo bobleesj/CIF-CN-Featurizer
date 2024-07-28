@@ -8,25 +8,25 @@ Structure Analysis/Featurizer (SAF) is a Python script designed to process CIF
 (Crystallographic Information File) files and extract geometric features. These
 features include interatomic distances, information on atomic environments, and
 coordination numbers. The script can sequentially process more than 10,000
-`.cif` files and generate millions of data points used as ML input data for
-predicting crystal structures and properties.
+`.cif` files and generate millions of data points used as ML input data.
 
-:warning: **Caution:** Do you want to generate geometric features beyond binary and ternary files? Please email me at [sl5400@columbia.edu](mailto:sl5400@columbia.edu).
-
+:warning: **Caution:** Do you want to generate geometric features beyond binary
+and ternary files? Please email me at
+[sl5400@columbia.edu](mailto:sl5400@columbia.edu).
 
 ## Motivation
 
-The script was originally developed to determine the coordination number for
-each crystallographic site on complex structures [[1](#ref1)]. Then, we further
-included an interactive functionality for experimentalists and data scientists
-to generate structural features from `.cif` file. These features were engineered
-to be used as input data for ML models to predict crystal structures and their
-properties.
+The script was originally developed to determine the coordination number and
+geometry for each crystallographic site on complex structures [[1](#ref1)].
+Then, we further included an interactive functionality for experimentalists and
+data scientists to generate structural features from `.cif` file. These features
+were engineered to be used as input data for ML models to predict crystal
+structures and their properties.
 
 ## Features
 
-- 94 numerical features for binary compounds.
-- 193 numerical features for ternary compounds.
+- 94 numerical features for binary compounds saved in `.csv`
+- 193 numerical features for ternary compounds saved in `.csv`
 
 For a complete list of features, see the [Full Feature List](#full-feature-list)
 section.
@@ -43,9 +43,9 @@ files containing the following elements: `Si` `Sc` `Fe` `Co` `Ni` `Ga` `Ge` `Y`
 
 ### Adding more elements
 
-To add more elements, you need to provide `CIF_radius` and `Pauling_CN12` values
-in the `get_radius_data()` function located in `core/data/radius.py` as shown
-below:
+To include more elements, you need to provide `CIF_radius` and `Pauling_CN12`
+values in the `get_radius_data()` function located in `core/data/radius.py` as
+shown below:
 
 ```python
 def get_radius_data():
@@ -78,10 +78,7 @@ B_labels = ["Si", "Ga", "Ge", "In", "Sn", "Sb", "Al"]
 M_labels = ["Fe", "Co", "Ni", "Ru", "Rh", "Pd", "Os", "Ir", "Pt"]
 ```
 
-These modifications will allow you to adapt the parser to handle additional
-elements and compound types as needed.
-
-## Demo
+## Getting started
 
 Start with the script via
 
@@ -145,7 +142,7 @@ Before running the script, make sure you have the following dependencies
 installed:
 
 ```bash
-pip install click gemmi matplotlib numpy openpyxl pandas scipy sympy
+pip install click gemmi matplotlib numpy openpyxl pandas scipy sympy cifkit
 cd structure-analyzer-featurizer
 python main.py
 ```
@@ -163,13 +160,6 @@ python main.py
 
 If you are new to Conda (Python package manager), you may refer to
 [Intro to Python package manager for beginners (Ft. Conda with Cheatsheet](https://bobleesj.github.io/tutorial/2024/02/26/intro-to-python-package-manager.html).
-
-### CIF Cleaner
-
-SAF provides built-in preprocessing in this workflow to manually sort out `.cif`
-files with incorrect formatting. You may further use
-[CIF Cleaner](https://github.com/bobleesj/cif-cleaner/) to formats `.cif ` files
-and sorts them based on tags, supercell size, and minimum distance to save time.
 
 ## Contributors
 
