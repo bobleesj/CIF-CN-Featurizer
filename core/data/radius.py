@@ -35,8 +35,8 @@ def get_radius_data() -> dict:
         "Ir": [1.356, 1.355],
         "Pt": [1.387, 1.385],
         "Th": [1.798, 1.795],
-        "U": [1.377, 1.51],
-        "Al": [1.310, 1.310],
+        "U": [1.377, 1.516],
+        "Al": [1.310, 1.429],
         "Mo": [1.362, 1.386],
         "Hf": [1.5635, 1.585],
         "Ta": [1.430, 1.457],
@@ -45,3 +45,4 @@ def get_radius_data() -> dict:
     data: dict = {k: {"CIF_radius": v[0], "Pauling_radius_CN12": v[1]} for k, v in rad_data.items()}
 
     return data
+
