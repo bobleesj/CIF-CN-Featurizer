@@ -157,36 +157,96 @@ def RhSb2_CN_metrices_per_method():
 def RhSb2_min_max_avg_CN_metrices_from_sites():
     return {
         "SbI": {
-            "volume_of_polyhedron": {"min": 7.841, "max": 93.866, "avg": 29.34725},
-            "distance_from_avg_point_to_center": {"min": 0.329, "max": 0.48, "avg": 0.36675},
+            "volume_of_polyhedron": {
+                "min": 7.841,
+                "max": 93.866,
+                "avg": 29.34725,
+            },
+            "distance_from_avg_point_to_center": {
+                "min": 0.329,
+                "max": 0.48,
+                "avg": 0.36675,
+            },
             "number_of_vertices": {"min": 4, "max": 14, "avg": 6.5},
             "number_of_edges": {"min": 6, "max": 33, "avg": 12.75},
             "number_of_faces": {"min": 4, "max": 22, "avg": 8.5},
-            "shortest_distance_to_face": {"min": 0.69, "max": 2.127, "avg": 1.0492499999999998},
-            "shortest_distance_to_edge": {"min": 1.078, "max": 2.146, "avg": 1.345},
-            "volume_of_inscribed_sphere": {"min": 1.374, "max": 40.295, "avg": 11.10425},
+            "shortest_distance_to_face": {
+                "min": 0.69,
+                "max": 2.127,
+                "avg": 1.0492499999999998,
+            },
+            "shortest_distance_to_edge": {
+                "min": 1.078,
+                "max": 2.146,
+                "avg": 1.345,
+            },
+            "volume_of_inscribed_sphere": {
+                "min": 1.374,
+                "max": 40.295,
+                "avg": 11.10425,
+            },
             "packing_efficiency": {"min": 0.175, "max": 0.429, "avg": 0.2385},
         },
         "Rh": {
-            "volume_of_polyhedron": {"min": 28.667, "max": 28.667, "avg": 28.667},
-            "distance_from_avg_point_to_center": {"min": 0.268, "max": 0.268, "avg": 0.268},
+            "volume_of_polyhedron": {
+                "min": 28.667,
+                "max": 28.667,
+                "avg": 28.667,
+            },
+            "distance_from_avg_point_to_center": {
+                "min": 0.268,
+                "max": 0.268,
+                "avg": 0.268,
+            },
             "number_of_vertices": {"min": 7, "max": 7, "avg": 7.0},
             "number_of_edges": {"min": 15, "max": 15, "avg": 15.0},
             "number_of_faces": {"min": 10, "max": 10, "avg": 10.0},
-            "shortest_distance_to_face": {"min": 1.509, "max": 1.509, "avg": 1.509},
-            "shortest_distance_to_edge": {"min": 1.749, "max": 1.749, "avg": 1.749},
-            "volume_of_inscribed_sphere": {"min": 14.39, "max": 14.39, "avg": 14.39},
+            "shortest_distance_to_face": {
+                "min": 1.509,
+                "max": 1.509,
+                "avg": 1.509,
+            },
+            "shortest_distance_to_edge": {
+                "min": 1.749,
+                "max": 1.749,
+                "avg": 1.749,
+            },
+            "volume_of_inscribed_sphere": {
+                "min": 14.39,
+                "max": 14.39,
+                "avg": 14.39,
+            },
             "packing_efficiency": {"min": 0.502, "max": 0.502, "avg": 0.502},
         },
         "SbII": {
-            "volume_of_polyhedron": {"min": 9.762, "max": 107.745, "avg": 34.25775},
-            "distance_from_avg_point_to_center": {"min": 0.284, "max": 0.419, "avg": 0.31775},
+            "volume_of_polyhedron": {
+                "min": 9.762,
+                "max": 107.745,
+                "avg": 34.25775,
+            },
+            "distance_from_avg_point_to_center": {
+                "min": 0.284,
+                "max": 0.419,
+                "avg": 0.31775,
+            },
             "number_of_vertices": {"min": 4, "max": 15, "avg": 6.75},
             "number_of_edges": {"min": 6, "max": 36, "avg": 13.5},
             "number_of_faces": {"min": 4, "max": 24, "avg": 9.0},
-            "shortest_distance_to_face": {"min": 0.733, "max": 2.391, "avg": 1.1475},
-            "shortest_distance_to_edge": {"min": 1.257, "max": 2.179, "avg": 1.4874999999999998},
-            "volume_of_inscribed_sphere": {"min": 1.65, "max": 57.222, "avg": 15.543000000000001},
+            "shortest_distance_to_face": {
+                "min": 0.733,
+                "max": 2.391,
+                "avg": 1.1475,
+            },
+            "shortest_distance_to_edge": {
+                "min": 1.257,
+                "max": 2.179,
+                "avg": 1.4874999999999998,
+            },
+            "volume_of_inscribed_sphere": {
+                "min": 1.65,
+                "max": 57.222,
+                "avg": 15.543000000000001,
+            },
             "packing_efficiency": {"min": 0.169, "max": 0.531, "avg": 0.2595},
         },
     }
@@ -282,18 +342,36 @@ def test_compute_number_of_atoms_in_CN(RhSb2_cif):
     }
     min_max_avg_result = compute_min_max_avg_per_label(result)
     assert min_max_avg_result == {
-        "SbI": {"A_count": {"min": 3, "max": 3, "avg": 3.0}, "B_count": {"min": 1, "max": 11, "avg": 3.5}},
-        "Rh": {"A_count": {"min": 1, "max": 1, "avg": 1.0}, "B_count": {"min": 6, "max": 6, "avg": 6.0}},
-        "SbII": {"A_count": {"min": 3, "max": 3, "avg": 3.0}, "B_count": {"min": 1, "max": 12, "avg": 3.75}},
+        "SbI": {
+            "A_count": {"min": 3, "max": 3, "avg": 3.0},
+            "B_count": {"min": 1, "max": 11, "avg": 3.5},
+        },
+        "Rh": {
+            "A_count": {"min": 1, "max": 1, "avg": 1.0},
+            "B_count": {"min": 6, "max": 6, "avg": 6.0},
+        },
+        "SbII": {
+            "A_count": {"min": 3, "max": 3, "avg": 3.0},
+            "B_count": {"min": 1, "max": 12, "avg": 3.75},
+        },
     }
 
 
 @pytest.mark.now
 def test_compute_global_average_for_atom_count_in_CN():
     min_max_avg_result = {
-        "SbI": {"A_count": {"min": 3, "max": 3, "avg": 3.0}, "B_count": {"min": 1, "max": 11, "avg": 3.5}},
-        "Rh": {"A_count": {"min": 1, "max": 1, "avg": 1.0}, "B_count": {"min": 6, "max": 6, "avg": 6.0}},
-        "SbII": {"A_count": {"min": 3, "max": 3, "avg": 3.0}, "B_count": {"min": 1, "max": 12, "avg": 3.75}},
+        "SbI": {
+            "A_count": {"min": 3, "max": 3, "avg": 3.0},
+            "B_count": {"min": 1, "max": 11, "avg": 3.5},
+        },
+        "Rh": {
+            "A_count": {"min": 1, "max": 1, "avg": 1.0},
+            "B_count": {"min": 6, "max": 6, "avg": 6.0},
+        },
+        "SbII": {
+            "A_count": {"min": 3, "max": 3, "avg": 3.0},
+            "B_count": {"min": 1, "max": 12, "avg": 3.75},
+        },
     }
 
     result = compute_global_averages_for_min_max_avg_metrices(min_max_avg_result)

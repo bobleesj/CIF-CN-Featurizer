@@ -4,6 +4,7 @@
 node_modules
 package-lock.json
 package.json
+20240825_binary_cif_data
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

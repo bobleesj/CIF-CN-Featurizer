@@ -40,10 +40,14 @@ def process_folder(dir_path):
 
     for i, file_path in enumerate(file_paths, start=1):
         file_start_time = time.perf_counter()
-        cif: Cif = Cif(file_path)
-        prompt.prompt_progress_current(i, file_path, cif.supercell_atom_count, len(file_paths))
-        cif.compute_connections()
-        elements = list(cif.unique_elements)
+        try:
+            cif: Cif = Cif(file_path)
+            prompt.prompt_progress_current(i, file_path, cif.supercell_atom_count, len(file_paths))
+            cif.compute_connections()
+            elements = list(cif.unique_elements)
+        except Exception as e:
+            print("Error found for", file_path, "Reason:", e)
+            continue
 
         # Check the elements in the configuration
         try:
@@ -53,57 +57,60 @@ def process_folder(dir_path):
             continue
 
         # Check if binary or ternary
-        if len(elements) == 2:
-            binary_int_data, uni_int_data = binary_interatomic.compute_binary_interatomic_features(cif)
-            binary_wyc_data, uni_wyc_data = binary_wyc.compute_binary_wyc_features(cif)
-            binary_env_data = binary_env_handler.compute_binary_env_features(cif)
-            binary_CN_data = coordination_handler.get_CN_binary_features(cif)
+        try:
+            if len(elements) == 2:
+                binary_int_data, uni_int_data = binary_interatomic.compute_binary_interatomic_features(cif)
+                binary_wyc_data, uni_wyc_data = binary_wyc.compute_binary_wyc_features(cif)
+                binary_env_data = binary_env_handler.compute_binary_env_features(cif)
+                binary_CN_data = coordination_handler.get_CN_binary_features(cif)
 
-            # Combine all features into a single dictionary
-            binary_combined_data = {}
-            binary_combined_data.update(binary_int_data)
-            binary_combined_data.update(binary_wyc_data)
-            binary_combined_data.update(binary_env_data)
-            binary_combined_data.update(binary_CN_data)
+                # Combine all features into a single dictionary
+                binary_combined_data = {}
+                binary_combined_data.update(binary_int_data)
+                binary_combined_data.update(binary_wyc_data)
+                binary_combined_data.update(binary_env_data)
+                binary_combined_data.update(binary_CN_data)
 
-            # Get universal features
-            uni_combined_data = {}
-            uni_combined_data.update(uni_int_data)
-            uni_combined_data.update(uni_wyc_data)
-            uni_combined_data.update(binary_CN_data)
+                # Get universal features
+                uni_combined_data = {}
+                uni_combined_data.update(uni_int_data)
+                uni_combined_data.update(uni_wyc_data)
+                uni_combined_data.update(binary_CN_data)
 
-            # Add the combined_data dictionary to your list
-            binary_data.append(binary_combined_data)
-            uni_data.append(uni_combined_data)
+                # Add the combined_data dictionary to your list
+                binary_data.append(binary_combined_data)
+                uni_data.append(uni_combined_data)
 
-            # log.print_dict_pretty(binary_combined_data, "binary_data")
-            # log.print_dict_pretty(uni_combined_data, "uni_data")
+                # log.print_dict_pretty(binary_combined_data, "binary_data")
+                # log.print_dict_pretty(uni_combined_data, "uni_data")
 
-        if len(elements) == 3:
-            ternary_int_data, uni_int_data = ternary_interatomic.compute_ternary_interatomic_features(cif)
-            ternary_wyc_data, uni_wyc_data = ternary_wyc.compute_ternary_wyk_features(cif)
-            ternary_env_data = ternary_env_handler.compute_ternary_env_features(cif)
-            ternary_CN_data = coordination_handler.get_CN_ternary_features(cif)
+            if len(elements) == 3:
+                ternary_int_data, uni_int_data = ternary_interatomic.compute_ternary_interatomic_features(cif)
+                ternary_wyc_data, uni_wyc_data = ternary_wyc.compute_ternary_wyk_features(cif)
+                ternary_env_data = ternary_env_handler.compute_ternary_env_features(cif)
+                ternary_CN_data = coordination_handler.get_CN_ternary_features(cif)
 
-            ternary_combined_data = {}
-            ternary_combined_data.update(ternary_int_data)
-            ternary_combined_data.update(ternary_wyc_data)
-            ternary_combined_data.update(ternary_env_data)
-            ternary_combined_data.update(ternary_CN_data)
+                ternary_combined_data = {}
+                ternary_combined_data.update(ternary_int_data)
+                ternary_combined_data.update(ternary_wyc_data)
+                ternary_combined_data.update(ternary_env_data)
+                ternary_combined_data.update(ternary_CN_data)
 
-            # Get universal features
-            uni_combined_data = {}
-            uni_combined_data.update(uni_int_data)
-            uni_combined_data.update(uni_wyc_data)
-            uni_combined_data.update(ternary_CN_data)
+                # Get universal features
+                uni_combined_data = {}
+                uni_combined_data.update(uni_int_data)
+                uni_combined_data.update(uni_wyc_data)
+                uni_combined_data.update(ternary_CN_data)
 
-            # Add the combined_data dictionary to your list
-            ternary_data.append(ternary_combined_data)
-            uni_data.append(uni_combined_data)
+                # Add the combined_data dictionary to your list
+                ternary_data.append(ternary_combined_data)
+                uni_data.append(uni_combined_data)
 
-            # log.print_dict_pretty(ternary_combined_data, "ternary_data")
-            # log.print_dict_pretty(uni_combined_data, "uni_data")
-
+                # log.print_dict_pretty(ternary_combined_data, "ternary_data")
+                # log.print_dict_pretty(uni_combined_data, "uni_data")
+        except Exception as e:
+            print(f"Error found for {file_path}. Reason: {e}")
+            continue
         elapsed_time = time.perf_counter() - file_start_time
         prompt.prompt_progress_finished(cif.file_name, cif.supercell_atom_count, elapsed_time)
 

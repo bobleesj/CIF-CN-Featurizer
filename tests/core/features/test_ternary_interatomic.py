@@ -1,6 +1,8 @@
 import pytest
 from cifkit import Cif
-from core.features.ternary_interatomic import compute_ternary_interatomic_features
+from core.features.ternary_interatomic import (
+    compute_ternary_interatomic_features,
+)
 
 
 @pytest.mark.now
