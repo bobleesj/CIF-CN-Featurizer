@@ -89,9 +89,13 @@ def compute_binary_interatomic_features(cif: Cif):
     percent_diffs = [percent_diff_A, percent_diff_B]
 
     # Find key of shortest_homoatomic_distance in distances
-    shortest_homo_key = [k for k, v in shortest_distances_pair_sorted.items() if v == shortest_homoatomic_distance][0]
+    shortest_homo_key = [
+        k for k, v in shortest_distances_pair_sorted.items() if v == shortest_homoatomic_distance
+    ][0]
 
-    shortest_homoatomic_distance_by_2_by_atom_size = (shortest_homoatomic_distance / 2) / cif_radii[shortest_homo_key]
+    shortest_homoatomic_distance_by_2_by_atom_size = (shortest_homoatomic_distance / 2) / cif_radii[
+        shortest_homo_key
+    ]
     shortest_heteroatomic_distance_by_sum_of_atom_sizes = shortest_heteroatomic_distance / cif_radii["AB"]
     shortest_homoatomic_distance_by_2_by_refined_atom_sizes = (shortest_homoatomic_distance / 2) / refined_radii[
         shortest_homo_key
@@ -103,6 +107,7 @@ def compute_binary_interatomic_features(cif: Cif):
     data = {
         "Entry": cif.file_name_without_ext,
         "Formula": cif.formula,
+        "Structure": cif.structure,
         "A": A,
         "B": B,
         "INT_distAA": distAA,

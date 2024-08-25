@@ -1,5 +1,8 @@
 from cifkit import Cif
-from core.utils.element_parser import get_binary_AB_elements, get_ternary_RMX_elements
+from core.utils.element_parser import (
+    get_binary_AB_elements,
+    get_ternary_RMX_elements,
+)
 from core.utils import log
 from core.features.coordination import (
     get_CN_metrices_per_method,

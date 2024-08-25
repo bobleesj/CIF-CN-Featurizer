@@ -45,4 +45,3 @@ def get_radius_data() -> dict:
     data: dict = {k: {"CIF_radius": v[0], "Pauling_radius_CN12": v[1]} for k, v in rad_data.items()}
 
     return data
-

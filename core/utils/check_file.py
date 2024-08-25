@@ -1,4 +1,7 @@
-from core.utils.element_parser import get_binary_AB_elements, get_ternary_RMX_elements
+from core.utils.element_parser import (
+    get_binary_AB_elements,
+    get_ternary_RMX_elements,
+)
 from core.config import get_all_possible_elements
 
 
