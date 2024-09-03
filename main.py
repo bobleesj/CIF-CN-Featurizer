@@ -44,17 +44,17 @@ def process_folder(dir_path):
             cif: Cif = Cif(file_path)
             prompt.prompt_progress_current(i, file_path, cif.supercell_atom_count, len(file_paths))
             cif.compute_connections()
-            elements = list(cif.unique_elements)
+            print(cif.shortest_distance)
         except Exception as e:
             print("Error found for", file_path, "Reason:", e)
             continue
 
         # Check the elements in the configuration
         try:
-            check_file.check_availability_for_binary_ternary(file_path, elements)
+            elements = list(cif.unique_elements)
+            check_file.check_availability_for_binary_ternary(elements)
         except ValueError as e:
-            print(f"Error found for {file_path}. Reason: {e}")
-            continue
+            raise ValueError(f"Error found for {file_path}. Reason: {e}")
 
         # Check if binary or ternary
         try:
@@ -106,8 +106,8 @@ def process_folder(dir_path):
                 ternary_data.append(ternary_combined_data)
                 uni_data.append(uni_combined_data)
 
-                # log.print_dict_pretty(ternary_combined_data, "ternary_data")
-                # log.print_dict_pretty(uni_combined_data, "uni_data")
+            # log.print_dict_pretty(ternary_combined_data, "ternary_data")
+            # log.print_dict_pretty(uni_combined_data, "uni_data")
         except Exception as e:
             print(f"Error found for {file_path}. Reason: {e}")
             continue
