@@ -1,33 +1,34 @@
+from cifkit.utils.string_parser import strip_numbers_and_symbols
 def parse_atomic_environment_from_loop(CIF_loop_values):
     # Initialize a dictionary to store element information
     atomic_env = {}
 
     # Get the number of atoms
-    num_atoms = len(CIF_loop_values[0])
+    num_site_labels = len(CIF_loop_values[0])
 
     # Loop over all atoms
-    for i in range(num_atoms):
+    for i in range(num_site_labels):
         # Get atomic info
-        label = CIF_loop_values[0][i]
-        type_symbol = CIF_loop_values[1][i]
+        site_label = CIF_loop_values[0][i]
+        site_element = strip_numbers_and_symbols(CIF_loop_values[1][i])
         multiplicity = int(CIF_loop_values[2][i])
 
-        if type_symbol not in atomic_env:
-            atomic_env[type_symbol] = {
+        if site_element not in atomic_env:
+            atomic_env[site_element] = {
                 "sites": 0,
                 "multiplicity": 0,
                 "lowest_wyckoff_multiplicity": multiplicity,
-                "lowest_wyckoff_element": label,
+                "lowest_wyckoff_element": site_label,
             }
 
         # Update the atom information in the dictionary
-        atomic_env[type_symbol]["sites"] += 1
-        atomic_env[type_symbol]["multiplicity"] += multiplicity
+        atomic_env[site_element]["sites"] += 1
+        atomic_env[site_element]["multiplicity"] += multiplicity
 
         # Update the element with the lowest Wyckoff multiplicity
-        if multiplicity < atomic_env[type_symbol]["multiplicity"]:
-            atomic_env[type_symbol]["lowest_wyckoff_multiplicity"] = multiplicity
-            atomic_env[type_symbol]["lowest_wyckoff_element"] = label
+        if multiplicity < atomic_env[site_element]["multiplicity"]:
+            atomic_env[site_element]["lowest_wyckoff_multiplicity"] = multiplicity
+            atomic_env[site_element]["lowest_wyckoff_element"] = site_label
 
     return atomic_env
 

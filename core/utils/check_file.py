@@ -5,7 +5,7 @@ from core.utils.element_parser import (
 from core.config import get_all_possible_elements
 
 
-def check_availability_for_binary_ternary(file_path, elements):
+def check_availability_for_binary_ternary(elements):
     possible_elements = get_all_possible_elements()
 
     for element in elements:

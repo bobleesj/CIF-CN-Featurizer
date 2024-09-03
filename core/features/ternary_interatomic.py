@@ -114,17 +114,13 @@ def compute_ternary_interatomic_features(cif: Cif):
 
     percent_diffs = [percent_diff_R, percent_diff_M, percent_diff_X]
 
-    shortest_homo_key = [
-        k for k, v in shortest_distances_pair_sorted.items() if v == shortest_homoatomic_distance
-    ][0]
-    shortest_hetero_key = [
-        k for k, v in shortest_distances_pair_sorted.items() if v == shortest_heteroatomic_distance
-    ][0]
+    shortest_homo_key = [k for k, v in shortest_distances_pair_sorted.items() if v == shortest_homoatomic_distance][0]
+    shortest_hetero_key = [k for k, v in shortest_distances_pair_sorted.items() if v == shortest_heteroatomic_distance][
+        0
+    ]
 
     # Extract 9 universal features for Ternary
-    shortest_homoatomic_distance_by_2_by_atom_size = (shortest_homoatomic_distance / 2) / cif_radii[
-        shortest_homo_key
-    ]
+    shortest_homoatomic_distance_by_2_by_atom_size = (shortest_homoatomic_distance / 2) / cif_radii[shortest_homo_key]
     shortest_heteroatomic_distance_by_sum_of_atom_sizes = (
         shortest_heteroatomic_distance / cif_radii[shortest_hetero_key]
     )

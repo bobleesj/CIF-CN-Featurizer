@@ -99,9 +99,7 @@ def extract_best_labels(data):
         total_second_shortest = sum(total_distances[element]["second_shortest_counts"])
         avg_shortest = total_shortest / label_counts[element]
         avg_second_shortest = (
-            total_second_shortest / label_counts[element]
-            if total_distances[element]["second_shortest_counts"]
-            else 0
+            total_second_shortest / label_counts[element] if total_distances[element]["second_shortest_counts"] else 0
         )
 
         output[element] = {
@@ -178,9 +176,7 @@ def extract_avg_shortest_dist_with_tol(connection_data, tol=0.05):
     for element, result in avg_result.items():
         num_sites = len(element_to_site_labels[element])
         if num_sites > 0:
-            result["avg_shortest_dist_within_tol_count"] = (
-                result["total_shortest_dist_within_tol_count"] / num_sites
-            )
+            result["avg_shortest_dist_within_tol_count"] = result["total_shortest_dist_within_tol_count"] / num_sites
         else:
             result["avg_shortest_dist_within_tol_count"] = 0.0
     return avg_result

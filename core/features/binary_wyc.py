@@ -47,5 +47,7 @@ def compute_binary_wyc_features(cif: Cif):
     uni_data = {
         "UNI_WYK_lowest_wyckoff": min_wyckoff_multiplicity,
     }
+    
+  
 
     return data, uni_data
