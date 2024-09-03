@@ -1,4 +1,4 @@
-cifkit==1.0.3
+cifkit==1.0.4
 click
 gemmi
 matplotlib
