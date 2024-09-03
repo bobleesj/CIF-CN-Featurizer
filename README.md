@@ -36,7 +36,9 @@ section.
 The current version supports the processing of **binary** and **ternary** `.cif`
 files containing the following elements: `Si` `Sc` `Fe` `Co` `Ni` `Ga` `Ge` `Y`
 `Ru` `Rh` `Pd` `In` `Sn` `Sb` `La` `Ce` `Pr` `Nd` `Sm` `Eu` `Gd` `Tb` `Dy` `Ho`
-`Er` `Tm` `Yb` `Lu` `Os` `Ir` `Pt` `Th` `U` `Al` `Mo` `Hf` `Ta`.
+`Er` `Tm` `Yb` `Lu` `Os` `Ir` `Pt` `Th` `U` `Al` `Mo` `Hf` `Ta`. `Ag` `As` `Au`
+`B` `Ba` `Be` `Bi` `C` `Ca` `Cd` `Cr` `Cs` `Cu` `Hg` `K` `Li` `Mg` `Mn` `Na`
+`Nb` `P` `Pb` `Rb` `Re` `S` `Se` `Sr` `Te` `Ti` `Tl` `V` `W` `Zn` `Zr`
 
 :warning: You may use CIF Cleaner (https://github.com/bobleesj/cif-cleaner) to
 interactively filter `.cif` files based on composition type (binary, ternary)
