@@ -1,0 +1,72 @@
+
+#(C) 2024 by FIZ Karlsruhe - Leibniz Institute for Information Infrastructure.  All rights reserved.
+data_52294-ICSD
+_database_code_ICSD 52294
+_audit_creation_date 2003-04-01
+_audit_update_record 2013-02-01
+_chemical_name_common 'Tin antimonide (1/1)'
+_chemical_formula_structural 'Sn Sb'
+_chemical_formula_sum 'Sb1 Sn1'
+_chemical_name_structure_type GeTe(supercell)
+_chemical_name_mineral Stistaite
+_exptl_crystal_density_diffrn 6.62
+_citation_title 'X-ray studies on the systems tin-antimony and tin-arsenic'
+loop_
+_citation_id
+_citation_journal_full
+_citation_year
+_citation_journal_volume
+_citation_page_first
+_citation_page_last
+_citation_journal_id_ASTM
+primary 'Philosophical Magazine ' 1935 20 913 929 PHMAA4
+loop_
+_citation_author_citation_id
+_citation_author_name
+primary 'Haegg, G.'
+primary 'Hybinette, A.G.'
+_cell_length_a 6.226
+_cell_length_b 6.226
+_cell_length_c 6.226
+_cell_angle_alpha 89.38
+_cell_angle_beta 89.38
+_cell_angle_gamma 89.38
+_cell_volume 241.3
+_cell_formula_units_Z 4
+_space_group_name_H-M_alt 'R -3 m R'
+_space_group_IT_number 166
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1 '-z, -y, -x'
+2 '-z, -x, -y'
+3 '-x, -z, -y'
+4 '-y, -z, -x'
+5 '-y, -x, -z'
+6 '-x, -y, -z'
+7 'z, y, x'
+8 'z, x, y'
+9 'x, z, y'
+10 'y, z, x'
+11 'y, x, z'
+12 'x, y, z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Sn0+ 0
+Sb0+ 0
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_B_iso_or_equiv
+_atom_site_occupancy
+Sn1 Sn0+ 1 a 0 0 0 . 1.
+Sn2 Sn0+ 3 e 0.5 0.5 0 . 1.
+Sb1 Sb0+ 1 b 0.5 0.5 0.5 . 1.
+Sb2 Sb0+ 3 d 0 0 0.5 . 1.
+#End of TTdata_52294-ICSD

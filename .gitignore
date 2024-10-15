@@ -16,6 +16,8 @@ __pycache__/
 
 # Ignonore some .cif files
 cif_test
+tests
+20240402_binary_test
 
 # Cache
 .ruff_cache

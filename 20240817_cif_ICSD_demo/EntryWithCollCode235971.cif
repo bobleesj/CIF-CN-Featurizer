@@ -1,0 +1,70 @@
+
+#(C) 2024 by FIZ Karlsruhe - Leibniz Institute for Information Infrastructure.  All rights reserved.
+data_235971-ICSD
+_database_code_ICSD 235971
+_audit_creation_date 2020-02-01
+_chemical_name_common 'Holmium nickel (1/1)'
+_chemical_formula_structural 'Ho Ni'
+_chemical_formula_sum 'Ho1 Ni1'
+_chemical_name_structure_type FeB
+_exptl_crystal_density_diffrn 9.48
+_diffrn_ambient_temperature 8.
+_citation_title
+
+;
+The magnetic properties and magnetocaloric effects in binary Râ€“T (R = Pr, Gd,
+Tb, Dy, Ho, Er, Tm; T = Ga, Ni, Co, Cu) intermetallic compounds
+;
+loop_
+_citation_id
+_citation_journal_full
+_citation_year
+_citation_journal_volume
+_citation_page_first
+_citation_page_last
+_citation_journal_id_ASTM
+primary 'Chinese Physics B' 2017 26 1 41 CPBHAJ
+loop_
+_citation_author_citation_id
+_citation_author_name
+primary 'Zheng, Xin-Qi'
+primary 'Shen, Bao-Gen'
+_cell_length_a 6.9763(2)
+_cell_length_b 4.15477(4)
+_cell_length_c 5.4008(1)
+_cell_angle_alpha 90.
+_cell_angle_beta 90.
+_cell_angle_gamma 90.
+_cell_volume 156.54
+_cell_formula_units_Z 4
+_space_group_name_H-M_alt 'P n m a'
+_space_group_IT_number 62
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1 'x+1/2, y, -z+1/2'
+2 'x, -y+1/2, z'
+3 '-x+1/2, y+1/2, z+1/2'
+4 '-x, -y, -z'
+5 '-x+1/2, -y, z+1/2'
+6 '-x, y+1/2, -z'
+7 'x+1/2, -y+1/2, -z+1/2'
+8 'x, y, z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Ho0+ 0
+Ni0+ 0
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_B_iso_or_equiv
+_atom_site_occupancy
+Ho1 Ho0+ 4 c 0.1816(3) 0.25 0.1327(7) . 1.
+Ni1 Ni0+ 4 c 0.0354(3) 0.25 0.6268(5) . 1.
+#End of TTdata_235971-ICSD

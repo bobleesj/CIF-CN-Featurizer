@@ -1,0 +1,73 @@
+
+#(C) 2024 by FIZ Karlsruhe - Leibniz Institute for Information Infrastructure.  All rights reserved.
+data_43054-ICSD
+_database_code_ICSD 43054
+_audit_creation_date 2000-07-15
+_audit_update_record 2013-02-01
+_chemical_name_common 'Iron germanide (1/1)'
+_chemical_formula_structural 'Fe Ge'
+_chemical_formula_sum 'Fe1 Ge1'
+_chemical_name_structure_type Fersilicite#FeSi
+_exptl_crystal_density_diffrn 8.22
+_citation_title
+
+;
+Crystal structure refinement of the B20 and monoclinic (Co Ge-type) polymorphs
+of Fe Ge
+;
+loop_
+_citation_id
+_citation_journal_full
+_citation_year
+_citation_journal_volume
+_citation_page_first
+_citation_page_last
+_citation_journal_id_ASTM
+primary 'Acta Chemica Scandinavica ' 1967 21 753 760 ACSAA4
+loop_
+_citation_author_citation_id
+_citation_author_name
+primary 'Richardson, M.'
+_cell_length_a 4.700(2)
+_cell_length_b 4.700(2)
+_cell_length_c 4.700(2)
+_cell_angle_alpha 90.
+_cell_angle_beta 90.
+_cell_angle_gamma 90.
+_cell_volume 103.82
+_cell_formula_units_Z 4
+_space_group_name_H-M_alt 'P 21 3'
+_space_group_IT_number 198
+loop_
+_space_group_symop_id
+_space_group_symop_operation_xyz
+1 '-z+1/2, -x, y+1/2'
+2 '-y+1/2, -z, x+1/2'
+3 '-x+1/2, -y, z+1/2'
+4 '-z, x+1/2, -y+1/2'
+5 '-y, z+1/2, -x+1/2'
+6 '-x, y+1/2, -z+1/2'
+7 'z+1/2, -x+1/2, -y'
+8 'y+1/2, -z+1/2, -x'
+9 'x+1/2, -y+1/2, -z'
+10 'z, x, y'
+11 'y, z, x'
+12 'x, y, z'
+loop_
+_atom_type_symbol
+_atom_type_oxidation_number
+Fe0+ 0
+Ge0+ 0
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_symmetry_multiplicity
+_atom_site_Wyckoff_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_B_iso_or_equiv
+_atom_site_occupancy
+Fe1 Fe0+ 4 a 0.1352(4) 0.1352 0.1352 0.06(3) 1.
+Ge1 Ge0+ 4 a 0.8414(3) 0.8414 0.8414 0.13(3) 1.
+#End of TTdata_43054-ICSD
