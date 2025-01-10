@@ -44,7 +44,6 @@ def process_folder(dir_path):
             cif: Cif = Cif(file_path)
             prompt.prompt_progress_current(i, file_path, cif.supercell_atom_count, len(file_paths))
             cif.compute_connections()
-            print(cif.shortest_distance)
         except Exception as e:
             print("Error found for", file_path, "Reason:", e)
             continue
